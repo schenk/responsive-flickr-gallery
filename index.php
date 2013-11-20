@@ -6,7 +6,7 @@
    Version: 0.0.1
    Author: Lars Schenk
    Author URI: http://www.lars-schenk.com
-   License: GPL2
+   License: GPLv3 or later
    Copyright 2013 Lars Schenk (email : info@lars-schenk.de)
 
    Forked from: Awesome Flickr Gallery 3.3.6
