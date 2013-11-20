@@ -109,15 +109,6 @@ $rfg_text_color_map = array(
     'White' => 'Black',
 );
 
-function rfg_get_cur_url()
-{
-    $isHTTPS = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on");
-    $port = (isset($_SERVER["SERVER_PORT"]) && ((!$isHTTPS && $_SERVER["SERVER_PORT"] != "80") || ($isHTTPS && $_SERVER["SERVER_PORT"] != "443")));
-    $port = ($port) ? ':'.$_SERVER["SERVER_PORT"] : '';
-    $url = ($isHTTPS ? 'https://' : 'http://').$_SERVER["HTTP_HOST"].$port.$_SERVER["REQUEST_URI"];
-    return $url;
-}
-
 function create_afgFlickr_obj()
 {
     global $pf;

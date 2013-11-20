@@ -150,7 +150,7 @@ function rfg_display_gallery($atts)
     extract(shortcode_atts(array('id' => '0'), $atts));
 
     $cur_page = 1;
-    $cur_page_url = rfg_get_cur_url();
+    $cur_page_url = $_SERVER["REQUEST_URI"];
 
     preg_match("/afg{$id}_page_id=(?P<page_id>\d+)/", $cur_page_url, $matches);
 
