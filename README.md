@@ -25,16 +25,18 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create a galle
 * Ability to disable built-in slideshow so that you can use a slideshow plugin of your choice
 * Intuitive menu pages with easy configuration options and photo previews
 * SEO friendly, all your photos are available to search engine crawlers
+* Cloud-compatible: Stores nothing into the filesystem. Tested with heroku
+* PSR-2 coding standard
 
-You can see a live demo of this plugin on my personal photography page - [Photos | RonakG.com](http://www.ronakg.com/photos/)
+###Example:
 
-###More Examples:
+You can see a live demo of this plugin here:
 
-* [Responsive Flickr Gallery Demo Page | Lars-Schenk.com](http://www.lars-schenk.com/responsive-flickr-gallery-wordpress-plugin-demo-e/)
+* [Responsive Flickr Gallery Demo Page | Classic-Cadillac.com](http://www.classic-cadillac.com/1958-cadillac-convertible-7721/57711)
 
 ###Support:
 
-Can't get the plugin working?  Head to the discussion forum for solution - [Discussions | RonakG.com](http://www.ronakg.com/discussions/)
+Found a bug, need a feature?  Head to git issues for solution - [Issues | github.com](https://github.com/schenk/responsive-flickr-gallery/issues)
 
 ##Installation:
 
@@ -45,13 +47,8 @@ Can't get the plugin working?  Head to the discussion forum for solution - [Disc
 
 ##Screenshots:
 
-![Responsive Flickr Gallery with Thumbnail size photos with white background](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-1.png "Responsive Flickr Gallery with Thumbnail size photos with white background")
-![Responsive Flickr Gallery with photos of size Square with Title and Description OFF](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-2.png "Responsive Flickr Gallery with photos of size Square with Title and Description OFF")
-![Responsive Flickr Gallery with photos of size Small with Title and Description ON](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-3.png "Responsive Flickr Gallery with photos of size Small with Title and Description ON")
-![Default Settings Page](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-4.png "Default Settings Page")
-![Add Gallery Page](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-5.png "Add Gallery Page")
-![Saved Galleries Page](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-7.png "Saved Galleries Page")
-![Advanced Settings Page](http://s.wordpress.org/extend/plugins/awesome-flickr-gallery-plugin/screenshot-8.png "Advanced Settings Page")
+![Responsive Flickr Gallery with large size photos with white background](https://dl.dropboxusercontent.com/u/4421587/responsive-flickr-gallery-demo-screenshot-wordpress.jpg "Responsive Flickr Gallery with large size photos with white background")
+![Default Settings Page](https://dl.dropboxusercontent.com/u/4421587/responsive-flickr-gallery-admin-screenshot-wordpress.jpg "Default Settings Page")
 
 ##Frequently Asked Questions:
 
@@ -90,3 +87,7 @@ Can't get the plugin working?  Head to the discussion forum for solution - [Disc
 #### Pagination does not work as expected. It show only one page of photos but the photoset has more photos. ####
 
 > Check the permissions of the photos. Maybe only some photos were public. So you'll see more photo on flickr in the set than the plugin can access.
+
+#### Does it scale? ####
+
+> Yes, this fork was designed to avoid using a filesystem. In a cloud based environmend the filesystem might be not persistent and therefore shoudn't be used. This plugin has been designed with the cloud in mind. Tested on heroku.
