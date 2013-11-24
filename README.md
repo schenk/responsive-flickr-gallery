@@ -10,7 +10,7 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create a galle
 * Uses caching to load galleries instantly + use DB for catch to allow cloud hosting and scaling
 * Support for both Public and Private photos
 * Create multiple galleries with different parameters
-* Two powerful slideshow options in Colorbox and HighSlide
+* Powerful slideshow options with Colorbox
 * Select Photos from your Flickr Photostream, a Photoset, a Gallery, a Group or a set of tags
 * Multiple sorting options available so that you don't have to rely on Flickr's sorting options
 * Different default image sizes
@@ -27,6 +27,7 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create a galle
 * SEO friendly, all your photos are available to search engine crawlers
 * Cloud-compatible: Stores nothing into the filesystem. Tested with heroku
 * PSR-2 coding standard
+* License: GPLv3 or higher
 
 ###Example:
 
