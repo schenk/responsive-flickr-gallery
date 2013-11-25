@@ -319,10 +319,11 @@ upgrade_handler();
                                  <td><select name='rfg_slideshow_option'>
                                        <?php echo rfg_generate_options($rfg_slideshow_map, get_option('rfg_slideshow_option', 'colorbox')); ?>
                                  </select></td>
-                                 <td><font size='2'><b>HighSlide is NOT FREE for Commercial websites</b>.  If you are using
-                                 <i>Responsive Flickr Gallery</i> on a commercial website, you need to purchase a license from their website
-                                 <a href='http://highslide.com/#licence' target='_blank'>here</a>.  If you want a free slideshow,
-                                 use ColorBox instead.</font></td>
+                                 <td><font size='2'>
+                                  If you use ColorBox to display photos in larger size you'll also have a slidehsow for all photos from a gallery.
+                                  A slideshow contains all photos of a gallery - even if pagination is enabled.<br />
+                                  Be aware that page load times can suffer if you choose to use ColorBox slideshows for galleries containing many pictures.
+                                  </font></td>
                               </tr>
 
 

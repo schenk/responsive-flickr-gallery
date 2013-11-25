@@ -3,7 +3,7 @@
    Plugin Name: Responsive Flickr Gallery
    Plugin URI: http://www.lars-schenk.com/responsive-flickr-gallery-wordpress-plugin/
    Description: Responsive Flickr Gallery is a simple, fast and light plugin to create a responsive gallery of your Flickr photos on your WordPress enabled website.  Provides a simple yet customizable way to create Flickr galleries in a responsive theme.
-   Version: 0.0.2
+   Version: 0.0.3
    Author: Lars Schenk
    Author URI: http://www.lars-schenk.com
    License: GPLv3 or later
@@ -43,23 +43,12 @@ function rfg_enqueue_cbox_styles()
     wp_enqueue_style('rfg_colorbox_css', BASE_URL . "/colorbox/colorbox.css");
 }
 
-function rfg_enqueue_highslide_scripts()
-{
-    wp_enqueue_script('rfg_highslide_js', BASE_URL . "/highslide/highslide-full.min.js");
-}
-
-function rfg_enqueue_highslide_styles()
-{
-    wp_enqueue_style('rfg_highslide_css', BASE_URL . "/highslide/highslide.css");
-}
-
 function rfg_enqueue_styles()
 {
     wp_enqueue_style('rfg_css', BASE_URL . "/rfg.css");
 }
 
 $enable_colorbox = get_option('rfg_slideshow_option') == 'colorbox';
-$enable_highslide = get_option('rfg_slideshow_option') == 'highslide';
 
 if (!is_admin()) {
     /* Short code to load Responsive Flickr Gallery plugin.  Detects the word
@@ -76,21 +65,9 @@ if (!is_admin()) {
         }
     }
 
-    foreach ($galleries as $gallery) {
-        if ($gallery['slideshow_option'] == 'highslide') {
-            $enable_highslide = true;
-            break;
-        }
-    }
-
     if ($enable_colorbox) {
         add_action('wp_print_scripts', 'rfg_enqueue_cbox_scripts');
         add_action('wp_print_styles', 'rfg_enqueue_cbox_styles');
-    }
-
-    if ($enable_highslide) {
-        add_action('wp_print_scripts', 'rfg_enqueue_highslide_scripts');
-        add_action('wp_print_styles', 'rfg_enqueue_highslide_styles');
     }
 
     add_action('wp_print_styles', 'rfg_enqueue_styles');
@@ -100,38 +77,6 @@ add_action('wp_head', 'add_rfg_headers');
 
 function add_rfg_headers()
 {
-    global $enable_highslide;
-    if ($enable_highslide) {
-        echo "<script type='text/javascript'>
-            hs.graphicsDir = '" . BASE_URL . "/highslide/graphics/';
-        hs.align = 'center';
-        hs.transitions = ['expand', 'crossfade'];
-        hs.fadeInOut = true;
-        hs.dimmingOpacity = 0.85;
-        hs.outlineType = 'rounded-white';
-        hs.captionEval = 'this.thumb.alt';
-        hs.marginBottom = 115; // make room for the thumbstrip and the controls
-        hs.numberPosition = 'caption';
-        // Add the slideshow providing the controlbar and the thumbstrip
-        hs.addSlideshow({
-            //slideshowGroup: 'group1',
-            interval: 3500,
-                repeat: false,
-                useControls: true,
-                overlayOptions: {
-                    className: 'text-controls',
-                        position: 'bottom center',
-                        relativeTo: 'viewport',
-                        offsetY: -60
-    },
-    thumbstrip: {
-        position: 'bottom center',
-            mode: 'horizontal',
-            relativeTo: 'viewport'
-    }
-    });
-         </script>";
-    }
     echo "<style type=\"text/css\">" . get_option('rfg_custom_css') . "</style>";
 }
 
@@ -303,8 +248,6 @@ function rfg_display_gallery($atts)
     $text_color = isset($rfg_text_color_map[$bg_color])? $rfg_text_color_map[$bg_color]: '';
     $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>";
 
-    if ($slideshow_option == 'highslide')
-        $disp_gallery .= "<div class='highslide-gallery'>";
     $disp_gallery .= "<div class='rfg-table' style='width:100%'>";
 
     $photo_count = 1;
@@ -326,10 +269,6 @@ function rfg_display_gallery($atts)
             $class = "class='afgcolorbox'";
             $rel = "rel='example4{$id}'";
             $click_event = "";
-        } elseif ($slideshow_option == 'highslide') {
-            $class = "class='highslide'";
-            $rel = "";
-            $click_event = "onclick='return hs.expand(this, {slideshowGroup: $id })'";
         } elseif ($slideshow_option == 'flickr') {
             $class = "";
             $rel = "";
@@ -376,10 +315,7 @@ function rfg_display_gallery($atts)
                 $photo['owner'] = $user_id;
 
             $photo_title_text = $p_title;
-            if ($slideshow_option == 'highslide' && $p_description) {
-                $photo_title_text .= '<br /><span style="font-size:0.8em;">' . $p_description . '</span>';
-            }
-            $photo_title_text .= ' • <a style="font-size:0.8em;" href="http://www.flickr.com/photos/' . $photo['owner'] . '/' . $photo['id'] . '/" target="_blank">View on Flickr</a>';
+            $photo_title_text .= ' <a style="margin-left:10px; font-size:0.8em;" href="http://www.flickr.com/photos/' . $photo['owner'] . '/' . $photo['id'] . '/" target="_blank">@flickr</a>';
 
             $photo_title_text = esc_attr($photo_title_text);
 
@@ -419,22 +355,8 @@ function rfg_display_gallery($atts)
             $disp_gallery .= "<!-- cur_page $cur_page -- photo_count $photo_count -->\n";
         } else {
             if ($pagination == 'on' && $slideshow_option != 'none') {
-                if ($slideshow_option == 'highslide') {
-                    $photo_url = rfg_get_photo_url(
-                        $photo['farm'],
-                        $photo['server'],
-                        $photo['id'],
-                        $photo['secret'],
-                        '_s'
-                    );
-                }
-                else
-                    $photo_url = '';
-
-                if ($slideshow_option == 'highslide')
-                    $photo_src_text = "src='$photo_url'";
-                else
-                    $photo_src_text = "";
+                $photo_url = '';
+                $photo_src_text = "";
 
                 $disp_gallery .= "<a style='display:none' $class $rel $click_event href='$photo_page_url'" .
                     " title='{$photo['title']}'>" .
@@ -445,7 +367,6 @@ function rfg_display_gallery($atts)
     }
 
     $disp_gallery .= '</div>';
-    if ($slideshow_option == 'highslide') $disp_gallery .= "</div>";
 
     // Pagination
     if ($pagination == 'on' && $total_pages > 1) {
