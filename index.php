@@ -315,7 +315,7 @@ function rfg_display_gallery($atts)
                 $photo['owner'] = $user_id;
 
             $photo_title_text = $p_title;
-            $photo_title_text .= ' • <a style="font-size:0.8em;" href="http://www.flickr.com/photos/' . $photo['owner'] . '/' . $photo['id'] . '/" target="_blank">View on Flickr</a>';
+            $photo_title_text .= ' <a style="margin-left:10px; font-size:0.8em;" href="http://www.flickr.com/photos/' . $photo['owner'] . '/' . $photo['id'] . '/" target="_blank">@flickr</a>';
 
             $photo_title_text = esc_attr($photo_title_text);
 
