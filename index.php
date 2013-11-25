@@ -29,7 +29,6 @@
 require_once 'afgFlickr/afgFlickr.php';
 require_once 'rfg_admin_settings.php';
 require_once 'rfg_libs.php';
-require_once 'rfg_update.php';
 
 function rfg_enqueue_cbox_scripts()
 {
