@@ -14,19 +14,19 @@ Responsive galleries from your Flickr photos for your WordPress enabled website.
 
 _Responsive Flickr Gallery_ is a simple, fast and light plugin to create a gallery of your Flickr photos on your WordPress enabled website.  This plugin aims at providing a simple yet customizable way to create clean and professional looking Flickr galleries.
 
-##Features:
+###Features:
 
-* Manage your set and photos with titles and descriptions on flickr and display them on your wordpress site
+* Manage your set and photos with titles and descriptions on flickr and display them on your WordPress site
 * Use flickr as your CDN for photos
 * Fast and light 
-* Uses caching to load galleries instantly + use DB for catch to allow cloud hosting and scaling
+* Uses caching to load galleries instantly + uses DB for catching to allow cloud hosting and scaling
 * Support for both Public and Private photos
 * Create multiple galleries with different parameters
 * Powerful slideshow options with Colorbox
 * Select Photos from your Flickr Photostream, a Photoset, a Gallery, a Group or a set of tags
 * Multiple sorting options available so that you don't have to rely on Flickr's sorting options
 * Different default image sizes
-* For better performance removed the feature of custom image sizes
+* For better performance only flickr created image sizes were used
 * Without custom image sizes there is no need for local cache! 
 * This plugin is ready for cloud hosting (i.e. heroku) where no persistent filesystem is garanteed 
 * Infinitely customizable with custom CSS field * might be removed in the future *
@@ -103,8 +103,8 @@ Found a bug, need a feature?  Head to git issues for solution - [Issues | github
 
 == Screenshots ==
 
-![Responsive Flickr Gallery with large size photos with white background](https://dl.dropboxusercontent.com/u/4421587/responsive-flickr-gallery-demo-screenshot-wordpress.jpg "Responsive Flickr Gallery with large size photos with white background")
-![Default Settings Page](https://dl.dropboxusercontent.com/u/4421587/responsive-flickr-gallery-admin-screenshot-wordpress.jpg "Default Settings Page")
+1. Responsive Flickr Gallery with large size photos with white background
+2. Default Settings Page
 
 == Changelog ==
 
