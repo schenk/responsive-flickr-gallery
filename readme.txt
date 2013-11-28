@@ -8,28 +8,31 @@ Stable tag: /trunk/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Responsive galleries from your Flickr photos for your WordPress enabled website.
+Responsive galleries from your Flickr photos for WordPress sites.
 
 == Description ==
 
-_Responsive Flickr Gallery_ is a simple, fast and light plugin to create a gallery of your Flickr photos on your WordPress enabled website.  This plugin aims at providing a simple yet customizable way to create clean and professional looking Flickr galleries.
+_Responsive Flickr Gallery_ is a simple, fast and light plugin to create responsive galleries of [Flickr](http://www.flickr.com/) photos. This plugin provides customizable, clean and professional looking Flickr galleries. It sacles perfectly on cloud hosted WordPress sites.
 
 ###Features:
 
-* Manage your set and photos with titles and descriptions on flickr and display them on your WordPress site
-* Use flickr as your CDN for photos
-* Fast and light 
-* Uses caching to load galleries instantly + uses DB for catching to allow cloud hosting and scaling
+* Manage your sets and photos with titles and descriptions on flickr and display them on your WordPress site
+* Use Flickr as your organizer for photos
+* Accelerate your site by loading images from the Flick.com CDN
+* Reduces requests and traffic to your Site and helps to optimize page speed index
+* Light: Small footprint keeps slug size compact for cloud hosting (i.e. on heroku)
+* Uses caching to load galleries instantly and reduce expensive Fickr API-calls 
+* Uses the database for catching to allow cloud hosting and scaling
 * Support for both Public and Private photos
 * Create multiple galleries with different parameters
-* Powerful slideshow options with Colorbox
+* Powerful slideshow with Colorbox
 * Select Photos from your Flickr Photostream, a Photoset, a Gallery, a Group or a set of tags
 * Multiple sorting options available so that you don't have to rely on Flickr's sorting options
 * Different default image sizes
-* For better performance only flickr created image sizes were used
-* Without custom image sizes there is no need for local cache! 
-* This plugin is ready for cloud hosting (i.e. heroku) where no persistent filesystem is garanteed 
-* Infinitely customizable with custom CSS field * might be removed in the future *
+* For better performance Flickr image were used - no creation and storage of custom sizes photos required
+* Cloud hosting friendly: no custom image sizes means no need for local image cache
+* This plugin is perfect for cloud hosting (i.e. heroku) where no persistent filesystem is garanteed 
+* Customizable with custom CSS field * might be removed in future release *
 * Fits into a sidebar widget too
 * Insert multiple galleries on same page with independent slideshow and pagination
 * Fits automatically according to the width of the theme or you can select the width of the gallery yourself
@@ -37,7 +40,9 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create a galle
 * Ability to disable built-in slideshow so that you can use a slideshow plugin of your choice
 * Intuitive menu pages with easy configuration options and photo previews
 * SEO friendly, all your photos are available to search engine crawlers
-* Cloud-compatible: Stores nothing into the filesystem. Tested with heroku
+* Perfect for heroku hosting and scaling: Stores nothing into the filesystem
+* Hosted on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) gives you automatic updates
+* Hosted on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration and issue tracking and alternate git based deployment
 * PSR-2 coding standard
 * License: GPLv3 or higher
 
