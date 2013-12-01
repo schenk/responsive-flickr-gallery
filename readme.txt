@@ -39,10 +39,12 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create respons
 * Galleries are responsive - columns are used as space allows to
 * Ability to disable built-in slideshow so that you can use a slideshow plugin of your choice
 * Intuitive menu pages with easy configuration options and photo previews
+* Highly configureable. Change defaults (i.e. Cache TTL) for all galleries or edit settings per gallery
 * SEO friendly, all your photos are available to search engine crawlers
 * Perfect for heroku hosting and scaling: Stores nothing into the filesystem
-* Hosted on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) gives you automatic updates
-* Hosted on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration and issue tracking and alternate git based deployment
+* Available on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) for automatic updates
+* Available on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration, feature requests, issue tracking and alternate git based deployment
+* Donations welcome by PayPal or Bitcoin payment to 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb
 * PSR-2 coding standard
 * License: GPLv3 or higher
 
@@ -54,7 +56,9 @@ You can see a live demo of this plugin here:
 
 ###Support:
 
-Found a bug, need a feature?  Head to git issues for solution - [Issues | github.com](https://github.com/schenk/responsive-flickr-gallery/issues)
+Found a bug, need a feature?
+Head to git issues for solution - [Issues | github.com](https://github.com/schenk/responsive-flickr-gallery/issues)
+Contributors and feature requests welcome. Bounties may speed up the development process and help to decide which feature will be included next.
 
 == Installation ==
 
