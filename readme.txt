@@ -117,6 +117,9 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 == Changelog ==
 
+= 0.0.6 =
+* Cache TTL is now configureable. Accept BTC for donations.
+
 = 0.0.5 =
 * On WordPress.org: Makes it easy to find, install und keep updated.
 
