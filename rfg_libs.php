@@ -361,6 +361,19 @@ function rfg_generate_gallery_settings_table()
         <td><font size='2'>Useful when displaying gallery in a sidebar widget where you want only few recent photos.</td>
         </tr>
 
+        <tr valign='top'>
+        <th scope='row'>Cache TTL</th>
+        <td><select name='rfg_cache_ttl' id='rfg_cache_ttl'>
+            " . rfg_generate_options($rfg_cache_ttl_map, 'default', true, $rfg_cache_ttl_map[get_option('rfg_cache_ttl')]) . "
+        </select></td>
+        <td><font size='2'>
+             Number of days the Flick API call results will be cached in the database.
+             Calling the external API is \"expensive\" and makes the site slow.
+             Set low if galleries on flickr change often.
+             Set high if galleries don't change often to save \"expensive\" API calls 
+             and speed up the galleries on your site.</font>
+        </td>
+        </tr>
     </table>
 </div></div>";
 }
@@ -458,5 +471,6 @@ function rfg_reference_box()
     $message .= "<br />Gallery Width - <b>" . ((get_option('rfg_width') == 'auto')?"Automatic":get_option('rfg_width') . "%") . "</b>";
     $message .= "<br />Pagination - <b>" . get_option('rfg_pagination') . "</b>";
     $message .= "<br />Credit Note - <b>" . get_option('rfg_credit_note') . "</b>";
+    $message .= "<br />Cache TTL - <b>" . get_option('rfg_cache_ttl') . "</b>";
     return rfg_box('Default Settings for Reference', $message);
 }
