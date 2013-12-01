@@ -261,9 +261,17 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
 
 function rfg_generate_gallery_settings_table()
 {
-    global $rfg_photo_size_map, $rfg_on_off_map, $rfg_descr_map, 
-        $rfg_columns_map, $rfg_bg_color_map, $rfg_photo_source_map, 
-        $rfg_width_map, $rfg_yes_no_map, $rfg_sort_order_map, $rfg_slideshow_map;
+    global $rfg_photo_size_map,
+           $rfg_on_off_map,
+           $rfg_descr_map, 
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_photo_source_map, 
+           $rfg_width_map,
+           $rfg_yes_no_map,
+           $rfg_sort_order_map,
+           $rfg_slideshow_map,
+           $rfg_cache_ttl_map;
     
     $photo_size = $rfg_photo_size_map[get_option('rfg_photo_size')];
 
