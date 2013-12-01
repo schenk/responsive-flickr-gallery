@@ -129,6 +129,7 @@ function rfg_display_gallery($atts)
     $columns = get_rfg_option($gallery, 'columns');
     $gallery_width = get_rfg_option($gallery, 'width');
     $pagination = get_rfg_option($gallery, 'pagination');
+    $cache_ttl = get_rfg_option($gallery, 'cache_ttl');
 
     // set min width for responsiveness
     $img_cell_min_width = 0;
@@ -172,6 +173,7 @@ function rfg_display_gallery($atts)
         " - Pagination - " . $pagination .
         " - Slideshow - " . $slideshow_option .
         " - Disable slideshow? - " . $disable_slideshow .
+        " - Cache TTL - " . $cache_ttl .
         "-->";
 
     $extras = 'url_l, description, date_upload, date_taken, owner_name';
@@ -239,7 +241,7 @@ function rfg_display_gallery($atts)
             $photos = array_merge($photos, $rsp_obj_total[$flickr_api]['photo']);
         }
         if (!DEBUG)
-            set_transient('rfg_id_' . $id, $photos, 60 * 60 * 24 * 3);
+            set_transient('rfg_id_' . $id, $photos, 60 * 60 * 24 * $cache_ttl);
     }
 
     if (($total_photos % $per_page) == 0) $total_pages = (int)($total_photos / $per_page);
