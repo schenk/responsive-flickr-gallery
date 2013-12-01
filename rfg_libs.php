@@ -283,7 +283,9 @@ function rfg_generate_gallery_settings_table()
 
         <tr valign='top'>
         <th scope='row'>Max Photos Per Page</th>
-        <td style='width:28%'><input type='checkbox' name='rfg_per_page_check' id='rfg_per_page_check' onclick='showHidePerPage()' value='default' checked='' style='vertical-align:top'> Default </input><input name='rfg_per_page' disabled='true' id='rfg_per_page' type='text' size='3' maxlength='3' onblur='verifyBlank()' value='10'/> 
+        <td style='width:28%'>
+          <input type='checkbox' name='rfg_per_page_check' id='rfg_per_page_check' onclick='showHidePerPage()' value='default' checked='' style='vertical-align:top'> Default </input>
+          <input name='rfg_per_page' disabled='true' id='rfg_per_page' type='text' size='3' maxlength='3' onblur='verifyBlank()' value='10'/> 
         </td>
         </tr>
 
