@@ -437,24 +437,30 @@ function get_rfg_option($gallery, $var)
 
 function rfgDonateBox()
 {
-    $donate_button = "
-        <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" >
-<div style=\"text-align:center\" class=\"paypal-donations\">
-<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
-<input type=\"hidden\" name=\"hosted_button_id\" value=\"G34C7BDW8499Q\">
-<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">
-<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">
-</div></form>";
-    return "
-        <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+    return <<<EOD
+  <div id="poststuff">
+        <div class="postbox" style='box-shadow:0 0 2px'>
         <h3>Support this plugin</h3>
         <table class='form-table'>
         <td>It takes time and effort to keep releasing new versions of this plugin.  If you like it, consider donating a few bucks <b>(especially if you are using this plugin on a commercial website)</b> to keep receiving new features.
-        </form>$donate_button
+        </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+<div style="text-align:center" class="paypal-donations">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="G34C7BDW8499Q">
+<input type="image" src="https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</div></form>
+        <br />
+        Donations also welcome by Bitcoin payment to <b>1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</b>.<br />
+        <br />
+        Found a bug, need a feature?<br />
+        Head to <a href="https://github.com/schenk/responsive-flickr-gallery/issues">github issues</a> for solution.<br />
+        Contributors and feature requests welcome. Bounties may speed up the development process and help to decide which feature will be included next.<br />
         </td>
         </table>
-        </div></div>";
+        </div></div> 
+EOD;
 }
 
 function rfg_reference_box()
