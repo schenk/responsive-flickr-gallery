@@ -435,7 +435,7 @@ function get_rfg_option($gallery, $var)
     else return get_option('rfg_' . $var);
 }
 
-function rfg_donate_box()
+function rfgDonateBox()
 {
     $donate_button = "
         <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" >

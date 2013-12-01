@@ -93,7 +93,7 @@ function rfg_view_delete_galleries()
          <div class="postbox-container" style="width: 29%;">
          <?php
          echo rfg_usage_box('the Gallery Code');
-         echo rfg_donate_box();
+         echo rfgDonateBox();
          echo rfg_share_box();
          ?>
          </div>

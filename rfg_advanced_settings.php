@@ -72,7 +72,7 @@ function rfg_advanced_settings_page()
         <?php
         $message = "Settings on this page are global and hence apply to all your Galleries.";
         echo rfg_box('Help', $message);
-        echo rfg_donate_box();
+        echo rfgDonateBox();
         echo rfg_share_box();
         ?>
     </div>

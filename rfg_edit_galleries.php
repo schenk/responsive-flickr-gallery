@@ -213,7 +213,7 @@ function rfg_edit_galleries()
     <div class="postbox-container" style="width: 29%;">
     <?php
     echo rfg_box('Usage Instructions', 'Insert the Gallery Code in any of your posts of pages to display your Flickr Gallery.');
-    echo rfg_donate_box();
+    echo rfgDonateBox();
     echo rfg_share_box();
     ?>
     </div>

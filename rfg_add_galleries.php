@@ -156,7 +156,7 @@ function rfg_add_gallery()
         " setting on Default Settings page, so if you change the <i>Default" .
         " Settings</i>, the setting for this specific gallery will also change.";
     echo rfg_box('Help', $message);
-    echo rfg_donate_box();
+    echo rfgDonateBox();
     echo rfg_share_box();
     ?>
                </div>

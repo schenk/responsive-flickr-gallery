@@ -468,7 +468,7 @@ function rfg_admin_html_page()
         <br /><p style='text-align:center'><i>-- OR --</i></p>You can create a new Responsive Flickr Gallery with different settings on page <a href='{$_SERVER['PHP_SELF']}?page=rfg_add_gallery_page'>Add Galleries.";
     echo rfg_box('Usage Instructions', $message);
 
-    echo rfg_donate_box(); 
+    echo rfgDonateBox(); 
     echo rfg_share_box();
     ?>
         </div>
