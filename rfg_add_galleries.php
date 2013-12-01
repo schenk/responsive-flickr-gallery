@@ -91,6 +91,7 @@ function rfg_add_gallery()
             'bg_color' => rfg_filter($_POST['rfg_bg_color']),
             'width' => rfg_filter($_POST['rfg_width']),
             'pagination' => rfg_filter($_POST['rfg_pagination']),
+            'cache_ttl' => rfg_filter($_POST['rfg_cache_ttl']),
         );
 
         if ($_POST['rfg_photo_source_type'] == 'photoset')
