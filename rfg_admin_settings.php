@@ -186,9 +186,15 @@ create_afgFlickr_obj();
 
 function rfg_admin_html_page()
 {
-    global $rfg_photo_size_map, $rfg_on_off_map, $rfg_descr_map, 
-        $rfg_columns_map, $rfg_bg_color_map, $rfg_width_map, $pf,
-        $rfg_sort_order_map, $rfg_slideshow_map;
+    global $rfg_photo_size_map,
+           $rfg_on_off_map,
+           $rfg_descr_map, 
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_width_map, $pf,
+           $rfg_sort_order_map,
+           $rfg_slideshow_map,
+           $rfg_cache_ttl_map;
     ?>
     <div class='wrap'>
     <h2><img src="<?php echo (BASE_URL . '/images/logo_big.png'); ?>" align='center'/>Responsive Flickr Gallery Settings</h2>
