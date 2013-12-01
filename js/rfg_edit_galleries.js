@@ -142,6 +142,7 @@ function loadGallerySettings() {
     var captions = document.getElementById('rfg_captions');
     var descr = document.getElementById('rfg_descr');
     var columns = document.getElementById('rfg_columns');
+    var cache_ttl = document.getElementById('rfg_cache_ttl');
     var slideshow_option = document.getElementById('rfg_slideshow_option');
     var credit_note = document.getElementById('rfg_credit_note');
     var bg_color = document.getElementById('rfg_bg_color');
@@ -175,6 +176,7 @@ function loadGallerySettings() {
     captions.value = active_gallery.captions || 'default';
     descr.value = active_gallery.descr || 'default';
     columns.value = active_gallery.columns || 'default';
+    cache_ttl.value = active_gallery.cache_ttl || 'default';
     slideshow_option.value = active_gallery.slideshow_option || 'default';
     bg_color.value = active_gallery.bg_color || 'default';
     width.value = active_gallery.width || 'default';
