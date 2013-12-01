@@ -90,9 +90,15 @@ function rfg_get_galleries($default='')
 
 function rfg_edit_galleries()
 {
-    global $rfg_photo_size_map, $rfg_on_off_map,
-        $rfg_descr_map, $rfg_columns_map, $rfg_bg_color_map,
-        $rfg_photo_source_map, $default_gallery_id, $pf;
+    global $rfg_photo_size_map,
+           $rfg_on_off_map,
+           $rfg_descr_map,
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_photo_source_map,
+           $default_gallery_id,
+           $rfg_cache_ttl_map,
+           $pf;
 
     $user_id = get_option('rfg_user_id');
 
