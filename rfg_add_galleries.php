@@ -1,11 +1,32 @@
 <?php
+/*
+   This file is part of the Responsive Flickr Gallery.
+
+   Responsive Flickr Gallery is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Responsive Flickr Gallery is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Responsive Flickr Gallery.  If not, see <http://www.gnu.org/licenses/>.
+ */
 include_once('rfg_libs.php');
 
 function rfg_add_gallery()
 {
-    global $rfg_photo_size_map, $rfg_on_off_map,
-        $rfg_descr_map, $rfg_columns_map, $rfg_bg_color_map,
-        $rfg_photo_source_map, $pf;
+    global $rfg_photo_size_map, 
+           $rfg_on_off_map,
+           $rfg_descr_map,
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_photo_source_map,
+           $rfg_cache_ttl_map,
+           $pf;
 
     $user_id = get_option('rfg_user_id');
 
@@ -70,6 +91,7 @@ function rfg_add_gallery()
             'bg_color' => rfg_filter($_POST['rfg_bg_color']),
             'width' => rfg_filter($_POST['rfg_width']),
             'pagination' => rfg_filter($_POST['rfg_pagination']),
+            'cache_ttl' => rfg_filter($_POST['rfg_cache_ttl']),
         );
 
         if ($_POST['rfg_photo_source_type'] == 'photoset')
@@ -134,7 +156,7 @@ function rfg_add_gallery()
         " setting on Default Settings page, so if you change the <i>Default" .
         " Settings</i>, the setting for this specific gallery will also change.";
     echo rfg_box('Help', $message);
-    echo rfg_donate_box();
+    echo rfgDonateBox();
     echo rfg_share_box();
     ?>
                </div>

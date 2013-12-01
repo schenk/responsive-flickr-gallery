@@ -1,9 +1,24 @@
 <?php
+/*
+   This file is part of the Responsive Flickr Gallery.
 
+   Responsive Flickr Gallery is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Responsive Flickr Gallery is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Responsive Flickr Gallery.  If not, see <http://www.gnu.org/licenses/>.
+ */
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '0.0.5');
+define('VERSION', '0.0.6');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
@@ -94,6 +109,27 @@ $rfg_columns_map = array(
     '10' => '10 ',
     '11' => '11 ',
     '12' => '12 ',
+);
+
+$rfg_cache_ttl_map = array(
+    'default' => 'Default',
+    '1' => '1  ',
+    '2' => '2  ',
+    '3' => '3  ',
+    '4' => '4  ',
+    '5' => '5  ',
+    '6' => '6  ',
+    '7' => '7  ',
+    '8' => '8  ',
+    '9' => '9  ',
+    '10' => '10 ',
+    '11' => '11 ',
+    '12' => '12 ',
+    '13' => '13 ',
+    '14' => '14 ',
+    '30' => '30 ',
+    '60' => '60 ',
+    '90' => '90 '
 );
 
 $rfg_bg_color_map = array(
@@ -225,9 +261,17 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
 
 function rfg_generate_gallery_settings_table()
 {
-    global $rfg_photo_size_map, $rfg_on_off_map, $rfg_descr_map, 
-        $rfg_columns_map, $rfg_bg_color_map, $rfg_photo_source_map, 
-        $rfg_width_map, $rfg_yes_no_map, $rfg_sort_order_map, $rfg_slideshow_map;
+    global $rfg_photo_size_map,
+           $rfg_on_off_map,
+           $rfg_descr_map, 
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_photo_source_map, 
+           $rfg_width_map,
+           $rfg_yes_no_map,
+           $rfg_sort_order_map,
+           $rfg_slideshow_map,
+           $rfg_cache_ttl_map;
     
     $photo_size = $rfg_photo_size_map[get_option('rfg_photo_size')];
 
@@ -239,7 +283,9 @@ function rfg_generate_gallery_settings_table()
 
         <tr valign='top'>
         <th scope='row'>Max Photos Per Page</th>
-        <td style='width:28%'><input type='checkbox' name='rfg_per_page_check' id='rfg_per_page_check' onclick='showHidePerPage()' value='default' checked='' style='vertical-align:top'> Default </input><input name='rfg_per_page' disabled='true' id='rfg_per_page' type='text' size='3' maxlength='3' onblur='verifyBlank()' value='10'/> 
+        <td style='width:28%'>
+          <input type='checkbox' name='rfg_per_page_check' id='rfg_per_page_check' onclick='showHidePerPage()' value='default' checked='' style='vertical-align:top'> Default </input>
+          <input name='rfg_per_page' disabled='true' id='rfg_per_page' type='text' size='3' maxlength='3' onblur='verifyBlank()' value='10'/> 
         </td>
         </tr>
 
@@ -317,6 +363,19 @@ function rfg_generate_gallery_settings_table()
         <td><font size='2'>Useful when displaying gallery in a sidebar widget where you want only few recent photos.</td>
         </tr>
 
+        <tr valign='top'>
+        <th scope='row'>Cache TTL</th>
+        <td><select name='rfg_cache_ttl' id='rfg_cache_ttl'>
+            " . rfg_generate_options($rfg_cache_ttl_map, 'default', true, $rfg_cache_ttl_map[get_option('rfg_cache_ttl')]) . "
+        </select></td>
+        <td><font size='2'>
+             Number of days the Flick API call results will be cached in the database.
+             Calling the external API is \"expensive\" and makes the site slow.
+             Set low if galleries on flickr change often.
+             Set high if galleries don't change often to save \"expensive\" API calls 
+             and speed up the galleries on your site.</font>
+        </td>
+        </tr>
     </table>
 </div></div>";
 }
@@ -376,26 +435,32 @@ function get_rfg_option($gallery, $var)
     else return get_option('rfg_' . $var);
 }
 
-function rfg_donate_box()
+function rfgDonateBox()
 {
-    $donate_button = "
-        <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" >
-<div style=\"text-align:center\" class=\"paypal-donations\">
-<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
-<input type=\"hidden\" name=\"hosted_button_id\" value=\"G34C7BDW8499Q\">
-<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">
-<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">
-</div></form>";
-    return "
-        <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+    return <<<EOD
+  <div id="poststuff">
+        <div class="postbox" style='box-shadow:0 0 2px'>
         <h3>Support this plugin</h3>
         <table class='form-table'>
         <td>It takes time and effort to keep releasing new versions of this plugin.  If you like it, consider donating a few bucks <b>(especially if you are using this plugin on a commercial website)</b> to keep receiving new features.
-        </form>$donate_button
+        </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+<div style="text-align:center" class="paypal-donations">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="G34C7BDW8499Q">
+<input type="image" src="https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</div></form>
+        <br />
+        Donations also welcome by Bitcoin payment to <b>1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</b>.<br />
+        <br />
+        Found a bug, need a feature?<br />
+        Head to <a href="https://github.com/schenk/responsive-flickr-gallery/issues">github issues</a> for solution.<br />
+        Contributors and feature requests welcome. Bounties may speed up the development process and help to decide which feature will be included next.<br />
         </td>
         </table>
-        </div></div>";
+        </div></div> 
+EOD;
 }
 
 function rfg_reference_box()
@@ -414,5 +479,6 @@ function rfg_reference_box()
     $message .= "<br />Gallery Width - <b>" . ((get_option('rfg_width') == 'auto')?"Automatic":get_option('rfg_width') . "%") . "</b>";
     $message .= "<br />Pagination - <b>" . get_option('rfg_pagination') . "</b>";
     $message .= "<br />Credit Note - <b>" . get_option('rfg_credit_note') . "</b>";
+    $message .= "<br />Cache TTL - <b>" . get_option('rfg_cache_ttl') . "</b>";
     return rfg_box('Default Settings for Reference', $message);
 }

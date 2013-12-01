@@ -1,17 +1,34 @@
 <?php
-include_once('rfg_libs.php');
-include_once('rfg_edit_galleries.php');
-include_once('rfg_add_galleries.php');
-include_once('rfg_saved_galleries.php');
-include_once('rfg_advanced_settings.php');
-require_once('afgFlickr/afgFlickr.php');
+/*
+   This file is part of the Responsive Flickr Gallery.
+
+   Responsive Flickr Gallery is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Responsive Flickr Gallery is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Responsive Flickr Gallery.  If not, see <http://www.gnu.org/licenses/>.
+ */
+require_once 'rfg_libs.php';
+require_once 'rfg_edit_galleries.php';
+require_once 'rfg_add_galleries.php';
+require_once 'rfg_saved_galleries.php';
+require_once 'rfg_advanced_settings.php';
+require_once 'afgFlickr/afgFlickr.php';
 
 add_action('admin_init', 'rfg_admin_init');
 add_action('admin_init', 'rfg_auth_read');
 add_action('admin_menu', 'rfg_admin_menu');
 add_action('wp_ajax_rfg_gallery_auth', 'rfg_auth_init');
 
-function rfg_admin_menu() {
+function rfg_admin_menu()
+{
     add_menu_page('Responsive Flickr Gallery', 'Responsive Flickr Gallery', 'create_users', 'rfg_plugin_page', 'rfg_admin_html_page', BASE_URL . "/images/rfg_logo.png", 898);
     $rfg_main_page = add_submenu_page('rfg_plugin_page', 'Default Settings | Responsive Flickr Gallery', 'Default Settings', 'create_users', 'rfg_plugin_page', 'rfg_admin_html_page');
     $rfg_add_page = add_submenu_page('rfg_plugin_page', 'Add Gallery | Responsive Flickr Gallery', 'Add Gallery', 'moderate_comments', 'rfg_add_gallery_page', 'rfg_add_gallery');
@@ -25,29 +42,33 @@ function rfg_admin_menu() {
     add_action('admin_print_styles-' . $rfg_main_page, 'rfg_admin_settings_header');
     
     // adds "Settings" link to the plugin action page
-    add_filter( 'plugin_action_links', 'rfg_add_settings_links', 10, 2);
+    add_filter('plugin_action_links', 'rfg_add_settings_links', 10, 2);
 
     rfg_setup_options();
 }
 
-function rfg_add_settings_links( $links, $file ) {
-    if ( $file == plugin_basename( dirname(__FILE__)) . '/index.php' ) {
+function rfg_add_settings_links( $links, $file )
+{
+    if ($file == plugin_basename(dirname(__FILE__)) . '/index.php') {
         $settings_link = '<a href="plugins.php?page=rfg_plugin_page">' . 'Settings</a>';
-        array_unshift( $links, $settings_link );
+        array_unshift($links, $settings_link);
     }
     return $links;
 }
 
-function rfg_admin_settings_header() {
+function rfg_admin_settings_header()
+{
     wp_enqueue_script('admin-settings-script');
     add_action('admin_head', 'rfg_admin_headers');
 }
 
-function rfg_admin_headers() {
+function rfg_admin_headers()
+{
     echo '';
 }
 
-function rfg_setup_options() {
+function rfg_setup_options()
+{
     if (get_option('rfg_descr') == '1') update_option('rfg_descr', 'on');
     if (get_option('rfg_descr') == '0') update_option('rfg_descr', 'off');
     if (get_option('rfg_captions') == '1') update_option('rfg_captions', 'on');
@@ -78,7 +99,8 @@ function rfg_setup_options() {
 /* Keep rfg_admin_init() and rfg_get_all_options() in sync all the time
  */
 
-function rfg_admin_init() {
+function rfg_admin_init()
+{
     register_setting('rfg_settings_group', 'rfg_api_key');
     register_setting('rfg_settings_group', 'rfg_user_id');
     register_setting('rfg_settings_group', 'rfg_per_page');
@@ -102,6 +124,7 @@ function rfg_admin_init() {
     register_setting('rfg_settings_group', 'rfg_flickr_token');
     register_setting('rfg_settings_group', 'rfg_custom_css');
     register_setting('rfg_settings_group', 'rfg_sort_order');
+    register_setting('rfg_settings_group', 'rfg_cache_ttl');
 
     // Register javascripts
     wp_register_script('edit-galleries-script', BASE_URL . '/js/rfg_edit_galleries.js');
@@ -109,7 +132,8 @@ function rfg_admin_init() {
     wp_register_script('view-delete-galleries-script', BASE_URL . '/js/rfg_saved_galleries.js');
 }
 
-function rfg_get_all_options() {
+function rfg_get_all_options()
+{
     return array(
         'rfg_api_key' => get_option('rfg_api_key'),
         'rfg_user_id' => get_option('rfg_user_id'),
@@ -126,17 +150,20 @@ function rfg_get_all_options() {
         'rfg_api_secret' => get_option('rfg_api_secret'),
         'rfg_flickr_token' => get_option('rfg_flickr_token'),
         'rfg_slideshow_option' => get_option('rfg_slideshow_option'),
+        'rfg_cache_ttl' => get_option('rfg_cache_ttl'),
     );
 }
 
-function print_all_options() {
+function print_all_options()
+{
     $all_options = rfg_get_all_options();
-    foreach($all_options as $key => $value) {
+    foreach ($all_options as $key => $value) {
         echo $key . ' => ' . $value . '<br />';
     }
 }
 
-function rfg_auth_init() {
+function rfg_auth_init()
+{
     session_start();
     global $pf;
     unset($_SESSION['afgFlickr_auth_token']);
@@ -145,7 +172,8 @@ function rfg_auth_init() {
     exit;
 }
 
-function rfg_auth_read() {
+function rfg_auth_read()
+{
     if ( isset($_GET['frob']) ) {
         global $pf;
         $auth = $pf->auth_getToken($_GET['frob']);
@@ -158,27 +186,34 @@ function rfg_auth_read() {
 
 create_afgFlickr_obj();
 
-function rfg_admin_html_page() {
-    global $rfg_photo_size_map, $rfg_on_off_map, $rfg_descr_map, 
-        $rfg_columns_map, $rfg_bg_color_map, $rfg_width_map, $pf,
-        $rfg_sort_order_map, $rfg_slideshow_map;
-?>
-   <div class='wrap'>
-   <h2><img src="<?php echo (BASE_URL . '/images/logo_big.png'); ?>" align='center'/>Responsive Flickr Gallery Settings</h2>
+function rfg_admin_html_page()
+{
+    global $rfg_photo_size_map,
+           $rfg_on_off_map,
+           $rfg_descr_map, 
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_width_map, $pf,
+           $rfg_sort_order_map,
+           $rfg_slideshow_map,
+           $rfg_cache_ttl_map;
+    ?>
+    <div class='wrap'>
+    <h2><img src="<?php echo (BASE_URL . '/images/logo_big.png'); ?>" align='center'/>Responsive Flickr Gallery Settings</h2>
 
-<?php
-function upgrade_handler() {
-    $galleries = get_option('rfg_galleries');
-    foreach ($galleries as &$gallery) {
-        if (!isset($gallery['slideshow_option']))
-            $gallery['slideshow_option'] = 'colorbox';
+    <?php
+    function upgradeHandler()
+    {
+        $galleries = get_option('rfg_galleries');
+        foreach ($galleries as &$gallery) {
+            if (!isset($gallery['slideshow_option']))
+                $gallery['slideshow_option'] = 'colorbox';
+        }
+        update_option('rfg_galleries', $galleries);
+        unset($gallery);
     }
-    update_option('rfg_galleries', $galleries);
-    unset($gallery);
 
-}
-
-upgrade_handler();
+    upgradeHandler();
 
     if ($_POST) {
         global $pf;
@@ -186,8 +221,7 @@ upgrade_handler();
         if (isset($_POST['submit']) && $_POST['submit'] == 'Delete Cached Galleries') {
             delete_rfg_caches();
             echo "<div class='updated'><p><strong>Cached data deleted successfully.</strong></p></div>";
-        }
-        else if (isset($_POST['submit']) && $_POST['submit'] == 'Save Changes') {
+        } else if (isset($_POST['submit']) && $_POST['submit'] == 'Save Changes') {
             update_option('rfg_api_key', $_POST['rfg_api_key']);
             if (!$_POST['rfg_api_secret'] || $_POST['rfg_api_secret'] != get_option('rfg_api_secret'))
                 update_option('rfg_flickr_token', '');
@@ -195,8 +229,7 @@ upgrade_handler();
             update_option('rfg_user_id', $_POST['rfg_user_id']);
             if (ctype_digit($_POST['rfg_per_page']) && (int)$_POST['rfg_per_page']) {
                 update_option('rfg_per_page', $_POST['rfg_per_page']);
-            }
-            else {
+            } else {
                 update_option('rfg_per_page', 10);
                 echo "<div class='updated'><p><strong>You entered invalid value for Per Page option.  It has been set to 10.</strong></p></div>";
             }
@@ -208,6 +241,7 @@ upgrade_handler();
             update_option('rfg_slideshow_option', $_POST['rfg_slideshow_option']);
             update_option('rfg_width', $_POST['rfg_width']);
             update_option('rfg_bg_color', $_POST['rfg_bg_color']);
+            update_option('rfg_cache_ttl', $_POST['rfg_cache_ttl']);
 
             if (isset($_POST['rfg_credit_note']) && $_POST['rfg_credit_note']) update_option('rfg_credit_note', 'on');
             else update_option('rfg_credit_note', 'off');
@@ -221,10 +255,9 @@ upgrade_handler();
             }
         }
         create_afgFlickr_obj();
-
     }
     $url=$_SERVER['REQUEST_URI'];
-?>
+    ?>
     <form method='post' action='<?php echo $url ?>'>
         <?php echo rfg_generate_version_line() ?>
                <div class="postbox-container" style="width:69%; margin-right:1%">
@@ -240,14 +273,18 @@ upgrade_handler();
                                 <th scope='row'>Flickr API Secret</th>
                            <td style="vertical-align:top"><input type='text' name='rfg_api_secret' id='rfg_api_secret' value="<?php echo get_option('rfg_api_secret'); ?>"/>
                             <br /><br />
-<?php if (get_option('rfg_api_secret')) { 
-    if (get_option('rfg_flickr_token')) { echo "<input type='button' class='button-secondary' value='Access Granted' disabled=''"; } else {
-        ?>
-    <input type="button" class="button-primary" value="Grant Access" onClick="document.location.href='<?php echo get_admin_url() .  'admin-ajax.php?action=rfg_gallery_auth'; ?>';"/>
-                        <?php }}
-    else {
-    echo "<input type='button' class='button-secondary' value='Grant Access' disabled=''";    
-} ?>
+    <?php 
+    if (get_option('rfg_api_secret')) {
+        if (get_option('rfg_flickr_token')) {
+            echo "<input type='button' class='button-secondary' value='Access Granted' disabled=''";
+        } else {
+            ?>
+                <input type="button" class="button-primary" value="Grant Access" onClick="document.location.href='<?php echo get_admin_url() .  'admin-ajax.php?action=rfg_gallery_auth'; ?>';"/>
+            <?php 
+        }
+    } else {
+        echo "<input type='button' class='button-secondary' value='Grant Access' disabled=''";    
+    }?>
                            </td>
                            <td style="vertical-align:top"><font size='2'><b>ONLY</b> If you want to include your <b>Private Photos</b> in your galleries, enter your Flickr API Secret here
                             and click Save Changes.</font>
@@ -270,9 +307,14 @@ upgrade_handler();
 
                            <tr valign='top'>
                               <th scope='row'>Max Photos Per Page</th>
-                              <td style="width:28%"><input type='text' name='rfg_per_page' id='rfg_per_page' onblur='verifyPerPageBlank()' size='3' maxlength='3' value="<?php
-    echo get_option('rfg_per_page')?get_option('rfg_per_page'):10;
-?>" /><font style='color:red; font-weight:bold'>*</font></td>
+                              <td style="width:28%">
+                                  <input type='text' 
+                                         name='rfg_per_page' 
+                                         id='rfg_per_page' 
+                                         onblur='verifyPerPageBlank()' size='3' maxlength='3' 
+                                         value="<?php echo get_option('rfg_per_page')?get_option('rfg_per_page'):10;?>" />
+                                         <font style='color:red; font-weight:bold'>*</font>
+                              </td>
                            </tr>
 
                             <tr valign='top'>
@@ -344,15 +386,29 @@ upgrade_handler();
 
                               <tr valign='top'>
                                  <th scope='row'>Disable Pagination?</th>
-                                 <td><input type='checkbox' name='rfg_pagination' value='off'
-<?php
-    if (get_option('rfg_pagination', 'off') == 'off') {
-        echo 'checked=\'\'';
-    }
-?>/></td>
+                                 <td>
+                                    <input type='checkbox' 
+                                           name='rfg_pagination' 
+                                           value='off'
+                                           <?php if (get_option('rfg_pagination', 'off') == 'off') echo 'checked=\'\''; ?>
+                                    />
+                                 </td>
                                  <td><font size='2'>Useful when displaying gallery in a sidebar widget where you want only few recent photos.</td>
-                                 </tr>
+                              </tr>
 
+                              <tr valign='top'>
+                                 <th scope='row'>Cache TTL</th>
+                                 <td><select name='rfg_cache_ttl'>
+                                       <?php echo rfg_generate_options($rfg_cache_ttl_map, get_option('rfg_cache_ttl', '3')); ?>
+                                 </select></td>
+                                 <td><font size='2'>
+                                     Number of days the Flick API call results will be cached in the database.
+                                     Calling the external API is "expensive" and makes the site slow.
+                                     Set low if galleries on flickr change often.
+                                     Set high if galleries don't change often to save "expensive" API calls 
+                                     and speed up the galleries on your site.</font></td>
+                              </tr>
+  
                               </table>
                         </div></div>
                         <input type="submit" name="submit" id="rfg_save_changes" class="button-primary" value="Save Changes" />
@@ -363,18 +419,21 @@ upgrade_handler();
                               <table class='form-table'>
                                  <tr><th>If your Flickr Settings are correct, 5 of your recent photos from your Flickr photostream should appear here.</th></tr>
                                  <td>
-<?php
+    <?php
     global $pf;
-    if (get_option('rfg_flickr_token')) $rsp_obj = $pf->people_getPhotos(get_option('rfg_user_id'), array('per_page' => 5, 'page' => 1));
-    else $rsp_obj = $pf->people_getPublicPhotos(get_option('rfg_user_id'), NULL, NULL, 5, 1);
+    if (get_option('rfg_flickr_token')) {
+            $rsp_obj = $pf->people_getPhotos(get_option('rfg_user_id'), array('per_page' => 5, 'page' => 1));
+    } else {
+        $rsp_obj = $pf->people_getPublicPhotos(get_option('rfg_user_id'), null, null, 5, 1);
+    }
     if (!$rsp_obj) echo rfg_error();
     else {
-        foreach($rsp_obj['photos']['photo'] as $photo) {
+        foreach ($rsp_obj['photos']['photo'] as $photo) {
             $photo_url = "http://farm{$photo['farm']}.static.flickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}_s.jpg";
             echo "<img src=\"$photo_url\"/>&nbsp;&nbsp;&nbsp;";
         }
     }
-?>
+    ?>
                                     <br />
                                     Note:  This preview is based on the Flickr Settings only.  Gallery Settings 
                                     have no effect on this preview.  You will need to insert gallery code to a post 
@@ -383,14 +442,14 @@ upgrade_handler();
                            </table></div>
                             <input type="submit" name="submit" class="button-secondary" value="Delete Cached Galleries"/>
                         </div>
-<?php
+    <?php
     if (DEBUG) {
         print_all_options();
     }
-?>
+    ?>
                      </div>
                      <div class="postbox-container" style="width: 29%;">
-<?php
+    <?php
     $message = "<b>What are Default Settings?</b> - Default Settings serve as a 
         template for the galleries.  When you create a new gallery, you can assign 
         <i>Use Default</i> to a setting.  Such a setting will reference the <b>Default 
@@ -409,12 +468,10 @@ upgrade_handler();
         <br /><p style='text-align:center'><i>-- OR --</i></p>You can create a new Responsive Flickr Gallery with different settings on page <a href='{$_SERVER['PHP_SELF']}?page=rfg_add_gallery_page'>Add Galleries.";
     echo rfg_box('Usage Instructions', $message);
 
-    echo rfg_donate_box(); 
+    echo rfgDonateBox(); 
     echo rfg_share_box();
-?>
+    ?>
         </div>
             </form>
-<?php
-
+    <?php
 }
-?>

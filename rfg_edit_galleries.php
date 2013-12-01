@@ -1,4 +1,20 @@
 <?php
+/*
+   This file is part of the Responsive Flickr Gallery.
+
+   Responsive Flickr Gallery is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Responsive Flickr Gallery is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Responsive Flickr Gallery.  If not, see <http://www.gnu.org/licenses/>.
+ */
 include_once 'rfg_libs.php';
 $default_gallery_id = 0;
 $warning = false;
@@ -30,6 +46,7 @@ if (isset($_POST['rfg_edit_gallery_name']) && $_POST['rfg_edit_gallery_name']) {
         'width' => rfg_filter($_POST['rfg_width']),
         'pagination' => rfg_filter($_POST['rfg_pagination']),
         'bg_color' => rfg_filter($_POST['rfg_bg_color']),
+        'cache_ttl' => rfg_filter($_POST['rfg_cache_ttl']),
     );
 
     if ($_POST['rfg_photo_source_type'] == 'photoset') $gallery['photoset_id'] = $_POST['rfg_photosets_box'];
@@ -74,9 +91,15 @@ function rfg_get_galleries($default='')
 
 function rfg_edit_galleries()
 {
-    global $rfg_photo_size_map, $rfg_on_off_map,
-        $rfg_descr_map, $rfg_columns_map, $rfg_bg_color_map,
-        $rfg_photo_source_map, $default_gallery_id, $pf;
+    global $rfg_photo_size_map,
+           $rfg_on_off_map,
+           $rfg_descr_map,
+           $rfg_columns_map,
+           $rfg_bg_color_map,
+           $rfg_photo_source_map,
+           $default_gallery_id,
+           $rfg_cache_ttl_map,
+           $pf;
 
     $user_id = get_option('rfg_user_id');
 
@@ -190,7 +213,7 @@ function rfg_edit_galleries()
     <div class="postbox-container" style="width: 29%;">
     <?php
     echo rfg_box('Usage Instructions', 'Insert the Gallery Code in any of your posts of pages to display your Flickr Gallery.');
-    echo rfg_donate_box();
+    echo rfgDonateBox();
     echo rfg_share_box();
     ?>
     </div>
