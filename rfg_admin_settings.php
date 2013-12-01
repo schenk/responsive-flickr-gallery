@@ -124,6 +124,7 @@ function rfg_admin_init()
     register_setting('rfg_settings_group', 'rfg_flickr_token');
     register_setting('rfg_settings_group', 'rfg_custom_css');
     register_setting('rfg_settings_group', 'rfg_sort_order');
+    register_setting('rfg_settings_group', 'rfg_cache_ttl');
 
     // Register javascripts
     wp_register_script('edit-galleries-script', BASE_URL . '/js/rfg_edit_galleries.js');
@@ -149,6 +150,7 @@ function rfg_get_all_options()
         'rfg_api_secret' => get_option('rfg_api_secret'),
         'rfg_flickr_token' => get_option('rfg_flickr_token'),
         'rfg_slideshow_option' => get_option('rfg_slideshow_option'),
+        'rfg_cache_ttl' => get_option('rfg_cache_ttl'),
     );
 }
 
@@ -239,6 +241,7 @@ function rfg_admin_html_page()
             update_option('rfg_slideshow_option', $_POST['rfg_slideshow_option']);
             update_option('rfg_width', $_POST['rfg_width']);
             update_option('rfg_bg_color', $_POST['rfg_bg_color']);
+            update_option('rfg_cache_ttl', $_POST['rfg_cache_ttl']);
 
             if (isset($_POST['rfg_credit_note']) && $_POST['rfg_credit_note']) update_option('rfg_credit_note', 'on');
             else update_option('rfg_credit_note', 'off');
@@ -391,8 +394,21 @@ function rfg_admin_html_page()
                                     />
                                  </td>
                                  <td><font size='2'>Useful when displaying gallery in a sidebar widget where you want only few recent photos.</td>
-                                 </tr>
+                              </tr>
 
+                              <tr valign='top'>
+                                 <th scope='row'>Cache TTL</th>
+                                 <td><select name='rfg_cache_ttl'>
+                                       <?php echo rfg_generate_options($rfg_cache_ttl_map, get_option('rfg_cache_ttl', '3')); ?>
+                                 </select></td>
+                                 <td><font size='2'>
+                                     Number of days the Flick API call results will be cached in the database.
+                                     Calling the external API is "expensive" and makes the site slow.
+                                     Set low if galleries on flickr change often.
+                                     Set high if galleries don't change often to save "expensive" API calls 
+                                     and speed up the galleries on your site.</font></td>
+                              </tr>
+  
                               </table>
                         </div></div>
                         <input type="submit" name="submit" id="rfg_save_changes" class="button-primary" value="Save Changes" />
