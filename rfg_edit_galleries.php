@@ -46,6 +46,7 @@ if (isset($_POST['rfg_edit_gallery_name']) && $_POST['rfg_edit_gallery_name']) {
         'width' => rfg_filter($_POST['rfg_width']),
         'pagination' => rfg_filter($_POST['rfg_pagination']),
         'bg_color' => rfg_filter($_POST['rfg_bg_color']),
+        'cache_ttl' => rfg_filter($_POST['rfg_cache_ttl']),
     );
 
     if ($_POST['rfg_photo_source_type'] == 'photoset') $gallery['photoset_id'] = $_POST['rfg_photosets_box'];
