@@ -1,6 +1,6 @@
 === Responsive Flickr Gallery ===
 Contributors: larsschenk
-Donate link: http://www.lars-schenk.com/responsive-flickr-gallery-donate/
+Donate link: http://schenk.github.io/responsive-flickr-gallery/
 Tags: responsive, flickr, gallery, cdn, photo, images
 Requires at least: 3.7.0
 Tested up to: 3.7.1
