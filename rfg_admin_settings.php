@@ -19,7 +19,6 @@ require_once 'rfg_libs.php';
 require_once 'rfg_edit_galleries.php';
 require_once 'rfg_add_galleries.php';
 require_once 'rfg_saved_galleries.php';
-require_once 'rfg_advanced_settings.php';
 require_once 'afgFlickr/afgFlickr.php';
 
 add_action('admin_init', 'rfg_admin_init');
@@ -34,7 +33,6 @@ function rfg_admin_menu()
     $rfg_add_page = add_submenu_page('rfg_plugin_page', 'Add Gallery | Responsive Flickr Gallery', 'Add Gallery', 'moderate_comments', 'rfg_add_gallery_page', 'rfg_add_gallery');
     $rfg_saved_page = add_submenu_page('rfg_plugin_page', 'Saved Galleries | Responsive Flickr Gallery', 'Saved Galleries', 'moderate_comments', 'rfg_view_edit_galleries_page', 'rfg_view_delete_galleries');
     $rfg_edit_page = add_submenu_page('rfg_plugin_page', 'Edit Galleries | Responsive Flickr Gallery', 'Edit Galleries', 'moderate_comments', 'rfg_edit_galleries_page', 'rfg_edit_galleries');
-    $rfg_advanced_page = add_submenu_page('rfg_plugin_page', 'Advanced Settings | Responsive Flickr Gallery', 'Advanced Settings', 'create_users', 'rfg_advanced_page', 'rfg_advanced_settings_page');
    
     add_action('admin_print_styles-' . $rfg_edit_page, 'rfg_edit_galleries_header');
     add_action('admin_print_styles-' . $rfg_add_page, 'rfg_edit_galleries_header');
