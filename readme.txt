@@ -32,7 +32,6 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create respons
 * For better performance Flickr image were used - no creation and storage of custom sizes photos required
 * Cloud hosting friendly: no custom image sizes means no need for local image cache
 * This plugin is perfect for cloud hosting (i.e. heroku) where no persistent filesystem is garanteed 
-* Customizable with custom CSS field * might be removed in future release *
 * Fits into a sidebar widget too
 * Insert multiple galleries on same page with independent slideshow and pagination
 * Fits automatically according to the width of the theme or you can select the width of the gallery yourself
@@ -110,12 +109,19 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 > Yes, this fork was designed to avoid using a filesystem. In a cloud based environmend the filesystem might be not persistent and therefore shoudn't be used. This plugin has been designed with the cloud in mind. Tested on heroku.
 
+#### How to customize the CSS? ####
+
+> You'll barly want to change the existing CSS because it's so generic. But you can do with a CSS editor that lets you customize your site design without modifying your theme as you can find in the Jetpack plugin. Check rfg.css to see existing classes and properties for gallery which you can redefine. 
+
 == Screenshots ==
 
 1. Responsive Flickr Gallery with large size photos with white background
 2. Default Settings Page
 
 == Changelog ==
+
+= 0.1.0 =
+* Removed Advanced setting. Barely wanted CSS customization can better be achieved with 3rd party plugins.
 
 = 0.0.6 =
 * Cache TTL is now configureable. Accept BTC for donations.
