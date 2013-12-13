@@ -421,16 +421,14 @@ function rfg_box($title, $message)
 
 function rfg_usage_box($code)
 {
-    return "
-        <div class=\"postbox\">
-        <div class=\"inside\">
-        <h3>Usage Instructions</h3>
-        <table class='form-table'>
-        <td>Just insert $code in any of the posts or page to display your Flickr gallery.</td>
-        </table>
-        </div>
-        </div>
-        ";
+    return <<<EOD
+<div class="postbox">
+  <div class="inside">
+    <h3>Usage Instructions</h3>
+    <strong>Insert $code in posts or pages to display the Flickr gallery.</strong>
+  </div>
+</div>
+EOD;
 }
 
 function get_rfg_option($gallery, $var)
