@@ -52,11 +52,11 @@ function rfg_view_delete_galleries()
 
       <form onsubmit="return verifySelectedGalleries()" method='post' action='<?php echo $url ?>'>
          <div class="postbox-container" style="width:69%; margin-right:1%">
-            <div id="poststuff">
-               <div class="postbox" style='box-shadow:0 0 2px'>
+             <div class="postbox">
+                  <div class="inside">
                   <h3>Saved Galleries</h3>
                   <table class='form-table' style='margin-top:0'>
-                     <tr style='border:1px solid Gainsboro' valign='top'>
+                     <tr style='valign='top'>
                         <th cope='row'><input type='checkbox' name='delete_all_galleries' id='delete_all_galleries'
                            onclick="CheckAllDeleteGalleries()"/></th>
                         <th scope='row'><strong>ID</strong></th>
@@ -66,8 +66,12 @@ function rfg_view_delete_galleries()
                      </tr>
                      <?php
                      $galleries = get_option('rfg_galleries');
+                     $rows = 0;
                      foreach ($galleries as $id => $ginfo) {
-                        echo "<tr style='border:1px solid Gainsboro' valign='top'>";
+                         $rows = $rows +1;
+                         if ($rows % 2) $class = "class='alternate' ";
+                         else $class = '';
+                        echo "<tr {$class} style='valign='top'>";
                         if ($id)
                             echo "<td style='width:4%'><input type='checkbox' name='delete_gallery_$id' id='delete_gallery_$id' /></td>";
                         else
