@@ -221,9 +221,9 @@ function rfg_generate_version_line()
     }
 
     $return_str = "" .
-    " <h4 align=\"right\" style=\"margin-right:0.5%\">" .
+    " <div align=\"right\" style=\"margin-right:1%\">" .
        " &nbsp;Version: <b>" . VERSION . "</b>" .
-    " </h4>";
+    " </div>";
     return $return_str;
 }
 
