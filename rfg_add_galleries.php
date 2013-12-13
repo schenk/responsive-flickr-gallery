@@ -122,8 +122,8 @@ function rfg_add_gallery()
 
             <form method='post' action='<?php echo $url ?>'>
                <div class="postbox-container" style="width:69%; margin-right:1%">
-                  <div id="poststuff">
-                     <div class="postbox" style='box-shadow:0 0 2px'>
+                  <div class="postbox">
+                     <div class="inside">
                         <h3>Gallery Parameters</h3>
                         <table class='form-table'>
                            <tr valign='top'>
