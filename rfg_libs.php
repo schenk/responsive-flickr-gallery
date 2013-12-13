@@ -234,8 +234,8 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
     $galleries = rfg_generate_options($galleries, '', false);
     $groups = rfg_generate_options($groups, '', false);
     return "
-    <div id=\"poststuff\">
-<div class=\"postbox\" style='box-shadow:0 0 2px'>
+<div class=\"postbox\">
+<div class=\"inside\">
     <h3>Flickr Settings</h3>
     <table class='form-table'>
         <tr valign='top'>
@@ -256,7 +256,8 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
         <td id='rfg_source_help' style='display:none'><font size='2'>Enter tags separated by comma. For example: <b>tag1, tag2, tag3, tag4</b><br />Photos matching any of the given tags will be displayed.</font></td>
         </tr>
     </table>
-</div></div>";
+</div>
+</div>";
 }
 
 function rfg_generate_gallery_settings_table()
@@ -276,8 +277,8 @@ function rfg_generate_gallery_settings_table()
     $photo_size = $rfg_photo_size_map[get_option('rfg_photo_size')];
 
     return "
-    <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+        <div class=\"postbox\">
+        <div class=\"inside\">
         <h3>Gallery Settings</h3>
         <table class='form-table'>
 
@@ -377,7 +378,8 @@ function rfg_generate_gallery_settings_table()
         </td>
         </tr>
     </table>
-</div></div>";
+</div>
+</div>";
 }
 
 function rfg_generate_options($params, $selection, $show_default=False, $default_value=0)
@@ -406,26 +408,28 @@ function rfg_filter($param)
 function rfg_box($title, $message)
 {
      return "
-        <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+        <div class=\"postbox\">
+        <div class=\"inside\">
         <h3>$title</h3>
         <table class='form-table'>
         <td>$message</td>
         </table>
-        </div></div>
+        </div>
+        </div>
         ";
 }
 
 function rfg_usage_box($code)
 {
     return "
-        <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+        <div class=\"postbox\">
+        <div class=\"inside\">
         <h3>Usage Instructions</h3>
         <table class='form-table'>
         <td>Just insert $code in any of the posts or page to display your Flickr gallery.</td>
         </table>
-        </div></div>
+        </div>
+        </div>
         ";
 }
 
