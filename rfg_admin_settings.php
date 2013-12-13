@@ -196,7 +196,6 @@ function rfg_admin_html_page()
            $rfg_slideshow_map,
            $rfg_cache_ttl_map;
     ?>
-    <div class='wrap'>
     <h2><img src="<?php echo (BASE_URL . '/images/logo_big.png'); ?>" align='center'/>Responsive Flickr Gallery Settings</h2>
 
     <?php
@@ -258,9 +257,9 @@ function rfg_admin_html_page()
     ?>
     <form method='post' action='<?php echo $url ?>'>
         <?php echo rfg_generate_version_line() ?>
-               <div class="postbox-container" style="width:69%; margin-right:1%">
-                  <div id="poststuff">
-                     <div class="postbox" style='box-shadow:0 0 2px'>
+        <div style="width: 70%; float: left;" id="wrapper">
+               <div class="postbox">
+               <div class="inside">
                         <h3>Flickr Settings</h3>
                         <table class='form-table'>
                            <tr valign='top'>
@@ -298,8 +297,8 @@ function rfg_admin_html_page()
                      </div>
                   </div>
 
-                  <div id="poststuff">
-                     <div class="postbox" style='box-shadow:0 0 2px'>
+                     <div class="postbox">
+                     <div class="inside">
                         <h3>Gallery Settings</h3>
                         <table class='form-table'>
 
@@ -408,11 +407,12 @@ function rfg_admin_html_page()
                               </tr>
   
                               </table>
-                        </div></div>
+                        </div>
+                        </div>
                         <input type="submit" name="submit" id="rfg_save_changes" class="button-primary" value="Save Changes" />
                         <br /><br />
-                        <div id="poststuff">
-                           <div class="postbox" style='box-shadow:0 0 2px'>
+                           <div class="postbox">
+                           <div class="inside">
                               <h3>Your Photostream Preview</h3>
                               <table class='form-table'>
                                  <tr><th>If your Flickr Settings are correct, 5 of your recent photos from your Flickr photostream should appear here.</th></tr>
@@ -437,16 +437,18 @@ function rfg_admin_html_page()
                                     have no effect on this preview.  You will need to insert gallery code to a post 
                                     or page to actually see the Gallery.
                                  </td>
-                           </table></div>
+                           </table>
                             <input type="submit" name="submit" class="button-secondary" value="Delete Cached Galleries"/>
-                        </div>
     <?php
     if (DEBUG) {
         print_all_options();
     }
     ?>
                      </div>
-                     <div class="postbox-container" style="width: 29%;">
+                     </div>
+                 </div> <!-- wrapper -->
+
+                 <div style="width:28%; float: right; margin-right:1%">
     <?php
     $message = "<b>What are Default Settings?</b> - Default Settings serve as a 
         template for the galleries.  When you create a new gallery, you can assign 
@@ -469,7 +471,7 @@ function rfg_admin_html_page()
     echo rfgDonateBox(); 
     echo rfg_share_box();
     ?>
-        </div>
+    </div>
             </form>
     <?php
 }
