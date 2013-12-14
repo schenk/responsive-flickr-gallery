@@ -120,6 +120,9 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 == Changelog ==
 
+= 0.2.1 =
+* Fixed conflict with Awesome Flickr Gallery when both are active and in debug mode.
+
 = 0.2.0 =
 * Adjusted admin pages to match WordPress 3.8 design.
 
