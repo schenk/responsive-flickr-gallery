@@ -456,7 +456,9 @@ function rfgDonateBox()
     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
     </div></form>
     <br />
-    Donations also welcome by Bitcoin <a href="bitcoin:1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb">1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</a>.<br />
+    Donations also welcome by Bitcoin or Litecoin:<br />
+    <a href="bitcoin:1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb">1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</a><br />
+    <a href="litecoin:LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv">LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv</a><br />
     <br />
     Found a bug or need a new feature?<br />
     Head to <a href="https://github.com/schenk/responsive-flickr-gallery/issues">github issues</a> for solutions.<br />
