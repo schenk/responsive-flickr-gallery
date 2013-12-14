@@ -152,7 +152,7 @@ function rfg_get_all_options()
     );
 }
 
-function print_all_options()
+function rfg_print_all_options()
 {
     $all_options = rfg_get_all_options();
     foreach ($all_options as $key => $value) {
@@ -441,7 +441,7 @@ function rfg_admin_html_page()
                             <input type="submit" name="submit" class="button-secondary" value="Delete Cached Galleries"/>
     <?php
     if (DEBUG) {
-        print_all_options();
+        rfg_print_all_options();
     }
     ?>
                      </div>
