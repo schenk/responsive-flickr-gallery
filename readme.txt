@@ -3,7 +3,7 @@ Contributors: larsschenk
 Donate link: http://schenk.github.io/responsive-flickr-gallery/
 Tags: responsive, flickr, gallery, cdn, photo, images
 Requires at least: 3.7.0
-Tested up to: 3.7.1
+Tested up to: 3.8
 Stable tag: /trunk/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -12,7 +12,7 @@ Responsive galleries from your Flickr photos for WordPress sites.
 
 == Description ==
 
-_Responsive Flickr Gallery_ is a simple, fast and light plugin to create responsive galleries of [Flickr](http://www.flickr.com/) photos. This plugin provides customizable, clean and professional looking Flickr galleries. It sacles perfectly on cloud hosted WordPress sites.
+_Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create responsive galleries of [Flickr](http://www.flickr.com/) photos. This plugin provides customizable, clean and professional looking Flickr galleries. It sacles perfectly on cloud hosted WordPress sites.
 
 ###Features:
 
@@ -43,7 +43,7 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create respons
 * Perfect for heroku hosting and scaling: Stores nothing into the filesystem
 * Available on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) for automatic updates
 * Available on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration, feature requests, issue tracking and alternate git based deployment
-* Donations welcome by PayPal or Bitcoin payment to 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb
+* Donations welcome by PayPal, Bitcoin 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb or Litecoin LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv
 * PSR-2 coding standard
 * License: GPLv3 or higher
 
@@ -120,6 +120,9 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 == Changelog ==
 
+= 0.2.0 =
+* Adjusted admin pages to match WordPress 3.8 design.
+
 = 0.1.0 =
 * Removed Advanced setting. Barely wanted CSS customization can better be achieved with 3rd party plugins.
 
@@ -143,6 +146,6 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 == Upgrade Notice ==
 
-This is a form from Awesome Flickr Gallery. Both can be used side by side without conflict. 
+This is a fork from Awesome Flickr Gallery. Both can be used side by side without conflict. 
 Upgrade if you need a responsive flickr gallery that 100% compatible with GPL and hostet and maintained on wordpress.org.
 
