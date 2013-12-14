@@ -1,6 +1,6 @@
 # Responsive Flickr Gallery #
 
-_Responsive Flickr Gallery_ is a simple, fast and light plugin to create responsive galleries of [Flickr](http://www.flickr.com/) photos. This plugin provides customizable, clean and professional looking Flickr galleries. It sacles perfectly on cloud hosted WordPress sites.
+_Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create responsive galleries of [Flickr](http://www.flickr.com/) photos. This plugin provides customizable, clean and professional looking Flickr galleries. It sacles perfectly on cloud hosted WordPress sites.
 
 ##Features:
 
@@ -31,7 +31,7 @@ _Responsive Flickr Gallery_ is a simple, fast and light plugin to create respons
 * Perfect for heroku hosting and scaling: Stores nothing into the filesystem
 * Available on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) for automatic updates
 * Available on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration, feature requests, issue tracking and alternate git based deployment
-* Donations welcome by PayPal or Bitcoin payment to 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb
+* Donations welcome by PayPal, Bitcoin 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb or Litecoin LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv
 * PSR-2 coding standard
 * License: GPLv3 or higher
 

@@ -162,10 +162,9 @@ function rfg_edit_galleries()
     ?>
 
     <form method='post' action='<?php echo $url ?>'>
-        <div class="postbox-container" style="width:69%; margin-right:1%">
-
-           <div id="poststuff">
-              <div class="postbox" style='box-shadow:0 0 2px'>
+         <div class="postbox-container" style="width:69%; margin-right:1%">
+           <div class="postbox">
+              <div class="inside">
                  <h3>Saved Galleries</h3>
                  <table class='form-table'>
                     <tr valign='top'>

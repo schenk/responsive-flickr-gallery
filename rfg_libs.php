@@ -18,7 +18,7 @@
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '0.1.0');
+define('VERSION', '0.2.0');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
@@ -221,9 +221,9 @@ function rfg_generate_version_line()
     }
 
     $return_str = "" .
-    " <h4 align=\"right\" style=\"margin-right:0.5%\">" .
+    " <div align=\"right\" style=\"margin-right:1%\">" .
        " &nbsp;Version: <b>" . VERSION . "</b>" .
-    " </h4>";
+    " </div>";
     return $return_str;
 }
 
@@ -234,8 +234,8 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
     $galleries = rfg_generate_options($galleries, '', false);
     $groups = rfg_generate_options($groups, '', false);
     return "
-    <div id=\"poststuff\">
-<div class=\"postbox\" style='box-shadow:0 0 2px'>
+<div class=\"postbox\">
+<div class=\"inside\">
     <h3>Flickr Settings</h3>
     <table class='form-table'>
         <tr valign='top'>
@@ -256,7 +256,8 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
         <td id='rfg_source_help' style='display:none'><font size='2'>Enter tags separated by comma. For example: <b>tag1, tag2, tag3, tag4</b><br />Photos matching any of the given tags will be displayed.</font></td>
         </tr>
     </table>
-</div></div>";
+</div>
+</div>";
 }
 
 function rfg_generate_gallery_settings_table()
@@ -276,8 +277,8 @@ function rfg_generate_gallery_settings_table()
     $photo_size = $rfg_photo_size_map[get_option('rfg_photo_size')];
 
     return "
-    <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+        <div class=\"postbox\">
+        <div class=\"inside\">
         <h3>Gallery Settings</h3>
         <table class='form-table'>
 
@@ -377,7 +378,8 @@ function rfg_generate_gallery_settings_table()
         </td>
         </tr>
     </table>
-</div></div>";
+</div>
+</div>";
 }
 
 function rfg_generate_options($params, $selection, $show_default=False, $default_value=0)
@@ -406,27 +408,27 @@ function rfg_filter($param)
 function rfg_box($title, $message)
 {
      return "
-        <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
+        <div class=\"postbox\">
+        <div class=\"inside\">
         <h3>$title</h3>
         <table class='form-table'>
         <td>$message</td>
         </table>
-        </div></div>
+        </div>
+        </div>
         ";
 }
 
 function rfg_usage_box($code)
 {
-    return "
-        <div id=\"poststuff\">
-        <div class=\"postbox\" style='box-shadow:0 0 2px'>
-        <h3>Usage Instructions</h3>
-        <table class='form-table'>
-        <td>Just insert $code in any of the posts or page to display your Flickr gallery.</td>
-        </table>
-        </div></div>
-        ";
+    return <<<EOD
+<div class="postbox">
+  <div class="inside">
+    <h3>Usage Instructions</h3>
+    <strong>Insert $code in posts or pages to display the Flickr gallery.</strong>
+  </div>
+</div>
+EOD;
 }
 
 function get_rfg_option($gallery, $var)
@@ -438,28 +440,31 @@ function get_rfg_option($gallery, $var)
 function rfgDonateBox()
 {
     return <<<EOD
-  <div id="poststuff">
-        <div class="postbox" style='box-shadow:0 0 2px'>
-        <h3>Support this plugin</h3>
-        <table class='form-table'>
-        <td>It takes time and effort to keep releasing new versions of this plugin.  If you like it, consider donating a few bucks <b>(especially if you are using this plugin on a commercial website)</b> to keep receiving new features.
-        </form>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
-<div style="text-align:center" class="paypal-donations">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="G34C7BDW8499Q">
-<input type="image" src="https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</div></form>
-        <br />
-        Donations also welcome by Bitcoin payment to <b>1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</b>.<br />
-        <br />
-        Found a bug, need a feature?<br />
-        Head to <a href="https://github.com/schenk/responsive-flickr-gallery/issues">github issues</a> for solution.<br />
-        Contributors and feature requests welcome. Bounties may speed up the development process and help to decide which feature will be included next.<br />
-        </td>
-        </table>
-        </div></div> 
+<div class="postbox">
+  <div class="inside">
+    <h3>This plugin needs your support</h3>
+    It is hard to continue development and support for this plugin without contributions from users like you. 
+    If you enjoy using Responsive Flickr Gallery and find it useful, please consider making a donation. 
+    Your donation will help encourage and support the plugin’s continued development and better user support.<br />
+    <br />
+    </form>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+    <div style="text-align:center" class="paypal-donations">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="G34C7BDW8499Q">
+    <input type="image" src="https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </div></form>
+    <br />
+    Donations also welcome by Bitcoin or Litecoin:<br />
+    <a href="bitcoin:1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb">1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</a><br />
+    <a href="litecoin:LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv">LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv</a><br />
+    <br />
+    Found a bug or need a new feature?<br />
+    Head to <a href="https://github.com/schenk/responsive-flickr-gallery/issues">github issues</a> for solutions.<br />
+    Contributors and feature requests welcome. Bounties can speed up the development process.
+  </div> 
+</div> 
 EOD;
 }
 
