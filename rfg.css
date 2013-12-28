@@ -13,15 +13,6 @@ img.rfg-img {
     -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
 }
 
-img.rfg-img:hover {
-    margin-top:5%;
-    opacity:0.7;
-    filter:alpha(opacity=70);
-    box-shadow: None;
-    -moz-box-shadow: None;
-    -webkit-box-shadow: None;
-}
-
 /* Gallery structure */
 div.rfg-table {
     display:table !important;
@@ -42,7 +33,24 @@ div.rfg-cell {
     margin:auto;
     padding-right:6px;
     padding-bottom:10px;
+    position: relative;
 }
+
+div.rfg-cell:hover {
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    transform: scale(1.01, 1.01);
+    -moz-transform: scale(1.01, 1.01);
+    -ms-transform: scale(1.01, 1.01);
+    -webkit-transform: scale(1.01, 1.01);
+    -o-transform: scale(1.01, 1.01);
+    transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+
 /* Hover effect for pagination links */
 a.rfg-page:hover {
     background:royalblue;
@@ -82,8 +90,14 @@ div.rfg-credit {
 
 /* Photo title */
 div.rfg-title {
-    margin-right:5%;
-    margin-bottom:5%;
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 6px;
+
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+    color: lightgray; 
 }
 
 /* Photo Description */
