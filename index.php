@@ -368,7 +368,6 @@ function rfg_display_gallery($atts)
         }
         $photo_count += 1;
     }
-
     $disp_gallery .= '</div>';
 
     // Pagination
@@ -411,6 +410,13 @@ function rfg_display_gallery($atts)
         $disp_gallery .= "</div>";
     }
     $disp_gallery .= "</div>";
-    $disp_gallery .= "<!-- /Responsive Flickr Gallery -->";
+    // disable default tool tip
+    $disp_gallery .=  <<<EOD
+ <script type='text/javascript'>
+   jQuery('.rfg-img').removeAttr("title");
+   jQuery('.afgcolorbox').removeAttr("title");
+ </script>
+<!-- /Responsive Flickr Gallery -->
+EOD;
     return $disp_gallery;
 }
