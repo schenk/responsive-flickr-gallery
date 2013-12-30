@@ -354,14 +354,13 @@ function rfg_admin_html_page()
                               </tr>
 
                               <tr valign='top'>
-                                 <th scope='row'>Slideshow Behavior</th>
+                                 <th scope='row'>Click on Photo Behavior</th>
                                  <td><select name='rfg_slideshow_option'>
                                        <?php echo rfg_generate_options($rfg_slideshow_map, get_option('rfg_slideshow_option', 'colorbox')); ?>
                                  </select></td>
                                  <td><font size='2'>
                                   If you use ColorBox to display photos in larger size you'll also have a slidehsow for all photos from a gallery.
                                   A slideshow contains all photos of a gallery - even if pagination is enabled.<br />
-                                  Be aware that page load times can suffer if you choose to use ColorBox slideshows for galleries containing many pictures.
                                   </font></td>
                               </tr>
 

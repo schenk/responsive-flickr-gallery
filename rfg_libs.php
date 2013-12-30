@@ -33,9 +33,9 @@ $rfg_sort_order_map = array(
 $rfg_slideshow_map = array(
     'default' => 'Default',
     'colorbox' => 'Colorbox',
-    'disable' => 'No Slideshow',
+    'disable' => 'Link to Flickr Photo',
     'flickr' => 'Link to Flickr Photo page',
-    'none' => 'No Slideshow and No Link',
+    'none' => 'No Link',
 );
 
 /* Map for photo titles displayed on the gallery. */
@@ -330,14 +330,13 @@ function rfg_generate_gallery_settings_table()
         </tr>
 
         <tr valign='top'>
-        <th scope='row'>Slideshow Behavior</th>
+        <th scope='row'>Click on Photo Behavior</th>
         <td><select name='rfg_slideshow_option' id='rfg_slideshow_option'>
         " . rfg_generate_options($rfg_slideshow_map, 'default', true, $rfg_slideshow_map[get_option('rfg_slideshow_option')]) . "
     </select></td>
             <td><font size='2'>
             If you use ColorBox to display photos in larger size you'll also have a slidehsow for all photos from a gallery.
             A slideshow contains all photos of a gallery - even if pagination is enabled.<br />
-            Be aware that page load times can suffer if you choose to use ColorBox slideshows for galleries containing many pictures.
             </font></td>
             </tr>
 
