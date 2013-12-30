@@ -185,7 +185,7 @@ function rfg_display_gallery($atts)
     } elseif (isset($gallery_id) && $gallery_id) {
         $rsp_obj = $pf->galleries_getInfo($gallery_id);
         if ($pf->error_code) return rfg_error();
-        $total_photos = $rsp_obj['gallery']['count_photos']['_content'];
+        $total_photos = $rsp_obj['gallery']['count_photos'];
     } elseif (isset($group_id) && $group_id) {
         $rsp_obj = $pf->groups_pools_getPhotos($group_id, null, null, null, null, 1, 1);
         if ($pf->error_code) return rfg_error();
