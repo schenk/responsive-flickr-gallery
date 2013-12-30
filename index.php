@@ -95,6 +95,7 @@ function rfg_display_gallery($atts)
 
     extract(shortcode_atts(array('id' => '0'), $atts));
 
+    $ad_displayed = false;
     $cur_page = 1;
     $cur_page_url = $_SERVER["REQUEST_URI"];
 
@@ -287,7 +288,10 @@ function rfg_display_gallery($atts)
         $photo_height = '';
     }
 
-    foreach ($photos as $pid => $photo) {
+    $rand_ad_pos = rand(3, $per_page-1);
+    $i = 0;
+    while ($i < count($photos)) {
+        $photo = $photos[$i];
         $p_title = esc_attr($photo['title']);
         $p_description = esc_attr($photo['description']['_content']);
 
@@ -327,31 +331,55 @@ function rfg_display_gallery($atts)
             }
         }
 
-        if ( ($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1)) ) {
+        if ( ($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) -1/*ad*/ ) ) {
             $disp_gallery .= "\n<div class='rfg-cell' style='min-width: ${img_cell_min_width}px; width:${column_width}%;'>\n";
+            if ($photo_count == $rand_ad_pos && !$ad_displayed) {
+                $i -= 1;
+                $ad_displayed = true;
+                $disp_gallery .= <<<EOD
+<div class="rfg-ad">
+<style>
+.responsive-flickr-gallery-image-block { width: 320px; height: 320px; }
+@media(min-width: 500px) { .responsive-flickr-gallery-image-block { width: 125px; height: 125px; } }
+@media(min-width: 800px) { .responsive-flickr-gallery-image-block { width: 200px; height: 200px; } }
+@media(min-width: 1024px) { .responsive-flickr-gallery-image-block { width: 250px; height: 250px; } }
+</style>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Responsive Flickr Gallery - Image Block -->
+<ins class="adsbygoogle responsive-flickr-gallery-image-block"
+     style="display:inline-block"
+     data-ad-client="ca-pub-9888393788700995"
+     data-ad-slot="1130150915"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+EOD;
+            } else {
+                $pid_len = strlen($photo['id']);
 
-            $pid_len = strlen($photo['id']);
+                if ($slideshow_option != 'none') {
+                    $disp_gallery .= "  <a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
+                }
 
-            if ($slideshow_option != 'none')
-                $disp_gallery .= "  <a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
+                $disp_gallery .= "<img class='rfg-img' title='{$photo['title']}' src='{$photo_url}' alt='{$photo_title_text}'/>";
 
-            $disp_gallery .= "<img class='rfg-img' title='{$photo['title']}' src='{$photo_url}' alt='{$photo_title_text}'/>";
+                if ($slideshow_option != 'none')
+                    $disp_gallery .= "</a>\n";
 
-            if ($slideshow_option != 'none')
-                $disp_gallery .= "</a>\n";
+                if ($size_heading_map[$photo_size] && $photo_title == 'on') {
+                    if ($group_id || $gallery_id)
+                        $owner_title = "- by <a href='http://www.flickr.com/photos/{$photo['owner']}/' target='_blank'>{$photo['ownername']}</a>";
+                    else
+                        $owner_title = '';
 
-            if ($size_heading_map[$photo_size] && $photo_title == 'on') {
-                if ($group_id || $gallery_id)
-                    $owner_title = "- by <a href='http://www.flickr.com/photos/{$photo['owner']}/' target='_blank'>{$photo['ownername']}</a>";
-                else
-                    $owner_title = '';
+                    $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
+                }
 
-                $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
-            }
-
-            if ($photo_descr == 'on' && $photo_size != '_s' && $photo_size != '_t') {
-                $disp_gallery .= "<div class='rfg-description'>" .
-                    $photo['description']['_content'] . "</div>";
+                if ($photo_descr == 'on' && $photo_size != '_s' && $photo_size != '_t') {
+                    $disp_gallery .= "<div class='rfg-description'>" .
+                        $photo['description']['_content'] . "</div>";
+                }
             }
 
             $disp_gallery .= "</div>\n"; // rfg-cell
@@ -367,6 +395,7 @@ function rfg_display_gallery($atts)
             }
         }
         $photo_count += 1;
+        $i += 1;
     }
     $disp_gallery .= '</div>';
 
