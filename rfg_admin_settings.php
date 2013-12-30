@@ -123,6 +123,7 @@ function rfg_admin_init()
     register_setting('rfg_settings_group', 'rfg_custom_css');
     register_setting('rfg_settings_group', 'rfg_sort_order');
     register_setting('rfg_settings_group', 'rfg_cache_ttl');
+    register_setting('rfg_settings_group', 'rfg_license_key');
 
     // Register javascripts
     wp_register_script('edit-galleries-script', BASE_URL . '/js/rfg_edit_galleries.js');
@@ -149,6 +150,7 @@ function rfg_get_all_options()
         'rfg_flickr_token' => get_option('rfg_flickr_token'),
         'rfg_slideshow_option' => get_option('rfg_slideshow_option'),
         'rfg_cache_ttl' => get_option('rfg_cache_ttl'),
+        'rfg_license_key' => get_option('rfg_license_key'),
     );
 }
 
@@ -239,6 +241,7 @@ function rfg_admin_html_page()
             update_option('rfg_width', $_POST['rfg_width']);
             update_option('rfg_bg_color', $_POST['rfg_bg_color']);
             update_option('rfg_cache_ttl', $_POST['rfg_cache_ttl']);
+            update_option('rfg_license_key', $_POST['rfg_license_key']);
 
             if (isset($_POST['rfg_credit_note']) && $_POST['rfg_credit_note']) update_option('rfg_credit_note', 'on');
             else update_option('rfg_credit_note', 'off');
@@ -292,6 +295,19 @@ function rfg_admin_html_page()
                               <th scope='row'>Flickr User ID</th>
                               <td><input type='text' name='rfg_user_id' size='30' value="<?php echo get_option('rfg_user_id'); ?>" /><font style='color:red; font-weight:bold'>*</font> </td>
                               <td><font size='2'>Don't know your Flickr User ID?  Get it from <a href="http://idgettr.com/" target='blank'>here.</a></font></td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+
+               <div class="postbox">
+               <div class="inside">
+                        <h3>Responsive Flickr Gallery License</h3>
+                        <table class='form-table'>
+                           <tr valign='top'>
+                              <th scope='row'>Pro License Key</th>
+                              <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
+                              <td><font size='2'>Don't have a Pro License Key?  Get it from <a href="http://buylicensekey.todo/" target='blank'>here.</a></font></td>
                            </tr>
                         </table>
                      </div>
