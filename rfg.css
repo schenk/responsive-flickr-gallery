@@ -20,6 +20,10 @@ div.rfg-ad {
     -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
 }
 
+ins{
+    background: transparent;
+}
+
 /* Gallery structure */
 div.rfg-table {
     display:table !important;
