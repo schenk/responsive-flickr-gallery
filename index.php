@@ -288,7 +288,7 @@ function rfg_display_gallery($atts)
         $photo_height = '';
     }
 
-    $rand_ad_pos = rand(3, $per_page-1);
+    $rand_ad_pos = rand(3, min($per_page, count($photos))-1);
     $i = 0;
     while ($i < count($photos)) {
         $photo = $photos[$i];
