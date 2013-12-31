@@ -124,6 +124,7 @@ function rfg_admin_init()
     register_setting('rfg_settings_group', 'rfg_sort_order');
     register_setting('rfg_settings_group', 'rfg_cache_ttl');
     register_setting('rfg_settings_group', 'rfg_license_key');
+    register_setting('rfg_settings_group', 'rfg_ca_pub');
 
     // Register javascripts
     wp_register_script('edit-galleries-script', BASE_URL . '/js/rfg_edit_galleries.js');
@@ -151,6 +152,7 @@ function rfg_get_all_options()
         'rfg_slideshow_option' => get_option('rfg_slideshow_option'),
         'rfg_cache_ttl' => get_option('rfg_cache_ttl'),
         'rfg_license_key' => get_option('rfg_license_key'),
+        'rfg_ca_pub' => get_option('rfg_ca_pub'),
     );
 }
 
@@ -242,6 +244,7 @@ function rfg_admin_html_page()
             update_option('rfg_bg_color', $_POST['rfg_bg_color']);
             update_option('rfg_cache_ttl', $_POST['rfg_cache_ttl']);
             update_option('rfg_license_key', $_POST['rfg_license_key']);
+            update_option('rfg_ca_pub', $_POST['rfg_ca_pub']);
 
             if (isset($_POST['rfg_credit_note']) && $_POST['rfg_credit_note']) update_option('rfg_credit_note', 'on');
             else update_option('rfg_credit_note', 'off');
