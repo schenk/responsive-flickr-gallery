@@ -196,22 +196,11 @@ function rfg_edit_galleries()
            <?php if ($disable_submit) echo "disabled='yes'"; ?>
            value="Save Changes" />
            <br /><br />
-           <div id="poststuff">
-              <div class="postbox" style='box-shadow:0 0 2px'>
-                 <h3>Gallery Code</h3>
-                 <table class='form-table'>
-                    <tr valign='top'>
-                       <td>
-                          <p id='rfg_flickr_gallery_code'>[RFG_gallery]</p>
-                       </td>
-                    </tr>
-                 </table>
-           </div>
-         </div>
       </div>
     <div class="postbox-container" style="width: 29%;">
     <?php
-    echo rfg_box('Usage Instructions', 'Insert the Gallery Code in any of your posts of pages to display your Flickr Gallery.');
+    $usageHint = "Insert the Gallery Code<br /><br /><b id='rfg_flickr_gallery_code'>[RFG_gallery id='$default_gallery_id']</b><br /><br />in any of your posts of pages to display your Flickr Gallery.";
+    echo rfg_box('Usage Instructions', $usageHint);
     echo rfgDonateBox();
     echo rfg_share_box();
     ?>
