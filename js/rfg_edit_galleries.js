@@ -181,8 +181,8 @@ function loadGallerySettings() {
     bg_color.value = active_gallery.bg_color || 'default';
     width.value = active_gallery.width || 'default';
     pagination.value = active_gallery.pagination || 'default';
-    credit_note.value = active_gallery.credit_note || 'default';
-    gallery_code.innerHTML = '[rfg_gallery id=\'' + gallery.value + '\']';
+    // credit_note.value = active_gallery.credit_note || 'default';
+    gallery_code.innerHTML = '[RFG_gallery id=\'' + gallery.value + '\']';
 
     if (photo_size.value == "custom") {
         rfg_custom_size_block.style.display = "";
