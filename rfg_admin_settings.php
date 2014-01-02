@@ -423,7 +423,11 @@ function rfg_admin_html_page()
                                      Set high if galleries don't change often to save "expensive" API calls 
                                      and speed up the galleries on your site.</font></td>
                               </tr>
-  
+                              <tr valign='top'>
+                                  <th scope='row'>Publisher ID</th>
+                                  <td>ca-pub-<input type='text' name='rfg_ca_pub' size='20' value="<?php echo get_option('rfg_ca_pub'); ?>" ></input> </td>
+                                  <td><font size='2'>Monetize your galleries with Google Adsense .</a></font></td>
+                              </tr>
                               </table>
                         </div>
                         </div>
