@@ -303,18 +303,6 @@ function rfg_admin_html_page()
                      </div>
                   </div>
 
-               <div class="postbox">
-               <div class="inside">
-                        <h3>Responsive Flickr Gallery License</h3>
-                        <table class='form-table'>
-                           <tr valign='top'>
-                              <th scope='row'>Pro License Key</th>
-                              <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
-                              <td><font size='2'>Don't have a Pro License Key?  Get it from <a href="http://buylicensekey.todo/" target='blank'>here.</a></font></td>
-                           </tr>
-                        </table>
-                     </div>
-                  </div>
 
                      <div class="postbox">
                      <div class="inside">
@@ -431,6 +419,53 @@ function rfg_admin_html_page()
                               </table>
                         </div>
                         </div>
+
+               <div class="postbox">
+               <div class="inside">
+                        <h3>Responsive Flickr Gallery License</h3>
+                        <table class='form-table'>
+                           <tr valign='top'>
+                              <th scope='row'>License Key</th>
+                              <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
+                              <td><font size='2'>Don't have a License Key? Get one from <a href="http://www.ocx.de/responsive-flickr-gallery" target='blank'>here.</a></font></td>
+                           </tr>
+                           <tr valign='top'>
+                              <th scope='row'>License Information:</th>
+                              <td colspan="2">
+    <?php
+    $vl = false;
+    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
+    $validExpiredate = $expiredate > time();
+    if ($productkey == md5('Reponsive Flickr Gallery Pro')
+        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+    ) {
+        echo "Reponsive Flickr Gallery Pro<br />";
+        echo "Licensed to: <b>$username</b><br />";
+        if ($validExpiredate) {
+            echo "Valid until: ".date("Y-m-d", $expiredate);
+            echo "<br /><br /><small>Your Google Adsense Publisher ID will receive 100% of the impressions.<br /> ";
+            echo "To disable Google Adsense let the Publisher ID empty.</small>";
+            $vl = true;
+        } else {
+            echo "Expired since: ".date("Y-m-d", $expiredate);
+            echo "Renew the license at <a href=\"http://www.ocx.de/responsive-flickr-gallery\" target='blank'>here.</a><br />";
+            echo "<small>";
+        }
+    } 
+    if (!$vl) {
+        echo "No valid license found. ";
+        echo "Get one from <a href=\"http://www.ocx.de/responsive-flickr-gallery\" target='blank'>here.</a><br />";
+        echo "<br /><small>Google Adsense impressions will be shared 50/50.<br /> ";
+        echo "Buy or renew your <strong>Pro</strong> license to get 100% of the Google Adsense impressions<br />";
+        echo "or to disable Google Adsense if you prefer to keep you site free of ads.</small>";
+    }
+    ?>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+
                         <input type="submit" name="submit" id="rfg_save_changes" class="button-primary" value="Save Changes" />
                         <br /><br />
                            <div class="postbox">
