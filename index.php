@@ -288,7 +288,31 @@ function rfg_display_gallery($atts)
         $photo_height = '';
     }
 
-    $rand_ad_pos = rand(3, min($per_page, count($photos))-1);
+    $rfg_ca_pub = get_option('rfg_ca_pub');
+    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
+    if ($productkey == md5('Reponsive Flickr Gallery Pro')
+        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+        && ($expiredate > time())
+        && (empty($rfg_ca_pub))
+    ) {
+        $rand_pos = 0;
+    } else {
+        $rand_pos = rand(3, min($per_page, count($photos))-1);
+        if ($productkey == md5('Reponsive Flickr Gallery Pro')
+            && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+            && ($expiredate > time())
+            && (!empty($rfg_ca_pub))
+        ) {
+            $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
+        } else {
+            if (!empty($rfg_ca_pub) && rand(0, 99) > 50) {
+                $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\"";
+            } else {
+                $rfg_ca_pub = "data-ad-client=\"ca-pub-9888393788700995\" ".
+                              "data-ad-slot=\"1130150915\"";
+            }
+        }
+    }
     $i = 0;
     while ($i < count($photos)) {
         $photo = $photos[$i];
@@ -331,9 +355,9 @@ function rfg_display_gallery($atts)
             }
         }
 
-        if ( ($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) -1/*ad*/ ) ) {
+        if ( ($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) - ($rand_pos >0))) {
             $disp_gallery .= "\n<div class='rfg-cell' style='min-width: ${img_cell_min_width}px; width:${column_width}%;'>\n";
-            if ($photo_count == $rand_ad_pos && !$ad_displayed) {
+            if ($photo_count == $rand_pos && !$ad_displayed) {
                 $i -= 1;
                 $ad_displayed = true;
                 $disp_gallery .= <<<EOD
@@ -348,8 +372,8 @@ function rfg_display_gallery($atts)
 <!-- Responsive Flickr Gallery - Image Block -->
 <ins class="adsbygoogle responsive-flickr-gallery-image-block"
      style="display:inline-block"
-     data-ad-client="ca-pub-9888393788700995"
-     data-ad-slot="1130150915"></ins>
+     {$rfg_ca_pub}>
+ </ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
