@@ -125,6 +125,20 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 == Changelog ==
 
+= 1.0.0 =
+* Added elegant CSS3 transision.
+* Nicer captions.
+* GUI improvements.
+* Disabled annoing default tool tip.
+* Fixed error when using photo galleries.
+* Minor fixes.
+* Monetize your Flickr galleries: Support for responsive Google Adsense. 
+* Free for personal blogs with donations welcome by Bitcoin 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb, Litecoin LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv or PayPal.
+* Pro license required for businesses and commercial sites.
+* Pro license unlocks [PRO] features. No new installation required.
+* [PRO] Monetize your Flickr galleries with 100% ad impressions for your publisher ID. 
+* [PRO] Disable ads.
+
 = 0.2.1 =
 * Fixed conflict with Awesome Flickr Gallery when both are active and in debug mode.
 
