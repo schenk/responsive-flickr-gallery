@@ -18,7 +18,7 @@
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '0.2.1');
+define('VERSION', '1.0.0');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
@@ -33,9 +33,9 @@ $rfg_sort_order_map = array(
 $rfg_slideshow_map = array(
     'default' => 'Default',
     'colorbox' => 'Colorbox',
-    'disable' => 'No Slideshow',
+    'disable' => 'Link to Flickr Photo',
     'flickr' => 'Link to Flickr Photo page',
-    'none' => 'No Slideshow and No Link',
+    'none' => 'No Link',
 );
 
 /* Map for photo titles displayed on the gallery. */
@@ -330,14 +330,13 @@ function rfg_generate_gallery_settings_table()
         </tr>
 
         <tr valign='top'>
-        <th scope='row'>Slideshow Behavior</th>
+        <th scope='row'>Click on Photo Behavior</th>
         <td><select name='rfg_slideshow_option' id='rfg_slideshow_option'>
         " . rfg_generate_options($rfg_slideshow_map, 'default', true, $rfg_slideshow_map[get_option('rfg_slideshow_option')]) . "
     </select></td>
             <td><font size='2'>
             If you use ColorBox to display photos in larger size you'll also have a slidehsow for all photos from a gallery.
             A slideshow contains all photos of a gallery - even if pagination is enabled.<br />
-            Be aware that page load times can suffer if you choose to use ColorBox slideshows for galleries containing many pictures.
             </font></td>
             </tr>
 
@@ -442,9 +441,13 @@ function rfgDonateBox()
     return <<<EOD
 <div class="postbox">
   <div class="inside">
-    <h3>This plugin needs your support</h3>
+    <h3>Free or with license key</h3>
+    A <a href="http://www.ocx.de/responsive-flickr-gallery" target="_blank">license key is required</a> for businesses and commercial sites. 
+    For personal blogs no license key is required but <b>donations are welcome</b>.<br />
+    <br />
     It is hard to continue development and support for this plugin without contributions from users like you. 
-    If you enjoy using Responsive Flickr Gallery and find it useful, please consider making a donation. 
+    Especially since this plugin is young and sale of license keys for commercial sites hasn't been well established.
+    So if you enjoy using Responsive Flickr Gallery and find it useful, please consider making a donation. 
     Your donation will help encourage and support the plugin’s continued development and better user support.<br />
     <br />
     </form>

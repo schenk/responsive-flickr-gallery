@@ -123,6 +123,8 @@ function rfg_admin_init()
     register_setting('rfg_settings_group', 'rfg_custom_css');
     register_setting('rfg_settings_group', 'rfg_sort_order');
     register_setting('rfg_settings_group', 'rfg_cache_ttl');
+    register_setting('rfg_settings_group', 'rfg_license_key');
+    register_setting('rfg_settings_group', 'rfg_ca_pub');
 
     // Register javascripts
     wp_register_script('edit-galleries-script', BASE_URL . '/js/rfg_edit_galleries.js');
@@ -149,6 +151,8 @@ function rfg_get_all_options()
         'rfg_flickr_token' => get_option('rfg_flickr_token'),
         'rfg_slideshow_option' => get_option('rfg_slideshow_option'),
         'rfg_cache_ttl' => get_option('rfg_cache_ttl'),
+        'rfg_license_key' => get_option('rfg_license_key'),
+        'rfg_ca_pub' => get_option('rfg_ca_pub'),
     );
 }
 
@@ -239,6 +243,8 @@ function rfg_admin_html_page()
             update_option('rfg_width', $_POST['rfg_width']);
             update_option('rfg_bg_color', $_POST['rfg_bg_color']);
             update_option('rfg_cache_ttl', $_POST['rfg_cache_ttl']);
+            update_option('rfg_license_key', $_POST['rfg_license_key']);
+            update_option('rfg_ca_pub', $_POST['rfg_ca_pub']);
 
             if (isset($_POST['rfg_credit_note']) && $_POST['rfg_credit_note']) update_option('rfg_credit_note', 'on');
             else update_option('rfg_credit_note', 'off');
@@ -297,6 +303,7 @@ function rfg_admin_html_page()
                      </div>
                   </div>
 
+
                      <div class="postbox">
                      <div class="inside">
                         <h3>Gallery Settings</h3>
@@ -354,14 +361,13 @@ function rfg_admin_html_page()
                               </tr>
 
                               <tr valign='top'>
-                                 <th scope='row'>Slideshow Behavior</th>
+                                 <th scope='row'>Click on Photo Behavior</th>
                                  <td><select name='rfg_slideshow_option'>
                                        <?php echo rfg_generate_options($rfg_slideshow_map, get_option('rfg_slideshow_option', 'colorbox')); ?>
                                  </select></td>
                                  <td><font size='2'>
                                   If you use ColorBox to display photos in larger size you'll also have a slidehsow for all photos from a gallery.
                                   A slideshow contains all photos of a gallery - even if pagination is enabled.<br />
-                                  Be aware that page load times can suffer if you choose to use ColorBox slideshows for galleries containing many pictures.
                                   </font></td>
                               </tr>
 
@@ -405,10 +411,61 @@ function rfg_admin_html_page()
                                      Set high if galleries don't change often to save "expensive" API calls 
                                      and speed up the galleries on your site.</font></td>
                               </tr>
-  
+                              <tr valign='top'>
+                                  <th scope='row'>Publisher ID</th>
+                                  <td>ca-pub-<input type='text' name='rfg_ca_pub' size='20' value="<?php echo get_option('rfg_ca_pub'); ?>" ></input> </td>
+                                  <td><font size='2'>Monetize your galleries with Google Adsense .</a></font></td>
+                              </tr>
                               </table>
                         </div>
                         </div>
+
+               <div class="postbox">
+               <div class="inside">
+                        <h3>Responsive Flickr Gallery License</h3>
+                        <table class='form-table'>
+                           <tr valign='top'>
+                              <th scope='row'>License Key</th>
+                              <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
+                              <td><font size='2'>Don't have a License Key? Get one from <a href="http://www.ocx.de/responsive-flickr-gallery" target='blank'>here.</a></font></td>
+                           </tr>
+                           <tr valign='top'>
+                              <th scope='row'>License Information:</th>
+                              <td colspan="2">
+    <?php
+    $vl = false;
+    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
+    $validExpiredate = $expiredate > time();
+    if ($productkey == md5('Reponsive Flickr Gallery Pro')
+        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+    ) {
+        echo "Reponsive Flickr Gallery Pro<br />";
+        echo "Licensed to: <b>$username</b><br />";
+        if ($validExpiredate) {
+            echo "Valid until: ".date("Y-m-d", $expiredate);
+            echo "<br /><br /><small>Your Google Adsense Publisher ID will receive 100% of the impressions.<br /> ";
+            echo "To disable Google Adsense let the Publisher ID empty.</small>";
+            $vl = true;
+        } else {
+            echo "Expired since: ".date("Y-m-d", $expiredate);
+            echo "Renew the license at <a href=\"http://www.ocx.de/responsive-flickr-gallery\" target='blank'>here.</a><br />";
+            echo "<small>";
+        }
+    } 
+    if (!$vl) {
+        echo "No valid license found. ";
+        echo "Get one from <a href=\"http://www.ocx.de/responsive-flickr-gallery\" target='blank'>here.</a><br />";
+        echo "<br /><small>Google Adsense impressions will be shared 50/50.<br /> ";
+        echo "Buy or renew your <strong>Pro</strong> license to get 100% of the Google Adsense impressions<br />";
+        echo "or to disable Google Adsense if you prefer to keep you site free of ads.</small>";
+    }
+    ?>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                  </div>
+
                         <input type="submit" name="submit" id="rfg_save_changes" class="button-primary" value="Save Changes" />
                         <br /><br />
                            <div class="postbox">
