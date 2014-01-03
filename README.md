@@ -31,9 +31,14 @@ _Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create r
 * Perfect for heroku hosting and scaling: Stores nothing into the filesystem
 * Available on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) for automatic updates
 * Available on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration, feature requests, issue tracking and alternate git based deployment
-* Donations welcome by PayPal, Bitcoin 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb or Litecoin LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv
 * PSR-2 coding standard
 * License: GPLv3 or higher
+* Monetize your Flickr galleries: Support for responsive Google Adsense 
+* Free for personal blogs with donations welcome by Bitcoin 1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb, Litecoin LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv or PayPal
+* Pro license required for businesses and commercial sites
+* Pro license unlocks [PRO] features. No new installation required
+* [PRO] Monetize your Flickr galleries with 100% ad impressions for your publisher ID
+* [PRO] Disable ads
 
 ###Example:
 
