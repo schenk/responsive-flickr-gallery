@@ -355,7 +355,8 @@ function rfg_display_gallery($atts)
             }
         }
 
-        if ( ($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) - ($rand_pos >0))) {
+        $compensate = (($rand_pos > 0) && (((int)$cur_page == 1) || ((int)$total_pages == (int)$cur_page)));
+        if (($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) - $compensate)) {
             $disp_gallery .= "\n<div class='rfg-cell' style='min-width: ${img_cell_min_width}px; width:${column_width}%;'>\n";
             if ($photo_count == $rand_pos && !$ad_displayed) {
                 $i -= 1;
