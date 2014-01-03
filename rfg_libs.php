@@ -441,9 +441,13 @@ function rfgDonateBox()
     return <<<EOD
 <div class="postbox">
   <div class="inside">
-    <h3>This plugin needs your support</h3>
+    <h3>Free or with license key</h3>
+    A <a href="http://www.ocx.de/responsive-flickr-gallery" target="_blank">license key is required</a> for businesses and commercial sites. 
+    For personal blogs no license key is required but <b>donations are welcome</b>.<br />
+    <br />
     It is hard to continue development and support for this plugin without contributions from users like you. 
-    If you enjoy using Responsive Flickr Gallery and find it useful, please consider making a donation. 
+    Especially since this plugin is young and sale of license keys for commercial sites hasn't been well established.
+    So if you enjoy using Responsive Flickr Gallery and find it useful, please consider making a donation. 
     Your donation will help encourage and support the plugin’s continued development and better user support.<br />
     <br />
     </form>
