@@ -125,6 +125,8 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 == Changelog ==
 
+= 1.1.0 =
+
 = 1.0.0 =
 * Added elegant CSS3 transision.
 * Nicer captions.
