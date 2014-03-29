@@ -134,7 +134,7 @@ function rfg_display_gallery($atts)
 
     // set min width for responsiveness
     $img_cell_min_width = 0;
-    if ($photo_size == "_s") $img_cell_min_width = 85; 
+    if ($photo_size == "_s") $img_cell_min_width = 150; 
     else if ($photo_size == "_t") $img_cell_min_width = 110;
     else if ($photo_size == "_m") $img_cell_min_width = 250;
     else if ($photo_size == "NULL") $img_cell_min_width = 320; // shrink it a bit to allow two columns (original value: 510)
@@ -280,9 +280,9 @@ function rfg_display_gallery($atts)
         }
     }
 
-    if ($photo_size == '_s') {
-        $photo_width = "width='75'";
-        $photo_height = "height='75'";
+    if ($photo_size == '_q') {
+        $photo_width = "width='150'";
+        $photo_height = "height='150'";
     } else {
         $photo_width = '';
         $photo_height = '';
@@ -401,7 +401,7 @@ EOD;
                     $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
                 }
 
-                if ($photo_descr == 'on' && $photo_size != '_s' && $photo_size != '_t') {
+                if ($photo_descr == 'on' && $photo_size != '_q' && $photo_size != '_t') {
                     $disp_gallery .= "<div class='rfg-description'>" .
                         $photo['description']['_content'] . "</div>";
                 }

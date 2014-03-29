@@ -3,7 +3,7 @@ Contributors: larsschenk
 Donate link: http://schenk.github.io/responsive-flickr-gallery/
 Tags: responsive, flickr, gallery, cdn, photo, images
 Requires at least: 3.7.0
-Tested up to: 3.8
+Tested up to: 3.8.1
 Stable tag: /trunk/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -126,6 +126,7 @@ Contributors and feature requests welcome. Bounties may speed up the development
 == Changelog ==
 
 = 1.1.0 =
+* Change size of photo "square" from 75px to 150px.
 
 = 1.0.0 =
 * Added elegant CSS3 transision.

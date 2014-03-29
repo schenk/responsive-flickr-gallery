@@ -40,7 +40,7 @@ $rfg_slideshow_map = array(
 
 /* Map for photo titles displayed on the gallery. */
 $size_heading_map = array(
-    '_s' => '',
+    '_q' => '',
     '_t' => '0.9em',
     '_m' => '1em',
     'NULL' => '1.2em',
@@ -71,7 +71,7 @@ $rfg_width_map = array(
 
 $rfg_photo_size_map = array(
     'default' => 'Default',
-    '_s' => 'Square (Max 75px)',
+    '_q' => 'Square (Max 150px)',
     '_t' => 'Thumbnail (Max 100px)',
     '_m' => 'Small (Max 240px)',
     'NULL' => 'Medium (Max 500px)',
@@ -475,7 +475,7 @@ function rfg_reference_box()
 {
     $message = "Max Photos Per Page - <b>" . get_option('rfg_per_page') . "</b>";
     $size = get_option('rfg_photo_size');
-    if ($size == '_s') $size = 'Square';
+    if ($size == '_q') $size = 'Square';
     else if ($size == '_t') $size = 'Thumbnail';
     else if ($size == '_m') $size = 'Small';
     else if ($size == 'NULL') $size = 'Medium';
