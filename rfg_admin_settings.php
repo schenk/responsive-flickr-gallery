@@ -427,7 +427,7 @@ function rfg_admin_html_page()
                            <tr valign='top'>
                               <th scope='row'>License Key</th>
                               <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
-                              <td><font size='2'>Don't have a License Key? Get one from <a href="http://www.ocx.de/responsive-flickr-gallery" target='blank'>here.</a></font></td>
+                              <td><font size='2'>Don't have a License Key? Get one from <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license" target='blank'>here.</a></font></td>
                            </tr>
                            <tr valign='top'>
                               <th scope='row'>License Information:</th>
@@ -448,13 +448,13 @@ function rfg_admin_html_page()
             $vl = true;
         } else {
             echo "Expired since: ".date("Y-m-d", $expiredate);
-            echo "Renew the license at <a href=\"http://www.ocx.de/responsive-flickr-gallery\" target='blank'>here.</a><br />";
+            echo "Renew the license at <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license\" target='blank'>here.</a><br />";
             echo "<small>";
         }
     } 
     if (!$vl) {
         echo "No valid license found. ";
-        echo "Get one from <a href=\"http://www.ocx.de/responsive-flickr-gallery\" target='blank'>here.</a><br />";
+        echo "Get one from <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license\" target='blank'>here.</a><br />";
         echo "<br /><small>Google Adsense impressions will be shared 50/50.<br /> ";
         echo "Buy or renew your <strong>Pro</strong> license to get 100% of the Google Adsense impressions<br />";
         echo "or to disable Google Adsense if you prefer to keep you site free of ads.</small>";
@@ -484,15 +484,15 @@ function rfg_admin_html_page()
     if (!$rsp_obj) echo rfg_error();
     else {
         foreach ($rsp_obj['photos']['photo'] as $photo) {
-            $photo_url = "http://farm{$photo['farm']}.static.flickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}_s.jpg";
+            $photo_url = "http://farm{$photo['farm']}.static.flickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}_q.jpg";
             echo "<img src=\"$photo_url\"/>&nbsp;&nbsp;&nbsp;";
         }
     }
     ?>
                                     <br />
-                                    Note:  This preview is based on the Flickr Settings only.  Gallery Settings 
+                                    <small>Note:  This preview is based on the Flickr Settings only.  Gallery Settings 
                                     have no effect on this preview.  You will need to insert gallery code to a post 
-                                    or page to actually see the Gallery.
+                                    or page to actually see the Gallery.</small>
                                  </td>
                            </table>
                             <input type="submit" name="submit" class="button-secondary" value="Delete Cached Galleries"/>

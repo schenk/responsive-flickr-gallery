@@ -10,7 +10,7 @@ _Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create r
 * Reduces requests and traffic to your Site and helps to optimize page speed index
 * Light: Small footprint keeps slug size compact for cloud hosting (i.e. on heroku)
 * Uses caching to load galleries instantly and reduce expensive Fickr API-calls 
-* Uses the database for catching to allow cloud hosting and scaling
+* Uses the database for caching to allow cloud hosting and scaling
 * Support for both Public and Private photos
 * Create multiple galleries with different parameters
 * Powerful slideshow with Colorbox
@@ -44,7 +44,7 @@ _Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create r
 
 You can see a live demo of this plugin here:
 
-* [Responsive Flickr Gallery Demo Page | Classic-Cadillac.com](http://www.classic-cadillac.com/1958-cadillac-convertible-7721/57711)
+* [Responsive Flickr Gallery Demo Page | Lars-Schenk.com](http://www.lars-schenk.com/responsive-flickr-gallery)
 
 ###Support:
 
@@ -108,4 +108,4 @@ Contributors and feature requests welcome. Bounties may speed up the development
 
 #### How to customize the CSS? ####
 
-> You'll barly want to change the existing CSS because it's so generic. But you can do with a CSS editor that lets you customize your site design without modifying your theme as you can find in the Jetpack plugin. Check rfg.css to see existing classes and properties for gallery which you can redefine. 
+> You'll barley want to change the existing CSS because it's so generic. But you can do with a CSS editor that lets you customize your site design without modifying your theme as you can find in the Jetpack plugin. Check rfg.css to see existing classes and properties for gallery which you can redefine. 

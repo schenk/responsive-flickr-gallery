@@ -18,7 +18,7 @@
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '1.0.0');
+define('VERSION', '1.1.0');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
@@ -40,7 +40,7 @@ $rfg_slideshow_map = array(
 
 /* Map for photo titles displayed on the gallery. */
 $size_heading_map = array(
-    '_s' => '',
+    '_q' => '',
     '_t' => '0.9em',
     '_m' => '1em',
     'NULL' => '1.2em',
@@ -71,7 +71,7 @@ $rfg_width_map = array(
 
 $rfg_photo_size_map = array(
     'default' => 'Default',
-    '_s' => 'Square (Max 75px)',
+    '_q' => 'Square (Max 150px)',
     '_t' => 'Thumbnail (Max 100px)',
     '_m' => 'Small (Max 240px)',
     'NULL' => 'Medium (Max 500px)',
@@ -441,13 +441,12 @@ function rfgDonateBox()
     return <<<EOD
 <div class="postbox">
   <div class="inside">
-    <h3>Free or with license key</h3>
-    A <a href="http://www.ocx.de/responsive-flickr-gallery" target="_blank">license key is required</a> for businesses and commercial sites. 
-    For personal blogs no license key is required but <b>donations are welcome</b>.<br />
+    <h3>License keys and donations</h3>
+    A <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license" target="_blank">license key is mandatory</a> for businesses and commercial sites. 
+    For personal blogs the license is optional and unlocks the pro features. <br />
     <br />
-    It is hard to continue development and support for this plugin without contributions from users like you. 
-    Especially since this plugin is young and sale of license keys for commercial sites hasn't been well established.
-    So if you enjoy using Responsive Flickr Gallery and find it useful, please consider making a donation. 
+
+    Weather or not you buy a license <b>donations are welcome</b>:  
     Your donation will help encourage and support the plugin’s continued development and better user support.<br />
     <br />
     </form>
@@ -475,7 +474,7 @@ function rfg_reference_box()
 {
     $message = "Max Photos Per Page - <b>" . get_option('rfg_per_page') . "</b>";
     $size = get_option('rfg_photo_size');
-    if ($size == '_s') $size = 'Square';
+    if ($size == '_q') $size = 'Square';
     else if ($size == '_t') $size = 'Thumbnail';
     else if ($size == '_m') $size = 'Small';
     else if ($size == 'NULL') $size = 'Medium';
