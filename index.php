@@ -382,7 +382,7 @@ function rfg_display_gallery($atts)
 EOD;
             } else {
                 $pid_len = strlen($photo['id']);
-
+                $disp_gallery .= "<div class='rfg-img-wrapper'>";
                 if ($slideshow_option != 'none') {
                     $disp_gallery .= "  <a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
                 }
@@ -400,6 +400,7 @@ EOD;
 
                     $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
                 }
+                $disp_gallery .= "</div>"; // rfg-img-wrapper
 
                 if ($photo_descr == 'on' && $photo_size != '_q' && $photo_size != '_t') {
                     $disp_gallery .= "<div class='rfg-description'>" .
