@@ -484,15 +484,15 @@ function rfg_admin_html_page()
     if (!$rsp_obj) echo rfg_error();
     else {
         foreach ($rsp_obj['photos']['photo'] as $photo) {
-            $photo_url = "http://farm{$photo['farm']}.static.flickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}_s.jpg";
+            $photo_url = "http://farm{$photo['farm']}.static.flickr.com/{$photo['server']}/{$photo['id']}_{$photo['secret']}_q.jpg";
             echo "<img src=\"$photo_url\"/>&nbsp;&nbsp;&nbsp;";
         }
     }
     ?>
                                     <br />
-                                    Note:  This preview is based on the Flickr Settings only.  Gallery Settings 
+                                    <small>Note:  This preview is based on the Flickr Settings only.  Gallery Settings 
                                     have no effect on this preview.  You will need to insert gallery code to a post 
-                                    or page to actually see the Gallery.
+                                    or page to actually see the Gallery.</small>
                                  </td>
                            </table>
                             <input type="submit" name="submit" class="button-secondary" value="Delete Cached Galleries"/>
