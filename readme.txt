@@ -126,7 +126,9 @@ Contributors and feature requests welcome. Bounties may speed up the development
 == Changelog ==
 
 = 1.1.0 =
+* Fixed title size error when landscape and portrait photo were used.
 * Change size of photo "square" from 75px to 150px.
+* Improvements.
 
 = 1.0.0 =
 * Added elegant CSS3 transision.
