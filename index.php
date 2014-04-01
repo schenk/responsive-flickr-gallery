@@ -3,7 +3,7 @@
    Plugin Name: Responsive Flickr Gallery
    Plugin URI: https://github.com/schenk/responsive-flickr-gallery
    Description: Responsive Flickr Gallery is a simple, fast and light plugin to create a responsive gallery of your Flickr photos on your WordPress enabled website.  Provides a simple yet customizable way to create Flickr galleries in a responsive theme.
-   Version: 1.1.0
+   Version: 1.1.1
    Author: Lars Schenk
    Author URI: http://www.lars-schenk.com
    License: GPLv3 or later
@@ -290,10 +290,7 @@ function rfg_display_gallery($atts)
 
     $rfg_ca_pub = get_option('rfg_ca_pub');
     list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
-    if ($productkey == md5('Reponsive Flickr Gallery Pro')
-        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
-        && ($expiredate > time())
-        && (empty($rfg_ca_pub))
+    if (empty($rfg_ca_pub)
     ) {
         $rand_pos = 0;
     } else {
@@ -301,6 +298,7 @@ function rfg_display_gallery($atts)
         if ($productkey == md5('Reponsive Flickr Gallery Pro')
             && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
             && ($expiredate > time())
+            && ($admin_email = get_option('admin_email'))
             && (!empty($rfg_ca_pub))
         ) {
             $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
