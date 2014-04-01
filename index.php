@@ -290,10 +290,7 @@ function rfg_display_gallery($atts)
 
     $rfg_ca_pub = get_option('rfg_ca_pub');
     list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
-    if ($productkey == md5('Reponsive Flickr Gallery Pro')
-        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
-        && ($expiredate > time())
-        && (empty($rfg_ca_pub))
+    if (empty($rfg_ca_pub)
     ) {
         $rand_pos = 0;
     } else {
@@ -301,6 +298,7 @@ function rfg_display_gallery($atts)
         if ($productkey == md5('Reponsive Flickr Gallery Pro')
             && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
             && ($expiredate > time())
+            && ($admin_email = get_option('admin_email'))
             && (!empty($rfg_ca_pub))
         ) {
             $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
