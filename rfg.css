@@ -24,8 +24,8 @@ div.rfg-ad {
 /* Gallery main wrapper */
 div.rfg-mainwrapper {
     display:table !important;
-    width = 100%;
     margin:auto;
+    width: 100%;
     border:none; 
 }
 
