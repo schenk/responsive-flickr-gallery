@@ -252,7 +252,7 @@ function rfg_display_gallery($atts)
     $text_color = isset($rfg_text_color_map[$bg_color])? $rfg_text_color_map[$bg_color]: '';
     $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>";
 
-    $disp_gallery .= "<div class='rfg-table' style='width:100%'>";
+    $disp_gallery .= "<div class='rfg-mainwrapper'>";
 
     $photo_count = 1;
     $column_width = (int)($gallery_width/$columns)-2; // -2 as a quck fix to make it work with theme baylys.

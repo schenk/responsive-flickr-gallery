@@ -27,9 +27,10 @@ ins{
     background: transparent;
 }
 
-/* Gallery structure */
-div.rfg-table {
+/* Gallery main wrapper */
+div.rfg-mainwrapper {
     display:table !important;
+    width = 100%;
     margin:auto;
     border:none; 
 }
