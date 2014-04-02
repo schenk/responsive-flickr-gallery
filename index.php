@@ -381,14 +381,12 @@ EOD;
             } else {
                 $pid_len = strlen($photo['id']);
                 $disp_gallery .= "<div class='rfg-img-wrapper'>";
-                if ($slideshow_option != 'none') {
-                    $disp_gallery .= "  <a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
                 }
 
+                if ($slideshow_option != 'none') {
+                    $disp_gallery .= "<a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
+                }
                 $disp_gallery .= "<img class='rfg-img' title='{$photo['title']}' src='{$photo_url}' alt='{$photo_title_text}'/>";
-
-                if ($slideshow_option != 'none')
-                    $disp_gallery .= "</a>\n";
 
                 if ($size_heading_map[$photo_size] && $photo_title == 'on') {
                     if ($group_id || $gallery_id)
@@ -406,6 +404,9 @@ EOD;
                         $disp_gallery .= "{$p_title}<br />";
                     }
                     $disp_gallery .= "{$photo['description']['_content']}</div>";
+                }
+                if ($slideshow_option != 'none') {
+                    $disp_gallery .= '</a>';
                 }
             }
 
