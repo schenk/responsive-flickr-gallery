@@ -350,7 +350,7 @@ function rfg_admin_html_page()
                               <td><select name='rfg_descr'>
                                     <?php echo rfg_generate_options($rfg_descr_map, get_option('rfg_descr', 'off')); ?>
                               </select></td>
-                              <td><font size='2'>Photo Description setting applies only to Small and Medium size photos.</td>
+                              <td><font size='2'>Photo Descriptions will be shown when the mouse hovers over the photos. The text shouldn't be excessively long.</td>
                               </tr>
 
                               <tr valign='top'>

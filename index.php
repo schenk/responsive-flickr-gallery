@@ -400,9 +400,8 @@ EOD;
                 }
                 $disp_gallery .= "</div>"; // rfg-img-wrapper
 
-                if ($photo_descr == 'on' && $photo_size != '_q' && $photo_size != '_t') {
-                    $disp_gallery .= "<div class='rfg-description'>" .
-                        $photo['description']['_content'] . "</div>";
+                if ($photo_descr == 'on') {
+                    $disp_gallery .= "<div class='rfg-description'>{$photo['description']['_content']}</div>";
                 }
             }
 

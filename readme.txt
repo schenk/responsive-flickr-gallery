@@ -128,6 +128,7 @@ Contributors and feature requests welcome. Bounties may speed up the development
 = 1.2.0 =
 * Change: Photo titles can now applied to all photo sizes.
 * Change: Smaller font for thumbnail titles.
+* Change: Photo descriptions can now applied to all photo sizes.
 
 = 1.1.1 =
 * Change: Optional support for responsive Google AdSense. To opt-on to use AdSense you have to enter your publisher ID.
