@@ -134,7 +134,7 @@ function rfg_display_gallery($atts)
 
     // set min width for responsiveness
     $img_cell_min_width = 0;
-    if ($photo_size == "_s") $img_cell_min_width = 150; 
+    if ($photo_size == "_q") $img_cell_min_width = 150; 
     else if ($photo_size == "_t") $img_cell_min_width = 110;
     else if ($photo_size == "_m") $img_cell_min_width = 250;
     else if ($photo_size == "NULL") $img_cell_min_width = 320; // shrink it a bit to allow two columns (original value: 510)
