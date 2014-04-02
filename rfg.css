@@ -16,14 +16,9 @@ img.rfg-img {
 }
 
 div.rfg-ad {
-    margin-top:5%;
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
-}
-
-ins{
-    background: transparent;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
 }
 
 /* Gallery main wrapper */
