@@ -84,6 +84,8 @@ a.rfg-page:hover {
 
 /* Pagination */
 div.rfg-pagination {
+    float: left;
+    width: 100%;
     margin:auto;
     border:0;
     text-align:center;
