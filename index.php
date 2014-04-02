@@ -401,7 +401,11 @@ EOD;
                 $disp_gallery .= "</div>"; // rfg-img-wrapper
 
                 if ($photo_descr == 'on') {
-                    $disp_gallery .= "<div class='rfg-description'>{$photo['description']['_content']}</div>";
+                    $disp_gallery .= "<div class='rfg-description' style='font-size:{$size_heading_map[$photo_size]}'>";
+                    if ($photo_title != 'on' || empty($photo['description']['_content'])) {
+                        $disp_gallery .= "{$p_title}<br />";
+                    }
+                    $disp_gallery .= "{$photo['description']['_content']}</div>";
                 }
             }
 
