@@ -41,7 +41,7 @@ $rfg_slideshow_map = array(
 /* Map for photo titles displayed on the gallery. */
 $size_heading_map = array(
     '_q' => '0.7em',
-    '_t' => '0.9em',
+    '_t' => '0.6em',
     '_m' => '1em',
     'NULL' => '1.2em',
 );
