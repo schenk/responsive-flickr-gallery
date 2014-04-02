@@ -414,7 +414,7 @@ EOD;
 
                 $disp_gallery .= "<a style='display:none' $class $rel $click_event href='$photo_page_url'" .
                     " title='{$photo['title']}'>" .
-                    " <img class='rfg-img' alt='{$photo_title_text}' $photo_src_text width='75' height='75'></a> ";
+                    " <img class='rfg-img' alt='{$photo_title_text}' $photo_src_text'></a> ";
             }
         }
         $photo_count += 1;
