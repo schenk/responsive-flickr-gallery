@@ -380,7 +380,11 @@ function rfg_display_gallery($atts)
 EOD;
             } else {
                 $pid_len = strlen($photo['id']);
-                $disp_gallery .= "<div class='rfg-img-wrapper'>";
+
+                if ($photo_descr == 'on') {
+                    $disp_gallery .= "<div class='rfg-img-wrapper rfg-effect-1'>\n";
+                } else {
+                    $disp_gallery .= "<div class='rfg-img-wrapper'>\n";
                 }
 
                 if ($slideshow_option != 'none') {
@@ -396,8 +400,6 @@ EOD;
 
                     $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
                 }
-                $disp_gallery .= "</div>"; // rfg-img-wrapper
-
                 if ($photo_descr == 'on') {
                     $disp_gallery .= "<div class='rfg-description' style='font-size:{$size_heading_map[$photo_size]}'>";
                     if ($photo_title != 'on' || empty($photo['description']['_content'])) {
@@ -408,6 +410,7 @@ EOD;
                 if ($slideshow_option != 'none') {
                     $disp_gallery .= '</a>';
                 }
+                $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n\n"; // rfg-img-wrapper
             }
 
             $disp_gallery .= "</div>\n"; // rfg-cell
