@@ -34,11 +34,6 @@ div.rfg-table {
     border:none; 
 }
 
-/* Table row */
-div.rfg-row {
-    display:table-row !important;
-}
-
 /* Individual image cell in the gallery */
 div.rfg-cell {
     display:inline-block !important;
