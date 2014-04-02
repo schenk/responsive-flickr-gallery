@@ -1,11 +1,10 @@
 /* Settings that apply to entire gallery */
 div.rfg-gallery {
-    margin:auto;
 }
 
 /* Effect for thumbnails in gallery */
 img.rfg-img {
-    margin-top:5%;
+    bottom: 0px;
     opacity:1;
     filter:alpha(opacity=100);
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
@@ -73,6 +72,7 @@ div.rfg-cell:hover {
     -ms-transition: 0.5s ease;
     -webkit-transition: 0.5s ease;
     -o-transition: 0.5s ease;
+    line-height: 0; /* required to position title correct on all themes */
 }
 
 /* Hover effect for pagination links */
@@ -121,8 +121,9 @@ div.rfg-img-wrapper {
 
 /* Photo title */
 div.rfg-title {
+    line-height: 1.65;
     position: absolute;
-    bottom: 3px;
+    bottom: 0px;
     left: 0px;
     width: 100%;
 
