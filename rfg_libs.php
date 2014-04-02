@@ -40,7 +40,7 @@ $rfg_slideshow_map = array(
 
 /* Map for photo titles displayed on the gallery. */
 $size_heading_map = array(
-    '_q' => '',
+    '_q' => '0.7em',
     '_t' => '0.9em',
     '_m' => '1em',
     'NULL' => '1.2em',
@@ -311,7 +311,7 @@ function rfg_generate_gallery_settings_table()
         <td><select name='rfg_captions' id='rfg_captions'>
             " . rfg_generate_options($rfg_on_off_map, 'default', true, $rfg_on_off_map[get_option('rfg_captions')]) . "
         </select></td>
-        <td><font size='2'>Photo Title setting applies only to Thumbnail (and above) size photos.</font></td>
+        <td><font size='2'>Photo Titles overlay the image and should contain only a few words.</font></td>
         </tr>
 
         <tr valign='top'>

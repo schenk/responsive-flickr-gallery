@@ -342,7 +342,7 @@ function rfg_admin_html_page()
                               <td><select name='rfg_captions'>
                                     <?php echo rfg_generate_options($rfg_on_off_map, get_option('rfg_captions', 'on')); ?>
                               </select></td>
-                              <td><font size='2'>Photo Title setting applies only to Thumbnail (and above) size photos.</font></td>
+                              <td><font size='2'>Photo Titles overlay the image and should contain only a few words.</font></td>
                            </tr>
 
                            <tr valign='top'>
