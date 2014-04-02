@@ -154,7 +154,7 @@ function rfg_display_gallery($atts)
     else if ($gallery['photo_source'] == 'popular') $popular = true;
 
 
-    $disp_gallery = "<!-- Responsive Flickr Gallery -->";
+    $disp_gallery = "<!-- Responsive Flickr Gallery http://wordpress.org/plugins/responsive-flickr-gallery/ -->";
     $disp_gallery .= "<!--" .
         " - Version - " . VERSION .
         " - User ID - " . $user_id .
@@ -250,9 +250,9 @@ function rfg_display_gallery($atts)
 
     if ($gallery_width == 'auto') $gallery_width = 100;
     $text_color = isset($rfg_text_color_map[$bg_color])? $rfg_text_color_map[$bg_color]: '';
-    $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>";
+    $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>\n";
 
-    $disp_gallery .= "<div class='rfg-mainwrapper'>";
+    $disp_gallery .= "<div class='rfg-mainwrapper'>\n\n";
 
     $photo_count = 1;
     $column_width = (int)($gallery_width/$columns)-2; // -2 as a quck fix to make it work with theme baylys.
@@ -424,7 +424,7 @@ EOD;
 
     // Pagination
     if ($pagination == 'on' && $total_pages > 1) {
-        $disp_gallery .= "<div class='rfg-pagination'>";
+        $disp_gallery .= "\n\n<div class='rfg-pagination'>\n";
         $disp_gallery .= "<br /><br />";
         if ($cur_page == 1) {
             $disp_gallery .="<font class='rfg-page'>&nbsp;&#171; prev&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -458,8 +458,8 @@ EOD;
             $next_page = $cur_page + 1;
             $disp_gallery .= "&nbsp;&nbsp;&nbsp;<a class='rfg-page' href='{$cur_page_url}{$url_separator}afg{$id}_page_id=$next_page#rfg-{$id}' title='Next Page'> next &#187; </a>&nbsp;";
         }
-        $disp_gallery .= "<br />({$total_photos} Photos)";
-        $disp_gallery .= "</div>";
+        $disp_gallery .= "<br />({$total_photos} Photos)\n";
+        $disp_gallery .= "</div>\n\n";
     }
     $disp_gallery .= "</div>";
     // disable default tool tip
