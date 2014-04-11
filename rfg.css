@@ -70,6 +70,7 @@ div.rfg-credit {
 div.rfg-img-wrapper {
     float:left; /* important */  
     position:relative; /* important (so we can absolutely position the rft-title div */ 
+    margin: 6px;
 }
 
 /* Photo title */
