@@ -94,7 +94,13 @@ div.rfg-title {
 
 /* Photo Description */
 div.rfg-description {
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    line-height: 1.05;
     font-size:85%;
-    margin-right:5%;
     font-style:italic;
+    opacity: 0;
+    color: #222222;
+    text-decoration: none;
 }
