@@ -347,6 +347,7 @@ function rfg_display_gallery($atts)
 
         $compensate = (($rand_pos > 0) && (((int)$cur_page == 1) || ((int)$total_pages == (int)$cur_page)));
         if (($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) - $compensate)) {
+            $disp_gallery .= "\n<!-- cur_page $cur_page -- photo_count $photo_count -->\n";
             if ($photo_count == $rand_pos && !$ad_displayed) {
                 $i -= 1;
                 $ad_displayed = true;
@@ -403,7 +404,6 @@ EOD;
                 }
                 $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n\n"; // rfg-img-wrapper
             }
-            $disp_gallery .= "<!-- cur_page $cur_page -- photo_count $photo_count -->\n";
         } else {
             if ($pagination == 'on' && $slideshow_option != 'none') {
                 $photo_url = '';
