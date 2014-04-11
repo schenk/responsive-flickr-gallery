@@ -108,3 +108,29 @@ div.rfg-img-wrapper a:hover {
     color: #222222;
 }
 
+/* Transition effect one */
+.rfg-effect-1 img {
+   transition-delay: 0s 
+   transition-property: all;
+   transition-duration: 0.2s;  
+   transition-timing-function: ease;
+}
+.rfg-effect-1:hover img{
+    opacity:0.2;
+}
+.rfg-effect-1 .rfg-title {
+   transition-delay: 0s 
+   transition-property: all;
+   transition-duration: 0.2s;  
+   transition-timing-function: ease;
+}
+.rfg-effect-1:hover .rfg-title {
+    opacity:0.2;
+}  
+.rfg-effect-1:hover {
+    overflow: hidden;
+}
+.rfg-effect-1:hover .rfg-description {
+    opacity:1;
+}  
+
