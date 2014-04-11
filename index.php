@@ -402,7 +402,7 @@ EOD;
                 if ($slideshow_option != 'none') {
                     $disp_gallery .= '</a>';
                 }
-                $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n\n"; // rfg-img-wrapper
+                $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n\n";
             }
         } else {
             if ($pagination == 'on' && $slideshow_option != 'none') {
