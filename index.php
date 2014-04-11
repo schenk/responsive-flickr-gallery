@@ -255,7 +255,6 @@ function rfg_display_gallery($atts)
     $disp_gallery .= "<div class='rfg-mainwrapper'>\n\n";
 
     $photo_count = 1;
-    $column_width = (int)($gallery_width/$columns)-2; // -2 as a quck fix to make it work with theme baylys.
 
     if (!$popular && $sort_order != 'flickr') {
         if ($sort_order == 'random')
@@ -355,7 +354,6 @@ function rfg_display_gallery($atts)
 
         $compensate = (($rand_pos > 0) && (((int)$cur_page == 1) || ((int)$total_pages == (int)$cur_page)));
         if (($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) - $compensate)) {
-            $disp_gallery .= "\n<div class='rfg-cell' style='min-width: ${img_cell_min_width}px; width:${column_width}%;'>\n";
             if ($photo_count == $rand_pos && !$ad_displayed) {
                 $i -= 1;
                 $ad_displayed = true;
