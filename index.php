@@ -417,7 +417,7 @@ EOD;
         $photo_count += 1;
         $i += 1;
     }
-    $disp_gallery .= '</div>';
+    $disp_gallery .= "\n</div> <!-- rfg-gallery -->\n";
 
     // Pagination
     if ($pagination == 'on' && $total_pages > 1) {
