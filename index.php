@@ -132,13 +132,6 @@ function rfg_display_gallery($atts)
     $pagination = get_rfg_option($gallery, 'pagination');
     $cache_ttl = get_rfg_option($gallery, 'cache_ttl');
 
-    // set min width for responsiveness
-    $img_cell_min_width = 0;
-    if ($photo_size == "_q") $img_cell_min_width = 150; 
-    else if ($photo_size == "_t") $img_cell_min_width = 110;
-    else if ($photo_size == "_m") $img_cell_min_width = 250;
-    else if ($photo_size == "NULL") $img_cell_min_width = 320; // shrink it a bit to allow two columns (original value: 510)
-
     $photoset_id = null;
     $gallery_id = null;
     $group_id = null;
@@ -410,8 +403,6 @@ EOD;
                 }
                 $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n\n"; // rfg-img-wrapper
             }
-
-            $disp_gallery .= "</div>\n"; // rfg-cell
             $disp_gallery .= "<!-- cur_page $cur_page -- photo_count $photo_count -->\n";
         } else {
             if ($pagination == 'on' && $slideshow_option != 'none') {

@@ -23,50 +23,8 @@ div.rfg-ad {
 
 /* Gallery main wrapper */
 div.rfg-mainwrapper {
-    display:table !important;
-    margin:auto;
     width: 100%;
     border:none; 
-}
-
-/* Individual image cell in the gallery */
-div.rfg-cell {
-    display:inline-block !important;
-    text-align:left;
-    vertical-align:top;
-    margin:auto;
-    padding-right:6px;
-    padding-bottom:10px;
-    position: relative;
-
-    /* hover off */
-    opacity:1;
-    filter:alpha(opacity=1);
-    transform: scale(1, 1);
-    -moz-transform: scale(1, 1);
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transition: 0.3s ease;
-    -moz-transition: 0.3s ease;
-    -ms-transition: 0.3s ease;
-    -webkit-transition: 0.3s ease;
-    -o-transition: 0.3s ease;
-}
-
-div.rfg-cell:hover {
-    opacity:0.8;
-    filter:alpha(opacity=80);
-    transform: scale(1.01, 1.01);
-    -moz-transform: scale(1.01, 1.01);
-    -ms-transform: scale(1.01, 1.01);
-    -webkit-transform: scale(1.01, 1.01);
-    -o-transform: scale(1.01, 1.01);
-    transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    -webkit-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
     line-height: 0; /* required to position title correct on all themes */
 }
 
