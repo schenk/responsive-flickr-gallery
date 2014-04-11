@@ -154,28 +154,28 @@ function rfg_display_gallery($atts)
     else if ($gallery['photo_source'] == 'popular') $popular = true;
 
 
-    $disp_gallery = "<!-- Responsive Flickr Gallery http://wordpress.org/plugins/responsive-flickr-gallery/ -->";
-    $disp_gallery .= "<!--" .
-        " - Version - " . VERSION .
-        " - User ID - " . $user_id .
-        " - Photoset ID - " . (isset($photoset_id)? $photoset_id: '') .
-        " - Gallery ID - " . (isset($gallery_id)? $gallery_id: '') .
-        " - Group ID - " . (isset($group_id)? $group_id: '') .
-        " - Tags - " . (isset($tags)? $tags: '') .
-        " - Popular - " . (isset($popular)? $popular: '') .
-        " - Per Page - " . $per_page .
-        " - Sort Order - " . $sort_order .
-        " - Photo Size - " . $photo_size .
-        " - Captions - " . $photo_title .
-        " - Description - " . $photo_descr .
-        " - Columns - " . $columns .
-        " - Background Color - " . $bg_color .
-        " - Width - " . $gallery_width .
-        " - Pagination - " . $pagination .
-        " - Slideshow - " . $slideshow_option .
-        " - Disable slideshow? - " . $disable_slideshow .
-        " - Cache TTL - " . $cache_ttl .
-        "-->";
+    $disp_gallery = "\n<!--\nResponsive Flickr Gallery ".
+        "\nhttp://wordpress.org/plugins/responsive-flickr-gallery/ ".
+        "\nVersion " . VERSION .
+        "\nUser ID " . $user_id .
+        "\nPhotoset ID " . (isset($photoset_id)? $photoset_id: '') .
+        "\nGallery ID " . (isset($gallery_id)? $gallery_id: '') .
+        "\nGroup ID " . (isset($group_id)? $group_id: '') .
+        "\nTags " . (isset($tags)? $tags: '') .
+        "\nPopular " . (isset($popular)? $popular: '') .
+        "\nPer Page " . $per_page .
+        "\nSort Order " . $sort_order .
+        "\nPhoto Size " . $photo_size .
+        "\nCaptions " . $photo_title .
+        "\nDescription " . $photo_descr .
+        "\nColumns " . $columns .
+        "\nBackground Color " . $bg_color .
+        "\nWidth " . $gallery_width .
+        "\nPagination " . $pagination .
+        "\nSlideshow " . $slideshow_option .
+        "\nDisable slideshow " . $disable_slideshow .
+        "\nCache TTL " . $cache_ttl .
+        "\n-->\n";
 
     $extras = 'url_l, description, date_upload, date_taken, owner_name';
 
