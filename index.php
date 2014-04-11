@@ -402,13 +402,15 @@ EOD;
                 if ($slideshow_option != 'none') {
                     $disp_gallery .= '</a>';
                 }
-                $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n\n";
+                $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n";
+                if ((($photo_count % $columns)==0) || ($columns == 1)) {
+                    $disp_gallery .= "\n<div style=\"clear: both;\" ></div>\n";
+                }
             }
         } else {
             if ($pagination == 'on' && $slideshow_option != 'none') {
                 $photo_url = '';
                 $photo_src_text = "";
-
                 $disp_gallery .= "<a style='display:none' $class $rel $click_event href='$photo_page_url'" .
                     " title='{$photo['title']}'>" .
                     " <img class='rfg-img' alt='{$photo_title_text}' $photo_src_text'></a> ";
@@ -421,7 +423,7 @@ EOD;
 
     // Pagination
     if ($pagination == 'on' && $total_pages > 1) {
-        $disp_gallery .= "\n\n<div class='rfg-pagination'>\n";
+        $disp_gallery .= "\n<div class='rfg-pagination'>\n";
         $disp_gallery .= "<br /><br />";
         if ($cur_page == 1) {
             $disp_gallery .="<font class='rfg-page'>&nbsp;&#171; prev&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;";
