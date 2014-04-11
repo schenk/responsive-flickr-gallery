@@ -104,3 +104,7 @@ div.rfg-description {
     color: #222222;
     text-decoration: none;
 }
+div.rfg-img-wrapper a:hover {
+    color: #222222;
+}
+
