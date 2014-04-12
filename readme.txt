@@ -129,7 +129,10 @@ Contributors and feature requests welcome. Bounties may speed up the development
 * Change: Photo titles can now applied to all photo sizes.
 * Change: Smaller font for thumbnail titles.
 * Change: Photo descriptions can now applied to all photo sizes.
+* Change: Improved handling of columns. Will fix wrong columns on some themes.
 * Fix: Position Photo titles on some theme.
+* Added "Max" columns to allow as many photos in a row as possible.
+* Many minor improvements.
 
 = 1.1.1 =
 * Change: Optional support for responsive Google AdSense. To opt-on to use AdSense you have to enter your publisher ID.
