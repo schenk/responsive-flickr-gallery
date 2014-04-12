@@ -138,6 +138,36 @@ function rfg_display_gallery($atts)
     $tags = null;
     $popular = false;
 
+    $rfg_ca_pub = get_option('rfg_ca_pub');
+    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
+    if ($productkey == md5('Reponsive Flickr Gallery Pro')
+        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+        && ($expiredate > time())
+        && ($username == get_option('admin_email'))
+    ) {
+        $registeredtext = '';
+    } else {
+        $registeredtext = "This gallery is created with unlicensed version for personal use only. Commercial use requires a valid license! Report missuse to abuse@lars-schenk.de.";
+    }
+
+    if (empty($rfg_ca_pub)
+    ) {
+        $rand_pos = 0;
+    } else {
+        $rand_pos = rand(3, min($per_page, count($photos))-1);
+        if (empty($registeredtext) && !empty($rfg_ca_pub)
+        ) {
+            $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
+        } else {
+            if (!empty($rfg_ca_pub) && rand(0, 99) > 50) {
+                $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\"";
+            } else {
+                $rfg_ca_pub = "data-ad-client=\"ca-pub-9888393788700995\" ".
+                              "data-ad-slot=\"1130150915\"";
+            }
+        }
+    }
+
     if (!isset($gallery['photo_source'])) $gallery['photo_source'] = 'photostream';
 
     if ($gallery['photo_source'] == 'photoset') $photoset_id = $gallery['photoset_id'];
@@ -150,6 +180,8 @@ function rfg_display_gallery($atts)
     $disp_gallery = "\n<!--\nResponsive Flickr Gallery ".
         "\nhttp://wordpress.org/plugins/responsive-flickr-gallery/ ".
         "\nVersion " . VERSION .
+        "\n".$registeredtext .
+        "\nExpire " . date("Y-m-d", $expiredate) .
         "\nUser ID " . $user_id .
         "\nPhotoset ID " . (isset($photoset_id)? $photoset_id: '') .
         "\nGallery ID " . (isset($gallery_id)? $gallery_id: '') .
@@ -280,29 +312,6 @@ function rfg_display_gallery($atts)
         $photo_height = '';
     }
 
-    $rfg_ca_pub = get_option('rfg_ca_pub');
-    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
-    if (empty($rfg_ca_pub)
-    ) {
-        $rand_pos = 0;
-    } else {
-        $rand_pos = rand(3, min($per_page, count($photos))-1);
-        if ($productkey == md5('Reponsive Flickr Gallery Pro')
-            && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
-            && ($expiredate > time())
-            && ($admin_email = get_option('admin_email'))
-            && (!empty($rfg_ca_pub))
-        ) {
-            $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
-        } else {
-            if (!empty($rfg_ca_pub) && rand(0, 99) > 50) {
-                $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\"";
-            } else {
-                $rfg_ca_pub = "data-ad-client=\"ca-pub-9888393788700995\" ".
-                              "data-ad-slot=\"1130150915\"";
-            }
-        }
-    }
     $i = 0;
     while ($i < count($photos)) {
         $photo = $photos[$i];
