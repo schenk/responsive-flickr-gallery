@@ -1,4 +1,4 @@
-/* Settings that apply to entire gallery */
+/* Settings that apply to the entire responsive flickr gallery */
 div.rfg-gallery {
 }
 
@@ -113,7 +113,7 @@ div.rfg-img-wrapper a:hover {
    transition-delay: 0s 
    transition-property: all;
    transition-duration: 0.2s;  
-   transition-timing-function: ease;
+   transition-timing-function: linear;
 }
 .rfg-effect-1:hover img{
     opacity:0.2;
@@ -122,7 +122,7 @@ div.rfg-img-wrapper a:hover {
    transition-delay: 0s 
    transition-property: all;
    transition-duration: 0.2s;  
-   transition-timing-function: ease;
+   transition-timing-function: linear;
 }
 .rfg-effect-1:hover .rfg-title {
     opacity:0.2;
