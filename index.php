@@ -403,7 +403,9 @@ EOD;
                     $disp_gallery .= '</a>';
                 }
                 $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n";
-                if ((($photo_count % $columns)==0) || ($columns == 1)) {
+                if ($columns != 99
+                    && (($photo_count % $columns)==0) || ($columns == 1)
+                ) {
                     $disp_gallery .= "\n<div style=\"clear: both;\" ></div>\n";
                 }
             }

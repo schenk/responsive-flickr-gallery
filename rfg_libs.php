@@ -109,6 +109,7 @@ $rfg_columns_map = array(
     '10' => '10 ',
     '11' => '11 ',
     '12' => '12 ',
+    '99' => 'Max ',
 );
 
 $rfg_cache_ttl_map = array(
@@ -327,6 +328,10 @@ function rfg_generate_gallery_settings_table()
         <td><select name='rfg_columns' id='rfg_columns'>
             " . rfg_generate_options($rfg_columns_map, 'default', true, $rfg_columns_map[get_option('rfg_columns')]) . "
         </select></td>
+         <td><font size='2'>
+          Max. number of pictures in a row. Example: Set to 2 if you don't wont more than two photos in a row even if space would allow more. 
+          Set to \"max\" to allow a as many photos as possible in row. For most cases \"max\" should be used.<br />
+          </font></td>
         </tr>
 
         <tr>

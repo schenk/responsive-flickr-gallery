@@ -356,8 +356,12 @@ function rfg_admin_html_page()
                               <tr>
                                  <th scope='row'>Number of Columns</th>
                                  <td><select name='rfg_columns'>
-                                       <?php echo rfg_generate_options($rfg_columns_map, get_option('rfg_columns', '2')); ?>
+                                       <?php echo rfg_generate_options($rfg_columns_map, get_option('rfg_columns', '99')); ?>
                                  </select></td>
+                                 <td><font size='2'>
+                                  Max. number of pictures in a row. Example: Set to 2 if you don't wont more than two photos in a row even if space would allow more. 
+                                  Set to "max" to allow a as many photos as possible in row. For most cases "max" should be used.<br />
+                                  </font></td>
                               </tr>
 
                               <tr>
