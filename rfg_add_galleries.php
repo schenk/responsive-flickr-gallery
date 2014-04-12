@@ -126,11 +126,11 @@ function rfg_add_gallery()
                      <div class="inside">
                         <h3>Gallery Parameters</h3>
                         <table class='form-table'>
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Gallery Name</th>
                               <td><input maxlength='30' type='text' id='rfg_add_gallery_name' name='rfg_add_gallery_name' onblur='verifyBlank()' value='' /><font size='3' color='red'>*</font></td>
                            </tr>
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Gallery Description</th>
                               <td><input maxlength='100' size='70%' type='text' id='rfg_add_gallery_descr' name='rfg_add_gallery_descr'" value="" /></td>
                            </tr>
