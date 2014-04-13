@@ -91,7 +91,9 @@ function rfg_display_gallery($atts)
 {
     global $size_heading_map, $rfg_text_color_map, $pf;
 
-    if (!get_option('rfg_pagination')) update_option('rfg_pagination', 'on');
+    if (!get_option('rfg_pagination')) {
+        update_option('rfg_pagination', 'on');
+    }
 
     extract(shortcode_atts(array('id' => '0'), $atts));
 
@@ -110,8 +112,11 @@ function rfg_display_gallery($atts)
         }
     }
 
-    if (strpos($cur_page_url, '?') === false) $url_separator = '?';
-    else $url_separator = '&';
+    if (strpos($cur_page_url, '?') === false) {
+        $url_separator = '?';
+    } else {
+        $url_separator = '&';
+    }
 
     $galleries = get_option('rfg_galleries');
     $gallery = $galleries[$id];
@@ -141,7 +146,7 @@ function rfg_display_gallery($atts)
     $rfg_ca_pub = get_option('rfg_ca_pub');
     list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
     if ($productkey == md5('Reponsive Flickr Gallery Pro')
-        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32)
         && ($expiredate > time())
         && ($username == get_option('admin_email'))
     ) {
@@ -167,14 +172,20 @@ function rfg_display_gallery($atts)
         }
     }
 
-    if (!isset($gallery['photo_source'])) $gallery['photo_source'] = 'photostream';
-
-    if ($gallery['photo_source'] == 'photoset') $photoset_id = $gallery['photoset_id'];
-    else if ($gallery['photo_source'] == 'gallery') $gallery_id = $gallery['gallery_id'];
-    else if ($gallery['photo_source'] == 'group') $group_id = $gallery['group_id'];
-    else if ($gallery['photo_source'] == 'tags') $tags = $gallery['tags'];
-    else if ($gallery['photo_source'] == 'popular') $popular = true;
-
+    if (!isset($gallery['photo_source'])) {
+        $gallery['photo_source'] = 'photostream';
+    }
+    if ($gallery['photo_source'] == 'photoset') {
+        $photoset_id = $gallery['photoset_id'];
+    } else if ($gallery['photo_source'] == 'gallery') {
+        $gallery_id = $gallery['gallery_id'];
+    } else if ($gallery['photo_source'] == 'group') {
+        $group_id = $gallery['group_id'];
+    } else if ($gallery['photo_source'] == 'tags') {
+        $tags = $gallery['tags'];
+    } else if ($gallery['photo_source'] == 'popular') {
+        $popular = true;
+    }
 
     $disp_gallery = "\n<!--\nResponsive Flickr Gallery ".
         "\nhttp://wordpress.org/plugins/responsive-flickr-gallery/ ".
@@ -205,34 +216,49 @@ function rfg_display_gallery($atts)
 
     if (isset($photoset_id) && $photoset_id) {
         $rsp_obj = $pf->photosets_getInfo($photoset_id);
-        if ($pf->error_code) return rfg_error();
+        if ($pf->error_code) {
+            return rfg_error();
+        }
         $total_photos = $rsp_obj['photos'];
     } elseif (isset($gallery_id) && $gallery_id) {
         $rsp_obj = $pf->galleries_getInfo($gallery_id);
-        if ($pf->error_code) return rfg_error();
+        if ($pf->error_code) {
+            return rfg_error();
+        }
         $total_photos = $rsp_obj['gallery']['count_photos'];
     } elseif (isset($group_id) && $group_id) {
         $rsp_obj = $pf->groups_pools_getPhotos($group_id, null, null, null, null, 1, 1);
-        if ($pf->error_code) return rfg_error();
+        if ($pf->error_code) {
+            return rfg_error();
+        }
         $total_photos = $rsp_obj['photos']['total'];
-        if ($total_photos > 500) $total_photos = 500;
+        if ($total_photos > 500) {
+            $total_photos = 500;
+        }
     } elseif (isset($tags) && $tags) {
         $rsp_obj = $pf->photos_search(array('user_id'=>$user_id, 'tags'=>$tags, 'extras'=>$extras, 'per_page'=>1));
-        if ($pf->error_code) return rfg_error();
+        if ($pf->error_code) {
+            return rfg_error();
+        }
         $total_photos = $rsp_obj['photos']['total'];
     } elseif (isset($popular) && $popular) {
         $rsp_obj = $pf->photos_search(array('user_id'=>$user_id, 'sort'=>'interestingness-desc', 'extras'=>$extras, 'per_page'=>1));
-        if ($pf->error_code) return rfg_error();
+        if ($pf->error_code) {
+            return rfg_error();
+        }
         $total_photos = $rsp_obj['photos']['total'];
     } else {
         $rsp_obj = $pf->people_getInfo($user_id);
-        if ($pf->error_code) return rfg_error();
+        if ($pf->error_code) {
+            return rfg_error();
+        }
         $total_photos = $rsp_obj['photos']['count']['_content'];
     }
 
     $photos = get_transient('rfg_id_' . $id);
-    if (DEBUG)
+    if (DEBUG) {
         $photos = null;
+    }
 
     if ($photos == false || $total_photos != count($photos)) {
         $photos = array();
@@ -240,39 +266,60 @@ function rfg_display_gallery($atts)
             if ($photoset_id) {
                 $flickr_api = 'photoset';
                 $rsp_obj_total = $pf->photosets_getPhotos($photoset_id, $extras, null, 500, $i);
-                if ($pf->error_code) return rfg_error();
+                if ($pf->error_code) {
+                    return rfg_error();
+                }
             } elseif ($gallery_id) {
                 $flickr_api = 'photos';
                 $rsp_obj_total = $pf->galleries_getPhotos($gallery_id, $extras, 500, $i);
-                if ($pf->error_code) return rfg_error();
+                if ($pf->error_code) {
+                    return rfg_error();
+                }
             } elseif ($group_id) {
                 $flickr_api = 'photos';
                 $rsp_obj_total = $pf->groups_pools_getPhotos($group_id, null, null, null, $extras, 500, $i);
-                if ($pf->error_code) return rfg_error();
+                if ($pf->error_code) {
+                    return rfg_error();
+                }
             } elseif ($tags) {
                 $flickr_api = 'photos';
                 $rsp_obj_total = $pf->photos_search(array('user_id'=>$user_id, 'tags'=>$tags, 'extras'=>$extras, 'per_page'=>500, 'page'=>$i));
-                if ($pf->error_code) return rfg_error();
+                if ($pf->error_code) {
+                    return rfg_error();
+                }
             } elseif ($popular) {
                 $flickr_api = 'photos';
                 $rsp_obj_total = $pf->photos_search(array('user_id'=>$user_id, 'sort'=>'interestingness-desc', 'extras'=>$extras, 'per_page'=>500, 'page'=>$i));
-                if ($pf->error_code) return rfg_error();
+                if ($pf->error_code) {
+                    return rfg_error();
+                }
             } else {
                 $flickr_api = 'photos';
-                if (get_option('rfg_flickr_token')) $rsp_obj_total = $pf->people_getPhotos($user_id, array('extras' => $extras, 'per_page' => 500, 'page' => $i));
-                else $rsp_obj_total = $pf->people_getPublicPhotos($user_id, null, $extras, 500, $i);
-                if ($pf->error_code) return rfg_error();
+                if (get_option('rfg_flickr_token')) {
+                    $rsp_obj_total = $pf->people_getPhotos($user_id, array('extras' => $extras, 'per_page' => 500, 'page' => $i));
+                } else {
+                    $rsp_obj_total = $pf->people_getPublicPhotos($user_id, null, $extras, 500, $i);
+                }
+                if ($pf->error_code) {
+                    return rfg_error();
+                }
             }
             $photos = array_merge($photos, $rsp_obj_total[$flickr_api]['photo']);
         }
-        if (!DEBUG)
+        if (!DEBUG) {
             set_transient('rfg_id_' . $id, $photos, 60 * 60 * 24 * $cache_ttl);
+        }
     }
 
-    if (($total_photos % $per_page) == 0) $total_pages = (int)($total_photos / $per_page);
-    else $total_pages = (int)($total_photos / $per_page) + 1;
+    if (($total_photos % $per_page) == 0) {
+        $total_pages = (int)($total_photos / $per_page);
+    } else {
+        $total_pages = (int)($total_photos / $per_page) + 1;
+    }
 
-    if ($gallery_width == 'auto') $gallery_width = 100;
+    if ($gallery_width == 'auto') {
+        $gallery_width = 100;
+    }
     $text_color = isset($rfg_text_color_map[$bg_color])? $rfg_text_color_map[$bg_color]: '';
     $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>\n";
 
@@ -281,10 +328,11 @@ function rfg_display_gallery($atts)
     $photo_count = 1;
 
     if (!$popular && $sort_order != 'flickr') {
-        if ($sort_order == 'random')
+        if ($sort_order == 'random') {
             shuffle($photos);
-        else
+        } else {
             usort($photos, $sort_order);
+        }
     }
 
     if ($disable_slideshow) {
@@ -320,9 +368,9 @@ function rfg_display_gallery($atts)
         $p_description = preg_replace("/\n/", "<br />", $p_description);
 
         $photo_url = rfg_get_photo_url(
-            $photo['farm'], 
+            $photo['farm'],
             $photo['server'],
-            $photo['id'], 
+            $photo['id'],
             $photo['secret'],
             $photo_size
         );
@@ -332,7 +380,7 @@ function rfg_display_gallery($atts)
                 $photo_page_url = $photo['url_l'];
             } else {
                 $photo_page_url = rfg_get_photo_url(
-                    $photo['farm'], 
+                    $photo['farm'],
                     $photo['server'],
                     $photo['id'],
                     $photo['secret'],
@@ -340,8 +388,9 @@ function rfg_display_gallery($atts)
                 );
             }
 
-            if ($photoset_id)
+            if ($photoset_id) {
                 $photo['owner'] = $user_id;
+            }
 
             $photo_title_text = $p_title;
             $photo_title_text .= ' <a style="margin-left:10px; font-size:0.8em;" href="http://www.flickr.com/photos/' . $photo['owner'] . '/' . $photo['id'] . '/" target="_blank">@flickr</a>';
@@ -393,10 +442,11 @@ EOD;
                 $disp_gallery .= "<img class='rfg-img' title='{$photo['title']}' src='{$photo_url}' alt='{$photo_title_text}'/>";
 
                 if ($size_heading_map[$photo_size] && $photo_title == 'on') {
-                    if ($group_id || $gallery_id)
+                    if ($group_id || $gallery_id) {
                         $owner_title = "- by <a href='http://www.flickr.com/photos/{$photo['owner']}/' target='_blank'>{$photo['ownername']}</a>";
-                    else
+                    } else {
                         $owner_title = '';
+                    }
 
                     $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
                 }
@@ -453,18 +503,25 @@ EOD;
             $end_page = 6;
         }
         for ($count = $start_page; $count <= $end_page; $count += 1) {
-            if ($count > $total_pages) break;
-            if ($cur_page == $count)
+            if ($count > $total_pages) {
+                break;
+            }
+            if ($cur_page == $count) {
                 $disp_gallery .= "<font class='rfg-cur-page'>&nbsp;{$count}&nbsp;</font>&nbsp;";
-            else
+            } else {
                 $disp_gallery .= "<a class='rfg-page' href='{$cur_page_url}{$url_separator}afg{$id}_page_id={$count}#rfg-{$id}' title='Page {$count}'>&nbsp;{$count} </a>&nbsp;";
+            }
         }
 
-        if ($count < $total_pages) $disp_gallery .= " ... ";
-        if ($count <= $total_pages)
+        if ($count < $total_pages) {
+            $disp_gallery .= " ... ";
+        }
+        if ($count <= $total_pages) {
             $disp_gallery .= "<a class='rfg-page' href='{$cur_page_url}{$url_separator}afg{$id}_page_id={$total_pages}#rfg-{$id}' title='Page {$total_pages}'>&nbsp;{$total_pages} </a>&nbsp;";
-        if ($cur_page == $total_pages) $disp_gallery .= "&nbsp;&nbsp;&nbsp;<font class='rfg-page'>&nbsp;next &#187;&nbsp;</font>";
-        else {
+        }
+        if ($cur_page == $total_pages) {
+            $disp_gallery .= "&nbsp;&nbsp;&nbsp;<font class='rfg-page'>&nbsp;next &#187;&nbsp;</font>";
+        } else {
             $next_page = $cur_page + 1;
             $disp_gallery .= "&nbsp;&nbsp;&nbsp;<a class='rfg-page' href='{$cur_page_url}{$url_separator}afg{$id}_page_id=$next_page#rfg-{$id}' title='Next Page'> next &#187; </a>&nbsp;";
         }
