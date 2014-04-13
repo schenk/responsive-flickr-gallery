@@ -16,9 +16,9 @@ img.rfg-img {
 }
 
 div.rfg-ad {
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
-    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
-    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
+    float:left; /* important */  
+    position:relative; /* important (so we can absolutely position the rft-title div */ 
+    margin: 6px;
 }
 
 /* Gallery main wrapper */
