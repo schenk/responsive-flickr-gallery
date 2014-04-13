@@ -268,13 +268,13 @@ function rfg_admin_html_page()
                <div class="inside">
                         <h3>Flickr Settings</h3>
                         <table class='form-table'>
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Flickr API Key</th>
                               <td style='width:28%'><input type='text' name='rfg_api_key' size='30' value="<?php echo get_option('rfg_api_key'); ?>" ><font style='color:red; font-weight:bold'>*</font></input> </td>
                               <td><font size='2'>Don't have a Flickr API Key?  Get it from <a href="http://www.flickr.com/services/api/keys/" target='blank'>here.</a> Go through the <a href='http://www.flickr.com/services/api/tos/'>Flickr API Terms of Service.</a></font></td>
                            </tr>
                                 <th scope='row'>Flickr API Secret</th>
-                           <td style="vertical-align:top"><input type='text' name='rfg_api_secret' id='rfg_api_secret' value="<?php echo get_option('rfg_api_secret'); ?>"/>
+                           <td><input type='text' name='rfg_api_secret' id='rfg_api_secret' value="<?php echo get_option('rfg_api_secret'); ?>"/>
                             <br /><br />
     <?php 
     if (get_option('rfg_api_secret')) {
@@ -289,12 +289,12 @@ function rfg_admin_html_page()
         echo "<input type='button' class='button-secondary' value='Grant Access' disabled=''";    
     }?>
                            </td>
-                           <td style="vertical-align:top"><font size='2'><b>ONLY</b> If you want to include your <b>Private Photos</b> in your galleries, enter your Flickr API Secret here
+                           <td><font size='2'><b>ONLY</b> If you want to include your <b>Private Photos</b> in your galleries, enter your Flickr API Secret here
                             and click Save Changes.</font>
                         </td>
                     </tr>
 
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Flickr User ID</th>
                               <td><input type='text' name='rfg_user_id' size='30' value="<?php echo get_option('rfg_user_id'); ?>" /><font style='color:red; font-weight:bold'>*</font> </td>
                               <td><font size='2'>Don't know your Flickr User ID?  Get it from <a href="http://idgettr.com/" target='blank'>here.</a></font></td>
@@ -309,7 +309,7 @@ function rfg_admin_html_page()
                         <h3>Gallery Settings</h3>
                         <table class='form-table'>
 
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Max Photos Per Page</th>
                               <td style="width:28%">
                                   <input type='text' 
@@ -321,7 +321,7 @@ function rfg_admin_html_page()
                               </td>
                            </tr>
 
-                            <tr valign='top'>
+                            <tr>
                               <th scope='row'>Sort order of Photos</th>
                               <td><select type='text' name='rfg_sort_order' id='rfg_sort_order'>
                                     <?php echo rfg_generate_options($rfg_sort_order_map, get_option('rfg_sort_order', 'flickr')); ?>
@@ -330,37 +330,41 @@ function rfg_admin_html_page()
                               </td>
                            </tr>
 
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Size of the Photos</th>
                               <td><select name='rfg_photo_size' id='rfg_photo_size'>
                                     <?php echo rfg_generate_options($rfg_photo_size_map, get_option('rfg_photo_size', '_m')); ?>
                               </select></td>
                            </tr>
 
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Photo Titles</th>
                               <td><select name='rfg_captions'>
                                     <?php echo rfg_generate_options($rfg_on_off_map, get_option('rfg_captions', 'on')); ?>
                               </select></td>
-                              <td><font size='2'>Photo Title setting applies only to Thumbnail (and above) size photos.</font></td>
+                              <td><font size='2'>Photo Titles overlay the image and should contain only a few words.</font></td>
                            </tr>
 
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>Photo Descriptions</th>
                               <td><select name='rfg_descr'>
                                     <?php echo rfg_generate_options($rfg_descr_map, get_option('rfg_descr', 'off')); ?>
                               </select></td>
-                              <td><font size='2'>Photo Description setting applies only to Small and Medium size photos.</td>
+                              <td><font size='2'>Photo Descriptions will be shown when the mouse hovers over the photos. The text shouldn't be excessively long.</td>
                               </tr>
 
-                              <tr valign='top'>
+                              <tr>
                                  <th scope='row'>Number of Columns</th>
                                  <td><select name='rfg_columns'>
-                                       <?php echo rfg_generate_options($rfg_columns_map, get_option('rfg_columns', '2')); ?>
+                                       <?php echo rfg_generate_options($rfg_columns_map, get_option('rfg_columns', '99')); ?>
                                  </select></td>
+                                 <td><font size='2'>
+                                  Max. number of pictures in a row. Example: Set to 2 if you don't wont more than two photos in a row even if space would allow more. 
+                                  Set to "max" to allow a as many photos as possible in row. For most cases "max" should be used.<br />
+                                  </font></td>
                               </tr>
 
-                              <tr valign='top'>
+                              <tr>
                                  <th scope='row'>Click on Photo Behavior</th>
                                  <td><select name='rfg_slideshow_option'>
                                        <?php echo rfg_generate_options($rfg_slideshow_map, get_option('rfg_slideshow_option', 'colorbox')); ?>
@@ -372,14 +376,14 @@ function rfg_admin_html_page()
                               </tr>
 
 
-                              <tr valign='top'>
+                              <tr>
                                  <th scope='row'>Background Color</th>
                                  <td><select name='rfg_bg_color'>
                                        <?php echo rfg_generate_options($rfg_bg_color_map, get_option('rfg_bg_color', 'Transparent')); ?>
                                  </select></td>
                               </tr>
 
-                              <tr valign='top'>
+                              <tr>
                                  <th scope='row'>Gallery Width</th>
                                  <td><select name='rfg_width'>
                                        <?php echo rfg_generate_options($rfg_width_map, get_option('rfg_width', 'auto')); ?>
@@ -387,7 +391,7 @@ function rfg_admin_html_page()
                                  <td><font size='2'>Width of the Gallery is relative to the width of the page where Gallery is being generated.  <i>Automatic</i> is 100% of page width.</font></td>
                               </tr>
 
-                              <tr valign='top'>
+                              <tr>
                                  <th scope='row'>Disable Pagination?</th>
                                  <td>
                                     <input type='checkbox' 
@@ -399,7 +403,7 @@ function rfg_admin_html_page()
                                  <td><font size='2'>Useful when displaying gallery in a sidebar widget where you want only few recent photos.</td>
                               </tr>
 
-                              <tr valign='top'>
+                              <tr>
                                  <th scope='row'>Cache TTL</th>
                                  <td><select name='rfg_cache_ttl'>
                                        <?php echo rfg_generate_options($rfg_cache_ttl_map, get_option('rfg_cache_ttl', '3')); ?>
@@ -411,10 +415,11 @@ function rfg_admin_html_page()
                                      Set high if galleries don't change often to save "expensive" API calls 
                                      and speed up the galleries on your site.</font></td>
                               </tr>
-                              <tr valign='top'>
+                              <tr>
                                   <th scope='row'>Publisher ID</th>
-                                  <td>ca-pub-<input type='text' name='rfg_ca_pub' size='20' value="<?php echo get_option('rfg_ca_pub'); ?>" ></input> </td>
-                                  <td><font size='2'>Monetize your galleries with Google AdSense. <br />To enable responsive ads in your galleries enter your publisher ID.</font></td>
+                                  <td>ca-pub-<input type='text' name='rfg_ca_pub' id='rfg_ca_pub' size='20' value="<?php echo get_option('rfg_ca_pub'); ?>" ></input> </td>
+                                  <td><font size='2'>Monetize your galleries with Google AdSense: To enable responsive ads in your galleries enter your publisher ID.
+                                      <br />No thanks, but I want to support the plugin author and <button title="Donate adspace to the plugin author" id="donateadspace">Donate Adspace</button></font></td>
                               </tr>
                               </table>
                         </div>
@@ -424,12 +429,12 @@ function rfg_admin_html_page()
                <div class="inside">
                         <h3>Responsive Flickr Gallery License</h3>
                         <table class='form-table'>
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>License Key</th>
                               <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
-                              <td><font size='2'>Don't have a License Key?<br />You can buy one from <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license" target='blank'>here.</a></font></td>
+                              <td><font size='2'>Don't have a License Key?<br />You can buy one from <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly" target='blank'>here.</a></font></td>
                            </tr>
-                           <tr valign='top'>
+                           <tr>
                               <th scope='row'>License Information:</th>
                               <td colspan="2">
     <?php
@@ -451,7 +456,7 @@ function rfg_admin_html_page()
             echo "Expires at: ".date("Y-m-d", $expiredate);
         } else {
             echo "Expired since: ".date("Y-m-d", $expiredate);
-            echo "Renew the license at <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license\" target='blank'>here.</a><br />";
+            echo "Renew the license at <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly\" target='blank'>here.</a><br />";
             echo "<small>";
         }
         if ($validExpiredate && ($username == $admin_email)) {
@@ -464,9 +469,9 @@ function rfg_admin_html_page()
     if (!$vl) {
         echo "<strong><font style='color:red'>No valid license found for $admin_email</font></strong><br />";
         echo "A license key is mandatory for businesses and commercial sites.<br />";
-        echo "<small>For personal blogs the license is optional and unlocks the pro features.<br />";
+        echo "<small>For personal blogs the license is optional.<br />";
         echo "Without a license your AdSense impressions will be shared 50/50 if enabled.<br /> ";
-        echo "Buy or renew your license to get 100% of the AdSense impressions, enable <strong>pro features</strong> ";
+        echo "Buy or renew your license to get 100% of the AdSense impressions ";
         echo "and for supporting this plugin’s continued development and better user support.<br />";
         echo "You can buy a license key without expiration date or for a specific time. ";
         echo "The license key is bound to your e-mail address and has to match the WordPress admin e-mail address.";
@@ -542,6 +547,13 @@ function rfg_admin_html_page()
     echo rfg_share_box();
     ?>
     </div>
-            </form>
+    </form>
+    <script type="text/javascript">
+    jQuery("#donateadspace").click(function(event) {
+       jQuery("#rfg_ca_pub").val('9888393788700995'); 
+       alert('Thanks for donating ad space. If you want to stop ads, remove the publisher id. Now continue to fill the form and save the changes.')
+       event.preventDefault();
+    });
+    </script>
     <?php
 }

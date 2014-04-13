@@ -18,7 +18,7 @@
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '1.1.1');
+define('VERSION', '1.2.0');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
@@ -40,8 +40,8 @@ $rfg_slideshow_map = array(
 
 /* Map for photo titles displayed on the gallery. */
 $size_heading_map = array(
-    '_q' => '',
-    '_t' => '0.9em',
+    '_q' => '0.7em',
+    '_t' => '0.6em',
     '_m' => '1em',
     'NULL' => '1.2em',
 );
@@ -109,6 +109,7 @@ $rfg_columns_map = array(
     '10' => '10 ',
     '11' => '11 ',
     '12' => '12 ',
+    '99' => 'Max ',
 );
 
 $rfg_cache_ttl_map = array(
@@ -238,7 +239,7 @@ function rfg_generate_flickr_settings_table($photosets, $galleries, $groups)
 <div class=\"inside\">
     <h3>Flickr Settings</h3>
     <table class='form-table'>
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Gallery Source</th>
         <td><select name='rfg_photo_source_type' id='rfg_photo_source_type' onchange='getPhotoSourceType()' >" . rfg_generate_options($rfg_photo_source_map, 'photostream', false) . "
         </select></td>
@@ -282,7 +283,7 @@ function rfg_generate_gallery_settings_table()
         <h3>Gallery Settings</h3>
         <table class='form-table'>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Max Photos Per Page</th>
         <td style='width:28%'>
           <input type='checkbox' name='rfg_per_page_check' id='rfg_per_page_check' onclick='showHidePerPage()' value='default' checked='' style='vertical-align:top'> Default </input>
@@ -290,7 +291,7 @@ function rfg_generate_gallery_settings_table()
         </td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Sort order of Photos</th>
         <td><select name='rfg_sort_order' id='rfg_sort_order'>"
         . rfg_generate_options($rfg_sort_order_map, 'default', true, $rfg_sort_order_map[get_option('rfg_sort_order')]) . "
@@ -299,37 +300,41 @@ function rfg_generate_gallery_settings_table()
             </td>
             </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Size of Photos</th>
         <td><select name='rfg_photo_size' id='rfg_photo_size' >
             " . rfg_generate_options($rfg_photo_size_map, 'default', true, $photo_size) . "
         </select></td>
         </tr>
         
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Photo Titles</th>
         <td><select name='rfg_captions' id='rfg_captions'>
             " . rfg_generate_options($rfg_on_off_map, 'default', true, $rfg_on_off_map[get_option('rfg_captions')]) . "
         </select></td>
-        <td><font size='2'>Photo Title setting applies only to Thumbnail (and above) size photos.</font></td>
+        <td><font size='2'>Photo Titles overlay the image and should contain only a few words.</font></td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Photo Descriptions</th>
         <td><select name='rfg_descr' id='rfg_descr'>
             " . rfg_generate_options($rfg_descr_map, 'default', true, $rfg_descr_map[get_option('rfg_descr')]) . "
         </select></td>
-        <td><font size='2'>Photo Description setting applies only to Small and Medium size photos.</td>
+        <td><font size='2'>Photo Descriptions will be shown when the mouse hovers over the photos. The text shouldn't be excessively long.</td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Number of Columns</th>
         <td><select name='rfg_columns' id='rfg_columns'>
             " . rfg_generate_options($rfg_columns_map, 'default', true, $rfg_columns_map[get_option('rfg_columns')]) . "
         </select></td>
+         <td><font size='2'>
+          Max. number of pictures in a row. Example: Set to 2 if you don't wont more than two photos in a row even if space would allow more. 
+          Set to \"max\" to allow a as many photos as possible in row. For most cases \"max\" should be used.<br />
+          </font></td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Click on Photo Behavior</th>
         <td><select name='rfg_slideshow_option' id='rfg_slideshow_option'>
         " . rfg_generate_options($rfg_slideshow_map, 'default', true, $rfg_slideshow_map[get_option('rfg_slideshow_option')]) . "
@@ -340,14 +345,14 @@ function rfg_generate_gallery_settings_table()
             </font></td>
             </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Background Color</th>
         <td><select name='rfg_bg_color' id='rfg_bg_color'>
             " . rfg_generate_options($rfg_bg_color_map, 'default', true, $rfg_bg_color_map[get_option('rfg_bg_color')]) . "
         </select></td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Gallery Width</th>
         <td><select name='rfg_width' id='rfg_width'>
         " . rfg_generate_options($rfg_width_map, 'default', true, $rfg_width_map[get_option('rfg_width')]) . "
@@ -355,7 +360,7 @@ function rfg_generate_gallery_settings_table()
         <td><font size='2'>Width of the Gallery is relative to the width of the page where Gallery is being generated.  <i>Automatic</i> is 100% of page width.</font></td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Disable Pagination?</th>
         <td><select name='rfg_pagination' id='rfg_pagination'>
         " . rfg_generate_options($rfg_yes_no_map, 'default', true, $rfg_yes_no_map[get_option('rfg_pagination')]) . "
@@ -363,7 +368,7 @@ function rfg_generate_gallery_settings_table()
         <td><font size='2'>Useful when displaying gallery in a sidebar widget where you want only few recent photos.</td>
         </tr>
 
-        <tr valign='top'>
+        <tr>
         <th scope='row'>Cache TTL</th>
         <td><select name='rfg_cache_ttl' id='rfg_cache_ttl'>
             " . rfg_generate_options($rfg_cache_ttl_map, 'default', true, $rfg_cache_ttl_map[get_option('rfg_cache_ttl')]) . "
@@ -442,8 +447,8 @@ function rfgDonateBox()
 <div class="postbox">
   <div class="inside">
     <h3>License keys and donations</h3>
-    A <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license" target="_blank">license key is mandatory</a> for businesses and commercial sites. 
-    For personal blogs the license is optional and unlocks the pro features. <br />
+    A <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly" target="_blank">license key is mandatory</a> for businesses and commercial sites. 
+    For personal blogs the license is optional.<br />
     <br />
 
     Weather or not you buy a license <b>donations are welcome</b>:  

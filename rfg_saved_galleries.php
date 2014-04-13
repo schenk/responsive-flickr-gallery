@@ -56,7 +56,7 @@ function rfg_view_delete_galleries()
                   <div class="inside">
                   <h3>Saved Galleries</h3>
                   <table class='form-table' style='margin-top:0'>
-                     <tr style='valign='top'>
+                     <tr>
                         <th cope='row'><input type='checkbox' name='delete_all_galleries' id='delete_all_galleries'
                            onclick="CheckAllDeleteGalleries()"/></th>
                         <th scope='row'><strong>ID</strong></th>
@@ -71,7 +71,7 @@ function rfg_view_delete_galleries()
                          $rows = $rows +1;
                          if ($rows % 2) $class = "class='alternate' ";
                          else $class = '';
-                        echo "<tr {$class} style='valign='top'>";
+                        echo "<tr {$class}>";
                         if ($id)
                             echo "<td style='width:4%'><input type='checkbox' name='delete_gallery_$id' id='delete_gallery_$id' /></td>";
                         else

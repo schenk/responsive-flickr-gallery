@@ -1,82 +1,31 @@
-/* Settings that apply to entire gallery */
+/* Settings that apply to the entire responsive flickr gallery */
 div.rfg-gallery {
-    margin:auto;
 }
 
 /* Effect for thumbnails in gallery */
 img.rfg-img {
-    margin-top:5%;
+    bottom: 0px;
     opacity:1;
     filter:alpha(opacity=100);
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
     border-radius: 6px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
 }
 
 div.rfg-ad {
-    margin-top:5%;
-    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.6);
+    float:left; /* important */  
+    position:relative; /* important (so we can absolutely position the rft-title div */ 
+    margin: 6px;
 }
 
-ins{
-    background: transparent;
-}
-
-/* Gallery structure */
-div.rfg-table {
-    display:table !important;
-    margin:auto;
+/* Gallery main wrapper */
+div.rfg-mainwrapper {
+    width: 100%;
     border:none; 
-}
-
-/* Table row */
-div.rfg-row {
-    display:table-row !important;
-}
-
-/* Individual image cell in the gallery */
-div.rfg-cell {
-    display:inline-block !important;
-    text-align:left;
-    vertical-align:top;
-    margin:auto;
-    padding-right:6px;
-    padding-bottom:10px;
-    position: relative;
-
-    /* hover off */
-    opacity:1;
-    filter:alpha(opacity=1);
-    transform: scale(1, 1);
-    -moz-transform: scale(1, 1);
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transition: 0.3s ease;
-    -moz-transition: 0.3s ease;
-    -ms-transition: 0.3s ease;
-    -webkit-transition: 0.3s ease;
-    -o-transition: 0.3s ease;
-}
-
-div.rfg-cell:hover {
-    opacity:0.8;
-    filter:alpha(opacity=80);
-    transform: scale(1.01, 1.01);
-    -moz-transform: scale(1.01, 1.01);
-    -ms-transform: scale(1.01, 1.01);
-    -webkit-transform: scale(1.01, 1.01);
-    -o-transform: scale(1.01, 1.01);
-    transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -ms-transition: 0.5s ease;
-    -webkit-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
+    line-height: 0; /* required to position title correct on all themes */
 }
 
 /* Hover effect for pagination links */
@@ -88,6 +37,8 @@ a.rfg-page:hover {
 
 /* Pagination */
 div.rfg-pagination {
+    float: left;
+    width: 100%;
     margin:auto;
     border:0;
     text-align:center;
@@ -119,12 +70,14 @@ div.rfg-credit {
 div.rfg-img-wrapper {
     float:left; /* important */  
     position:relative; /* important (so we can absolutely position the rft-title div */ 
+    margin: 6px;
 }
 
 /* Photo title */
 div.rfg-title {
+    line-height: 1.65;
     position: absolute;
-    bottom: 3px;
+    bottom: 0px;
     left: 0px;
     width: 100%;
 
@@ -141,7 +94,43 @@ div.rfg-title {
 
 /* Photo Description */
 div.rfg-description {
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    line-height: 1.05;
     font-size:85%;
-    margin-right:5%;
     font-style:italic;
+    opacity: 0;
+    color: #222222;
+    text-decoration: none;
 }
+div.rfg-img-wrapper a:hover {
+    color: #222222;
+}
+
+/* Transition effect one */
+.rfg-effect-1 img {
+   transition-delay: 0s 
+   transition-property: all;
+   transition-duration: 0.2s;  
+   transition-timing-function: linear;
+}
+.rfg-effect-1:hover img{
+    opacity:0.2;
+}
+.rfg-effect-1 .rfg-title {
+   transition-delay: 0s 
+   transition-property: all;
+   transition-duration: 0.2s;  
+   transition-timing-function: linear;
+}
+.rfg-effect-1:hover .rfg-title {
+    opacity:0.2;
+}  
+.rfg-effect-1:hover {
+    overflow: hidden;
+}
+.rfg-effect-1:hover .rfg-description {
+    opacity:1;
+}  
+

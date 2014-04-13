@@ -167,16 +167,16 @@ function rfg_edit_galleries()
               <div class="inside">
                  <h3>Saved Galleries</h3>
                  <table class='form-table'>
-                    <tr valign='top'>
+                    <tr>
                        <th scope='row'>Select Gallery to Edit</th>
                        <td><select id='rfg_photo_gallery' name='rfg_photo_gallery' onchange='loadGallerySettings()'>
                              <?php echo rfg_get_galleries($default_gallery_id) ?>
                        </select></td>
-                       <tr valign='top'>
+                       <tr>
                           <th scope='row'>Gallery Name</th>
                           <td><input maxlength='30' type='text' id='rfg_edit_gallery_name' name='rfg_edit_gallery_name' onblur='verifyEditBlank()' value="" /><font size='3' color='red'>*</font></td>
                        </tr>
-                       <tr valign='top'>
+                       <tr>
                           <th scope='row'>Gallery Description</th>
                           <td><input maxlength='100' size='70%' type='text' id='rfg_edit_gallery_descr' name='rfg_edit_gallery_descr' value="" /></td>
                        </tr>

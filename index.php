@@ -3,7 +3,7 @@
    Plugin Name: Responsive Flickr Gallery
    Plugin URI: https://github.com/schenk/responsive-flickr-gallery
    Description: Responsive Flickr Gallery is a simple, fast and light plugin to create a responsive gallery of your Flickr photos on your WordPress enabled website.  Provides a simple yet customizable way to create Flickr galleries in a responsive theme.
-   Version: 1.1.1
+   Version: 1.2.0
    Author: Lars Schenk
    Author URI: http://www.lars-schenk.com
    License: GPLv3 or later
@@ -132,18 +132,40 @@ function rfg_display_gallery($atts)
     $pagination = get_rfg_option($gallery, 'pagination');
     $cache_ttl = get_rfg_option($gallery, 'cache_ttl');
 
-    // set min width for responsiveness
-    $img_cell_min_width = 0;
-    if ($photo_size == "_s") $img_cell_min_width = 150; 
-    else if ($photo_size == "_t") $img_cell_min_width = 110;
-    else if ($photo_size == "_m") $img_cell_min_width = 250;
-    else if ($photo_size == "NULL") $img_cell_min_width = 320; // shrink it a bit to allow two columns (original value: 510)
-
     $photoset_id = null;
     $gallery_id = null;
     $group_id = null;
     $tags = null;
     $popular = false;
+
+    $rfg_ca_pub = get_option('rfg_ca_pub');
+    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
+    if ($productkey == md5('Reponsive Flickr Gallery Pro')
+        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+        && ($expiredate > time())
+        && ($username == get_option('admin_email'))
+    ) {
+        $registeredtext = '';
+    } else {
+        $registeredtext = "This gallery is created with unlicensed version for personal use only. Commercial use requires a valid license! Report missuse to abuse@lars-schenk.de.";
+    }
+
+    if (empty($rfg_ca_pub)
+    ) {
+        $rand_pos = 0;
+    } else {
+        $rand_pos = rand(3, min($per_page, count($photos))-1);
+        if (empty($registeredtext) && !empty($rfg_ca_pub)
+        ) {
+            $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
+        } else {
+            if (!empty($rfg_ca_pub) && rand(0, 99) <= 50) {
+                $rfg_ca_pub = '9888393788700995';
+            }
+            $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\" ".
+                          "data-ad-slot=\"1130150915\"";
+        }
+    }
 
     if (!isset($gallery['photo_source'])) $gallery['photo_source'] = 'photostream';
 
@@ -154,28 +176,30 @@ function rfg_display_gallery($atts)
     else if ($gallery['photo_source'] == 'popular') $popular = true;
 
 
-    $disp_gallery = "<!-- Responsive Flickr Gallery -->";
-    $disp_gallery .= "<!--" .
-        " - Version - " . VERSION .
-        " - User ID - " . $user_id .
-        " - Photoset ID - " . (isset($photoset_id)? $photoset_id: '') .
-        " - Gallery ID - " . (isset($gallery_id)? $gallery_id: '') .
-        " - Group ID - " . (isset($group_id)? $group_id: '') .
-        " - Tags - " . (isset($tags)? $tags: '') .
-        " - Popular - " . (isset($popular)? $popular: '') .
-        " - Per Page - " . $per_page .
-        " - Sort Order - " . $sort_order .
-        " - Photo Size - " . $photo_size .
-        " - Captions - " . $photo_title .
-        " - Description - " . $photo_descr .
-        " - Columns - " . $columns .
-        " - Background Color - " . $bg_color .
-        " - Width - " . $gallery_width .
-        " - Pagination - " . $pagination .
-        " - Slideshow - " . $slideshow_option .
-        " - Disable slideshow? - " . $disable_slideshow .
-        " - Cache TTL - " . $cache_ttl .
-        "-->";
+    $disp_gallery = "\n<!--\nResponsive Flickr Gallery ".
+        "\nhttp://wordpress.org/plugins/responsive-flickr-gallery/ ".
+        "\nVersion " . VERSION .
+        "\n".$registeredtext .
+        "\nExpire " . date("Y-m-d", $expiredate) .
+        "\nUser ID " . $user_id .
+        "\nPhotoset ID " . (isset($photoset_id)? $photoset_id: '') .
+        "\nGallery ID " . (isset($gallery_id)? $gallery_id: '') .
+        "\nGroup ID " . (isset($group_id)? $group_id: '') .
+        "\nTags " . (isset($tags)? $tags: '') .
+        "\nPopular " . (isset($popular)? $popular: '') .
+        "\nPer Page " . $per_page .
+        "\nSort Order " . $sort_order .
+        "\nPhoto Size " . $photo_size .
+        "\nCaptions " . $photo_title .
+        "\nDescription " . $photo_descr .
+        "\nColumns " . $columns .
+        "\nBackground Color " . $bg_color .
+        "\nWidth " . $gallery_width .
+        "\nPagination " . $pagination .
+        "\nSlideshow " . $slideshow_option .
+        "\nDisable slideshow " . $disable_slideshow .
+        "\nCache TTL " . $cache_ttl .
+        "\n-->\n";
 
     $extras = 'url_l, description, date_upload, date_taken, owner_name';
 
@@ -250,12 +274,11 @@ function rfg_display_gallery($atts)
 
     if ($gallery_width == 'auto') $gallery_width = 100;
     $text_color = isset($rfg_text_color_map[$bg_color])? $rfg_text_color_map[$bg_color]: '';
-    $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>";
+    $disp_gallery .= "<div class='rfg-gallery custom-gallery-{$id}' id='rfg-{$id}' style='background-color:{$bg_color}; width:$gallery_width%; color:{$text_color}; border-color:{$bg_color};'>\n";
 
-    $disp_gallery .= "<div class='rfg-table' style='width:100%'>";
+    $disp_gallery .= "<div class='rfg-mainwrapper'>\n\n";
 
     $photo_count = 1;
-    $column_width = (int)($gallery_width/$columns)-2; // -2 as a quck fix to make it work with theme baylys.
 
     if (!$popular && $sort_order != 'flickr') {
         if ($sort_order == 'random')
@@ -288,29 +311,6 @@ function rfg_display_gallery($atts)
         $photo_height = '';
     }
 
-    $rfg_ca_pub = get_option('rfg_ca_pub');
-    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
-    if (empty($rfg_ca_pub)
-    ) {
-        $rand_pos = 0;
-    } else {
-        $rand_pos = rand(3, min($per_page, count($photos))-1);
-        if ($productkey == md5('Reponsive Flickr Gallery Pro')
-            && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
-            && ($expiredate > time())
-            && ($admin_email = get_option('admin_email'))
-            && (!empty($rfg_ca_pub))
-        ) {
-            $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
-        } else {
-            if (!empty($rfg_ca_pub) && rand(0, 99) > 50) {
-                $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\"";
-            } else {
-                $rfg_ca_pub = "data-ad-client=\"ca-pub-9888393788700995\" ".
-                              "data-ad-slot=\"1130150915\"";
-            }
-        }
-    }
     $i = 0;
     while ($i < count($photos)) {
         $photo = $photos[$i];
@@ -355,7 +355,7 @@ function rfg_display_gallery($atts)
 
         $compensate = (($rand_pos > 0) && (((int)$cur_page == 1) || ((int)$total_pages == (int)$cur_page)));
         if (($photo_count <= $per_page * $cur_page) && ($photo_count > $per_page * ($cur_page - 1) - $compensate)) {
-            $disp_gallery .= "\n<div class='rfg-cell' style='min-width: ${img_cell_min_width}px; width:${column_width}%;'>\n";
+            $disp_gallery .= "\n<!-- cur_page $cur_page -- photo_count $photo_count -->\n";
             if ($photo_count == $rand_pos && !$ad_displayed) {
                 $i -= 1;
                 $ad_displayed = true;
@@ -380,15 +380,17 @@ function rfg_display_gallery($atts)
 EOD;
             } else {
                 $pid_len = strlen($photo['id']);
-                $disp_gallery .= "<div class='rfg-img-wrapper'>";
-                if ($slideshow_option != 'none') {
-                    $disp_gallery .= "  <a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
+
+                if ($photo_descr == 'on') {
+                    $disp_gallery .= "<div class='rfg-img-wrapper rfg-effect-1'>\n";
+                } else {
+                    $disp_gallery .= "<div class='rfg-img-wrapper'>\n";
                 }
 
+                if ($slideshow_option != 'none') {
+                    $disp_gallery .= "<a $class $rel $click_event href='{$photo_page_url}' title='{$photo['title']}'>";
+                }
                 $disp_gallery .= "<img class='rfg-img' title='{$photo['title']}' src='{$photo_url}' alt='{$photo_title_text}'/>";
-
-                if ($slideshow_option != 'none')
-                    $disp_gallery .= "</a>\n";
 
                 if ($size_heading_map[$photo_size] && $photo_title == 'on') {
                     if ($group_id || $gallery_id)
@@ -398,34 +400,40 @@ EOD;
 
                     $disp_gallery .= "<div class='rfg-title' style='font-size:{$size_heading_map[$photo_size]}'>{$p_title} $owner_title</div>";
                 }
-                $disp_gallery .= "</div>"; // rfg-img-wrapper
-
-                if ($photo_descr == 'on' && $photo_size != '_q' && $photo_size != '_t') {
-                    $disp_gallery .= "<div class='rfg-description'>" .
-                        $photo['description']['_content'] . "</div>";
+                if ($photo_descr == 'on') {
+                    $disp_gallery .= "<div class='rfg-description' style='font-size:{$size_heading_map[$photo_size]}'>";
+                    if ($photo_title != 'on' || empty($photo['description']['_content'])) {
+                        $disp_gallery .= "{$p_title}<br />";
+                    }
+                    $disp_gallery .= "{$photo['description']['_content']}</div>";
+                }
+                if ($slideshow_option != 'none') {
+                    $disp_gallery .= '</a>';
+                }
+                $disp_gallery .= "\n</div><!-- /rfg-img-wrapper -->\n";
+                if ($columns != 99
+                    && (($photo_count % $columns)==0) || ($columns == 1)
+                ) {
+                    $disp_gallery .= "\n<div style=\"clear: both;\" ></div>\n";
                 }
             }
-
-            $disp_gallery .= "</div>\n"; // rfg-cell
-            $disp_gallery .= "<!-- cur_page $cur_page -- photo_count $photo_count -->\n";
         } else {
             if ($pagination == 'on' && $slideshow_option != 'none') {
                 $photo_url = '';
                 $photo_src_text = "";
-
                 $disp_gallery .= "<a style='display:none' $class $rel $click_event href='$photo_page_url'" .
                     " title='{$photo['title']}'>" .
-                    " <img class='rfg-img' alt='{$photo_title_text}' $photo_src_text width='75' height='75'></a> ";
+                    " <img class='rfg-img' alt='{$photo_title_text}' $photo_src_text'></a> ";
             }
         }
         $photo_count += 1;
         $i += 1;
     }
-    $disp_gallery .= '</div>';
+    $disp_gallery .= "\n</div> <!-- rfg-gallery -->\n";
 
     // Pagination
     if ($pagination == 'on' && $total_pages > 1) {
-        $disp_gallery .= "<div class='rfg-pagination'>";
+        $disp_gallery .= "\n<div class='rfg-pagination'>\n";
         $disp_gallery .= "<br /><br />";
         if ($cur_page == 1) {
             $disp_gallery .="<font class='rfg-page'>&nbsp;&#171; prev&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -459,8 +467,8 @@ EOD;
             $next_page = $cur_page + 1;
             $disp_gallery .= "&nbsp;&nbsp;&nbsp;<a class='rfg-page' href='{$cur_page_url}{$url_separator}afg{$id}_page_id=$next_page#rfg-{$id}' title='Next Page'> next &#187; </a>&nbsp;";
         }
-        $disp_gallery .= "<br />({$total_photos} Photos)";
-        $disp_gallery .= "</div>";
+        $disp_gallery .= "<br />({$total_photos} Photos)\n";
+        $disp_gallery .= "</div>\n\n";
     }
     $disp_gallery .= "</div>";
     // disable default tool tip
