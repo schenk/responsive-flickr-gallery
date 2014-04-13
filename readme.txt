@@ -3,7 +3,7 @@ Contributors: larsschenk
 Donate link: http://schenk.github.io/responsive-flickr-gallery/
 Tags: responsive, flickr, gallery, cdn, photo, images
 Requires at least: 3.7.0
-Tested up to: 3.8.1
+Tested up to: 3.8.2
 Stable tag: /trunk/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -121,6 +121,9 @@ Contributors and feature requests welcome. Bounties may speed up the development
 2. Default Settings Page
 
 == Changelog ==
+
+= 1.2.1 =
+* Change: Added a div clear and a few minor improvements.
 
 = 1.2.0 =
 * Change: Improved handling of columns. Will fix wrong columns on some themes.
