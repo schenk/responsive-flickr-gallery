@@ -18,7 +18,7 @@
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '1.1.1');
+define('VERSION', '1.2.0');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
