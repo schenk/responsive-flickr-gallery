@@ -431,7 +431,7 @@ function rfg_admin_html_page()
                            <tr>
                               <th scope='row'>License Key</th>
                               <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
-                              <td><font size='2'>Don't have a License Key?<br />You can buy one from <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license" target='blank'>here.</a></font></td>
+                              <td><font size='2'>Don't have a License Key?<br />You can buy one from <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly" target='blank'>here.</a></font></td>
                            </tr>
                            <tr>
                               <th scope='row'>License Information:</th>
@@ -455,7 +455,7 @@ function rfg_admin_html_page()
             echo "Expires at: ".date("Y-m-d", $expiredate);
         } else {
             echo "Expired since: ".date("Y-m-d", $expiredate);
-            echo "Renew the license at <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license\" target='blank'>here.</a><br />";
+            echo "Renew the license at <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly\" target='blank'>here.</a><br />";
             echo "<small>";
         }
         if ($validExpiredate && ($username == $admin_email)) {
@@ -468,9 +468,9 @@ function rfg_admin_html_page()
     if (!$vl) {
         echo "<strong><font style='color:red'>No valid license found for $admin_email</font></strong><br />";
         echo "A license key is mandatory for businesses and commercial sites.<br />";
-        echo "<small>For personal blogs the license is optional and unlocks the pro features.<br />";
+        echo "<small>For personal blogs the license is optional.<br />";
         echo "Without a license your AdSense impressions will be shared 50/50 if enabled.<br /> ";
-        echo "Buy or renew your license to get 100% of the AdSense impressions, enable <strong>pro features</strong> ";
+        echo "Buy or renew your license to get 100% of the AdSense impressions ";
         echo "and for supporting this plugin’s continued development and better user support.<br />";
         echo "You can buy a license key without expiration date or for a specific time. ";
         echo "The license key is bound to your e-mail address and has to match the WordPress admin e-mail address.";

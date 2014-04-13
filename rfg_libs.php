@@ -447,8 +447,8 @@ function rfgDonateBox()
 <div class="postbox">
   <div class="inside">
     <h3>License keys and donations</h3>
-    A <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license" target="_blank">license key is mandatory</a> for businesses and commercial sites. 
-    For personal blogs the license is optional and unlocks the pro features. <br />
+    A <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly" target="_blank">license key is mandatory</a> for businesses and commercial sites. 
+    For personal blogs the license is optional.<br />
     <br />
 
     Weather or not you buy a license <b>donations are welcome</b>:  
