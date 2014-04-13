@@ -429,6 +429,7 @@ EOD;
         $photo_count += 1;
         $i += 1;
     }
+    $disp_gallery .= "\n<div style=\"clear: both;\" ></div>\n";
     $disp_gallery .= "\n</div> <!-- rfg-gallery -->\n";
 
     // Pagination
