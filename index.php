@@ -159,12 +159,11 @@ function rfg_display_gallery($atts)
         ) {
             $rfg_ca_pub = "data-ad-client=\"ca-pub-{$rfg_ca_pub}\"";
         } else {
-            if (!empty($rfg_ca_pub) && rand(0, 99) > 50) {
-                $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\"";
-            } else {
-                $rfg_ca_pub = "data-ad-client=\"ca-pub-9888393788700995\" ".
-                              "data-ad-slot=\"1130150915\"";
+            if (!empty($rfg_ca_pub) && rand(0, 99) <= 50) {
+                $rfg_ca_pub = '9888393788700995';
             }
+            $rfg_ca_pub = "data-ad-client=\"ca-pub-$rfg_ca_pub\" ".
+                          "data-ad-slot=\"1130150915\"";
         }
     }
 

@@ -417,8 +417,9 @@ function rfg_admin_html_page()
                               </tr>
                               <tr>
                                   <th scope='row'>Publisher ID</th>
-                                  <td>ca-pub-<input type='text' name='rfg_ca_pub' size='20' value="<?php echo get_option('rfg_ca_pub'); ?>" ></input> </td>
-                                  <td><font size='2'>Monetize your galleries with Google AdSense. <br />To enable responsive ads in your galleries enter your publisher ID.</font></td>
+                                  <td>ca-pub-<input type='text' name='rfg_ca_pub' id='rfg_ca_pub' size='20' value="<?php echo get_option('rfg_ca_pub'); ?>" ></input> </td>
+                                  <td><font size='2'>Monetize your galleries with Google AdSense: To enable responsive ads in your galleries enter your publisher ID.
+                                      <br />No thanks, but I want to support the plugin author and <button title="Donate adspace to the plugin author" id="donateadspace">Donate Adspace</button></font></td>
                               </tr>
                               </table>
                         </div>
@@ -546,6 +547,13 @@ function rfg_admin_html_page()
     echo rfg_share_box();
     ?>
     </div>
-            </form>
+    </form>
+    <script type="text/javascript">
+    jQuery("#donateadspace").click(function(event) {
+       jQuery("#rfg_ca_pub").val('9888393788700995'); 
+       alert('Thanks for donating ad space. If you want to stop ads, remove the publisher id. Now continue to fill the form and save the changes.')
+       event.preventDefault();
+    });
+    </script>
     <?php
 }
