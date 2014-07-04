@@ -1,5 +1,5 @@
 <?php
-/* afgFlickr Class 3.1
+/* afgFlickr Class 3.1 (with patch for https flickr API endpoints)
  * Written by Dan Coulter (dan@dancoulter.com)
  * Project Home Page: http://phpflickr.com/
  * Released under GNU Lesser General Public License (http://www.gnu.org/copyleft/lgpl.html)
