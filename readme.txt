@@ -3,7 +3,7 @@ Contributors: larsschenk
 Donate link: http://schenk.github.io/responsive-flickr-gallery/
 Tags: responsive, flickr, gallery, cdn, photo, images
 Requires at least: 3.7.0
-Tested up to: 3.8.2
+Tested up to: 3.9.1
 Stable tag: /trunk/
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
