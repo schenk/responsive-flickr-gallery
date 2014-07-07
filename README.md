@@ -29,6 +29,7 @@ _Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create r
 * Highly configureable. Change defaults (i.e. Cache TTL) for all galleries or edit settings per gallery
 * SEO friendly, all your photos are available to search engine crawlers
 * Perfect for heroku hosting and scaling: Stores nothing into the filesystem
+* Compatible with Flickr API going SSL-Only since June 27th, 2014
 * Available on [wordpress.org](http://wordpress.org/plugins/responsive-flickr-gallery/) for automatic updates
 * Available on [github.com](https://github.com/schenk/responsive-flickr-gallery/) for development, colaboration, feature requests, issue tracking and alternate git based deployment
 * PSR-2 coding standard

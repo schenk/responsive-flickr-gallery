@@ -18,7 +18,7 @@
 define('BASE_URL', plugins_url() . '/' . basename(dirname(__FILE__)));
 define('SITE_URL', site_url());
 define('DEBUG', false);
-define('VERSION', '1.2.1');
+define('VERSION', '1.3.0');
 
 $rfg_sort_order_map = array(
     'default' => 'Default',
@@ -446,27 +446,11 @@ function rfgDonateBox()
     return <<<EOD
 <div class="postbox">
   <div class="inside">
-    <h3>License keys and donations</h3>
+    <h3>License keys</h3>
     A <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly" target="_blank">license key is mandatory</a> for businesses and commercial sites. 
-    For personal blogs the license is optional.<br />
+    For personal blogs the license is optional but should be considered to support further development and maintenance of this plugin.<br />
     <br />
 
-    Weather or not you buy a license <b>donations are welcome</b>:  
-    Your donation will help encourage and support the plugin’s continued development and better user support.<br />
-    <br />
-    </form>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
-    <div style="text-align:center" class="paypal-donations">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="G34C7BDW8499Q">
-    <input type="image" src="https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </div></form>
-    <br />
-    Donations also welcome by Bitcoin or Litecoin:<br />
-    <a href="bitcoin:1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb">1LY77g2LpxX6QC3xu9EUEponwKgvZfvFWb</a><br />
-    <a href="litecoin:LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv">LMYPtmBS2fP6pa12iUT2szYkWDR36KNmRv</a><br />
-    <br />
     Found a bug or need a new feature?<br />
     Head to <a href="https://github.com/schenk/responsive-flickr-gallery/issues">github issues</a> for solutions.<br />
     Contributors and feature requests welcome. Bounties can speed up the development process.
