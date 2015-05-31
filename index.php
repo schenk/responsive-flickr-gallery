@@ -51,7 +51,6 @@ function rfg_enqueue_styles()
 
 $enable_colorbox = get_option('rfg_slideshow_option') == 'colorbox';
 
-if (!is_admin()) {
     /* Short code to load Responsive Flickr Gallery plugin.  Detects the word
      * [RFG_gallery] in posts or pages and loads the gallery.
      */
@@ -72,7 +71,6 @@ if (!is_admin()) {
     }
 
     add_action('wp_print_styles', 'rfg_enqueue_styles');
-}
 
 add_action('wp_head', 'add_rfg_headers');
 
