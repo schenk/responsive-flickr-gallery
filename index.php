@@ -144,7 +144,7 @@ function rfg_display_gallery($atts)
     $rfg_ca_pub = get_option('rfg_ca_pub');
     $base64_encoded_rfg_license_key = get_option('rfg_license_key');
     if (!empty($base64_encoded_rfg_license_key)) {
-        list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode($base63_encoded_rfg_license_key));
+        list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode($base64_encoded_rfg_license_key));
         if ($productkey == md5('Reponsive Flickr Gallery Pro')
             && (hash("crc32b", $username.$productkey.$expiredate) == $crc32)
             && ($expiredate > time())
