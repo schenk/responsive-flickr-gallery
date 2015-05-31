@@ -440,32 +440,35 @@ function rfg_admin_html_page()
     <?php
     $admin_email = get_option('admin_email');
     $vl = false;
-    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
-    $validExpiredate = $expiredate > time();
-    if ($productkey == md5('Reponsive Flickr Gallery Pro')
-        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
-    ) {
-        echo "Reponsive Flickr Gallery Pro<br />";
-        if ($username == $admin_email) {
-            echo "Licensed to: <b>$username</b><br />";
-        } else {
-            echo "License key is valid for: <b>$username</b>.<br />"; 
-            echo "<a href=\"/wp-admin/options-general.php\">Change admin e-mail address</a> accordingly to make license valid.<br />";
-        }
-        if ($validExpiredate) {
-            echo "Expires at: ".date("Y-m-d", $expiredate);
-        } else {
-            echo "Expired since: ".date("Y-m-d", $expiredate);
-            echo "Renew the license at <a href=\"http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly\" target='blank'>here.</a><br />";
-            echo "<small>";
-        }
-        if ($validExpiredate && ($username == $admin_email)) {
-            $vl = true;
-            echo "<br /><br /><small>Your Google AdSense Publisher ID will receive 100% of the impressions.<br /> ";
-            echo "Thanks for supporting this plugin’s continued development and better user support.</small>";
-        }
-        echo "<br /><br />";
-    } 
+    $base64_encoded_rfg_license_key = get_option('rfg_license_key');
+    if (!empty($base64_encoded_rfg_license_key)) {
+      list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode($base63_encoded_rfg_license_key));
+      $validExpiredate = $expiredate > time();
+      if ($productkey == md5('Reponsive Flickr Gallery Pro')
+          && (hash("crc32b", $username.$productkey.$expiredate) == $crc32) 
+      ) {
+          echo "Reponsive Flickr Gallery Pro<br />";
+          if ($username == $admin_email) {
+              echo "Licensed to: <b>$username</b><br />";
+          } else {
+              echo "License key is valid for: <b>$username</b>.<br />"; 
+              echo "<a href=\"/wp-admin/options-general.php\">Change admin e-mail address</a> accordingly to make license valid.<br />";
+          }
+          if ($validExpiredate) {
+              echo "Expires at: ".date("Y-m-d", $expiredate);
+          } else {
+              echo "Expired since: ".date("Y-m-d", $expiredate);
+              echo "Renew the license at <a href=\"https://www.lars-schenk.com/buy-the-responsive-flickr-gallery\" target='blank'>here.</a><br />";
+              echo "<small>";
+          }
+          if ($validExpiredate && ($username == $admin_email)) {
+              $vl = true;
+              echo "<br /><br /><small>Your Google AdSense Publisher ID will receive 100% of the impressions.<br /> ";
+              echo "Thanks for supporting this plugin’s continued development and better user support.</small>";
+          }
+          echo "<br /><br />";
+      } 
+    }
     if (!$vl) {
         echo "<strong><font style='color:red'>No valid license found for $admin_email</font></strong><br />";
         echo "A license key is mandatory for businesses and commercial sites.<br />";
