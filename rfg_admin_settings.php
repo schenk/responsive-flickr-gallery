@@ -432,7 +432,7 @@ function rfg_admin_html_page()
                            <tr>
                               <th scope='row'>License Key</th>
                               <td style='width:28%'><input type='text' name='rfg_license_key' size='30' value="<?php echo get_option('rfg_license_key'); ?>" ></input> </td>
-                              <td><font size='2'>Don't have a License Key?<br />You can buy one from <a href="http://www.lars-schenk.com/product/responsive-flickr-gallery-license-yearly" target='blank'>here.</a></font></td>
+                              <td><font size='2'>Don't have a License Key?<br />You can buy one from <a href="https://www.lars-schenk.com/buy-the-responsive-flickr-gallery" target='blank'>here.</a></font></td>
                            </tr>
                            <tr>
                               <th scope='row'>License Information:</th>

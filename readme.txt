@@ -58,7 +58,7 @@ _Responsive Flickr Gallery_ is an easy to use, fast and light plugin to create r
 
 You can see a live demo of this plugin here:
 
-* [Responsive Flickr Gallery Demo Page | Lars-Schenk.com](http://www.lars-schenk.com/responsive-flickr-gallery)
+* [Responsive Flickr Gallery Demo Page | Lars-Schenk.com](https://www.lars-schenk.com/responsive-flickr-gallery)
 
 ###Support:
 
