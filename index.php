@@ -142,15 +142,18 @@ function rfg_display_gallery($atts)
     $popular = false;
 
     $rfg_ca_pub = get_option('rfg_ca_pub');
-    list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode(get_option('rfg_license_key')));
-    if ($productkey == md5('Reponsive Flickr Gallery Pro')
-        && (hash("crc32b", $username.$productkey.$expiredate) == $crc32)
-        && ($expiredate > time())
-        && ($username == get_option('admin_email'))
-    ) {
-        $registeredtext = '';
-    } else {
-        $registeredtext = "This gallery is created with unlicensed version for personal use only. Commercial use requires a valid license! Report missuse to abuse@lars-schenk.de.";
+    $base64_encoded_rfg_license_key = get_option('rfg_license_key');
+    if (!empty($base64_encoded_rfg_license_key)) {
+        list($username, $crc32, $productkey, $expiredate) = explode(';', base64_decode($base63_encoded_rfg_license_key));
+        if ($productkey == md5('Reponsive Flickr Gallery Pro')
+            && (hash("crc32b", $username.$productkey.$expiredate) == $crc32)
+            && ($expiredate > time())
+            && ($username == get_option('admin_email'))
+        ) {
+            $registeredtext = '';
+        } else {
+            $registeredtext = "This gallery is created with unlicensed version for PERSONAL USE ONLY. Commercial use requires a valid license. Thanks for beeing fair.";
+        }
     }
 
     if (empty($rfg_ca_pub)
