@@ -51,26 +51,26 @@ function rfg_enqueue_styles()
 
 $enable_colorbox = get_option('rfg_slideshow_option') == 'colorbox';
 
-    /* Short code to load Responsive Flickr Gallery plugin.  Detects the word
-     * [RFG_gallery] in posts or pages and loads the gallery.
-     */
-    add_shortcode('RFG_gallery', 'rfg_display_gallery');
-    add_filter('widget_text', 'do_shortcode', 11);
+/* Short code to load Responsive Flickr Gallery plugin.  Detects the word
+ * [RFG_gallery] in posts or pages and loads the gallery.
+ */
+add_shortcode('RFG_gallery', 'rfg_display_gallery');
+add_filter('widget_text', 'do_shortcode', 11);
 
-    $galleries = get_option('rfg_galleries');
-    foreach ($galleries as $gallery) {
-        if ($gallery['slideshow_option'] == 'colorbox') {
-            $enable_colorbox = true;
-            break;
-        }
+$galleries = get_option('rfg_galleries');
+foreach ($galleries as $gallery) {
+    if ($gallery['slideshow_option'] == 'colorbox') {
+        $enable_colorbox = true;
+        break;
     }
+}
 
-    if ($enable_colorbox) {
-        add_action('wp_print_scripts', 'rfg_enqueue_cbox_scripts');
-        add_action('wp_print_styles', 'rfg_enqueue_cbox_styles');
-    }
+if ($enable_colorbox) {
+    add_action('wp_print_scripts', 'rfg_enqueue_cbox_scripts');
+    add_action('wp_print_styles', 'rfg_enqueue_cbox_styles');
+}
 
-    add_action('wp_print_styles', 'rfg_enqueue_styles');
+add_action('wp_print_styles', 'rfg_enqueue_styles');
 
 add_action('wp_head', 'add_rfg_headers');
 
